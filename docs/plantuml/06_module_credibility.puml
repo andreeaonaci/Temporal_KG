@@ -1,0 +1,54 @@
+@startuml
+title Module Pipeline - Credibility and Fake-News Analysis
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "CLI user" as U
+
+folder "data/exports/entities" as ENTX
+folder "data/exports/temporals" as TMPX
+folder "data/exports/events" as EVTX
+folder "data/exports/credibility" as CRDX
+
+package "scripts" {
+  component "run_corroboration_analysis.py" as CORCLI
+  component "run_fake_news_analysis.py" as FAKCLI
+  component "export_contradictions_fake_news.py" as EXPCLI
+}
+
+package "src.credibility" {
+  component "scorer.py" as SCR
+  component "corroboration.py" as COR
+  component "fake_news.py" as FAK
+}
+
+package "src.temporal" {
+  component "reasoner.py" as RSN
+}
+
+U --> CORCLI
+U --> FAKCLI
+U --> EXPCLI
+
+ENTX --> CORCLI
+TMPX --> CORCLI
+EVTX --> CORCLI
+CORCLI --> COR
+COR --> SCR
+COR --> CRDX : corroboration outputs
+
+ENTX --> FAKCLI
+TMPX --> FAKCLI
+EVTX --> FAKCLI
+FAKCLI --> FAK
+FAK --> SCR
+FAK --> RSN
+FAK --> CRDX : claim_assessments.json
+
+CRDX --> EXPCLI
+EXPCLI --> FAK : thresholded labeling
+EXPCLI --> CRDX : contradictions_fake_news.json
+
+@enduml

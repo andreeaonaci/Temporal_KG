@@ -1,0 +1,25 @@
+@startuml
+title Sequence - Ontology Module
+
+actor "Extraction/Graph consumer" as C
+participant "taxonomy.py" as TAX
+participant "CAMEO/GDELT taxonomy" as CAMEO
+participant "IPTC topics" as IPTC
+participant "OWL-Time concepts" as OWLT
+participant "event_extractor.py" as EVT
+participant "relation_extractor.py" as REL
+participant "graph_loader.py" as LOAD
+participant "competency_queries.py" as CQ
+
+C -> TAX : map event/relation semantics
+TAX -> CAMEO : resolve event class
+TAX -> IPTC : resolve topic labels
+TAX -> OWLT : resolve temporal semantics
+TAX --> C : normalized ontology mapping
+
+C -> EVT : apply mapped event categories
+C -> REL : apply mapped relation classes
+C -> LOAD : materialize graph labels/types
+C -> CQ : align query filters and facets
+
+@enduml

@@ -1,0 +1,737 @@
+026-06-07 20:43:30 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://www.capital.ro/razboiul-pentru-metalele-rare-se-muta-in-europa
+GDELT China-Romania:  30%|██████████████████████████████▉                                                                        | 75/250 [05:45<16:30,  5.66s/art]2026-06-07 20:43:34 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://ziare.com/diana-sosoaca/forum-rusia-sankt-petersburg-2016630
+GDELT China-Romania:  30%|███████████████████████████████▎                                                                       | 76/250 [05:50<15:33,  5.37s/art]2026-06-07 20:43:39 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/dy/article/KULFRIAR0514R9OJ.html
+GDELT China-Romania:  31%|███████████████████████████████▋                                                                       | 77/250 [05:52<12:34,  4.36s/art]2026-06-07 20:43:41 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.yicai.com/news/103216961.html
+2026-06-07 20:43:44 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:43:44 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.yicai.com/news/103216961.html
+GDELT China-Romania:  31%|████████████████████████████████▏                                                                      | 78/250 [05:56<12:09,  4.24s/art]2026-06-07 20:43:45 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.orientaldaily.com.my/news/society/2026/06/07/824143
+GDELT China-Romania:  32%|████████████████████████████████▌                                                                      | 79/250 [05:59<10:54,  3.83s/art]2026-06-07 20:43:50 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://xiuxiu.huxiu.com/hxgpt_agent/morning_daily/2026-06-05.html
+2026-06-07 20:43:53 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:43:53 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://xiuxiu.huxiu.com/hxgpt_agent/morning_daily/2026-06-05.html
+GDELT China-Romania:  32%|████████████████████████████████▉                                                                      | 80/250 [06:05<12:44,  4.50s/art]2026-06-07 20:43:55 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://health.hangzhou.com.cn/hot/content/2026-06/03/content_9233514.
+2026-06-07 20:43:59 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:00 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://health.hangzhou.com.cn/hot/content/2026-06/03/content_9233514.htm
+GDELT China-Romania:  32%|█████████████████████████████████▎                                                                     | 81/250 [06:11<14:12,  5.04s/art]2026-06-07 20:44:00 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/dy/article/KUD9E2C30514R9OJ.html
+GDELT China-Romania:  33%|█████████████████████████████████▊                                                                     | 82/250 [06:13<11:43,  4.19s/art]2026-06-07 20:44:03 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.ifeng.com/c/8tjM6nkdmY1
+GDELT China-Romania:  33%|██████████████████████████████████▏                                                                    | 83/250 [06:16<10:10,  3.66s/art]2026-06-07 20:44:05 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUDMDLV00550A0OW.html
+GDELT China-Romania:  34%|██████████████████████████████████▌                                                                    | 84/250 [06:18<09:12,  3.33s/art]2026-06-07 20:44:07 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://24tv.ua/putin-testuye-ppo-krayin-nato-vid-baltiyi-do-rumuniyi-
+GDELT China-Romania:  34%|███████████████████████████████████                                                                    | 85/250 [06:20<07:29,  2.72s/art]2026-06-07 20:44:08 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://24tv.ua/ru/putin-testiruet-pvo-stran-nato-ot-baltii-do-rumynii
+GDELT China-Romania:  34%|███████████████████████████████████▍                                                                   | 86/250 [06:21<06:32,  2.39s/art]2026-06-07 20:44:10 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUDF03CK05299JMD.html
+GDELT China-Romania:  35%|███████████████████████████████████▊                                                                   | 87/250 [06:24<06:47,  2.50s/art]2026-06-07 20:44:14 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.bjd.com.cn/2026/06/06/11789711.shtml
+GDELT China-Romania:  35%|████████████████████████████████████▎                                                                  | 88/250 [06:27<07:15,  2.69s/art]2026-06-07 20:44:17 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://news.ltn.com.tw/news/world/breakingnews/5460531
+GDELT China-Romania:  36%|████████████████████████████████████▋                                                                  | 89/250 [06:31<08:15,  3.08s/art]2026-06-07 20:44:20 | INFO     | src.ingestion.translator | Translating article [pt → en]: http://news.cnnb.com.cn/system/2026/06/06/030780493.shtml
+2026-06-07 20:44:23 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:24 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://news.cnnb.com.cn/system/2026/06/06/030780493.shtml
+GDELT China-Romania:  36%|█████████████████████████████████████                                                                  | 90/250 [06:35<09:13,  3.46s/art]2026-06-07 20:44:26 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.cna.com.tw:443/news/aopl/202606050192.aspx
+GDELT China-Romania:  36%|█████████████████████████████████████▍                                                                 | 91/250 [06:37<07:58,  3.01s/art]2026-06-07 20:44:28 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://finance.sina.com.cn/wm/2026-06-01/doc-inhzxewn3875214.shtml
+2026-06-07 20:44:32 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:34 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:36 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:39 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:41 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:42 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/wm/2026-06-01/doc-inhzxewn3875214.shtml
+GDELT China-Romania:  37%|█████████████████████████████████████▉                                                                 | 92/250 [06:53<17:53,  6.80s/art]2026-06-07 20:44:46 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://m.mp.oeeee.com/a/BAAFRD0000202606031601872.html
+2026-06-07 20:44:49 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:49 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://m.mp.oeeee.com/a/BAAFRD0000202606031601872.html
+GDELT China-Romania:  37%|██████████████████████████████████████▎                                                                | 93/250 [07:01<18:22,  7.02s/art]2026-06-07 20:44:50 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://www.renminbao.com/rmb/articles/2026/6/4/95416.html
+2026-06-07 20:44:53 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:55 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:44:55 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.renminbao.com/rmb/articles/2026/6/4/95416.html
+GDELT China-Romania:  38%|██████████████████████████████████████▋                                                                | 94/250 [07:07<17:28,  6.72s/art]2026-06-07 20:44:57 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.cfi.net.cn/p20260605001703.html
+2026-06-07 20:45:00 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:00 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.cfi.net.cn/p20260605001703.html
+GDELT China-Romania:  38%|███████████████████████████████████████▏                                                               | 95/250 [07:12<15:57,  6.18s/art]2026-06-07 20:45:01 | INFO     | src.ingestion.translator | Translating article [da → en]: http://news.cnfol.com/zhengquanyaowen/20260602/32267500.shtml
+2026-06-07 20:45:04 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:05 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://news.cnfol.com/zhengquanyaowen/20260602/32267500.shtml
+GDELT China-Romania:  38%|███████████████████████████████████████▌                                                               | 96/250 [07:17<15:01,  5.86s/art]2026-06-07 20:45:07 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.chinapress.com.my/20260606/%E3%80%8A%E4%B8%AD%E5%9B%BD%E6%
+GDELT China-Romania:  39%|███████████████████████████████████████▉                                                               | 97/250 [07:19<12:31,  4.91s/art]2026-06-07 20:45:09 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://news.cts.com.tw/cts/politics/202606/202606043039793.html
+GDELT China-Romania:  39%|████████████████████████████████████████▍                                                              | 98/250 [07:21<10:17,  4.06s/art]2026-06-07 20:45:10 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.cfi.net.cn/p20260605002599.html
+GDELT China-Romania:  40%|████████████████████████████████████████▊                                                              | 99/250 [07:24<09:15,  3.68s/art]2026-06-07 20:45:13 | INFO     | src.ingestion.translator | Translating article [zh-TW → en]: https://news.cts.com.tw/cna/international/202606/202606053040340.html
+GDELT China-Romania:  40%|████████████████████████████████████████▊                                                             | 100/250 [07:27<08:35,  3.43s/art]2026-06-07 20:45:16 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.cna.com.tw/news/aopl/202606050192.aspx
+GDELT China-Romania:  40%|█████████████████████████████████████████▏                                                            | 101/250 [07:28<06:19,  2.55s/art]2026-06-07 20:45:17 | INFO     | src.ingestion.translator | Translating article [it → en]: https://it.euronews.com/2026/06/02/mondiali-2026-grandi-assenti-gigant
+GDELT China-Romania:  41%|█████████████████████████████████████████▌                                                            | 102/250 [07:32<07:22,  2.99s/art]2026-06-07 20:45:21 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.ycwb.com/ikimvkmtkm/content_54160906.htm
+2026-06-07 20:45:24 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:26 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:26 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.ycwb.com/ikimvkmtkm/content_54160906.htm
+GDELT China-Romania:  41%|██████████████████████████████████████████                                                            | 103/250 [07:38<09:35,  3.92s/art]2026-06-07 20:45:27 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://news.china.com/socialgd/10000169/20260604/49530577.html
+2026-06-07 20:45:30 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:31 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.china.com/socialgd/10000169/20260604/49530577.html
+GDELT China-Romania:  42%|██████████████████████████████████████████▍                                                           | 104/250 [07:43<10:31,  4.32s/art]2026-06-07 20:45:32 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.voachinese.com/a/american-citizen-thomas-weir-pauken-plead
+GDELT China-Romania:  42%|██████████████████████████████████████████▊                                                           | 105/250 [07:45<08:32,  3.54s/art]2026-06-07 20:45:35 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://www.sznews.com/news/content/2026-06/05/content_32078931.htm
+2026-06-07 20:45:38 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:38 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.sznews.com/news/content/2026-06/05/content_32078931.htm
+GDELT China-Romania:  42%|███████████████████████████████████████████▏                                                          | 106/250 [07:50<09:46,  4.07s/art]2026-06-07 20:45:45 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.dayoo.com/society/202606/06/140000_54967058.htm
+2026-06-07 20:45:48 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:50 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:52 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.dayoo.com/society/202606/06/140000_54967058.htm
+GDELT China-Romania:  43%|███████████████████████████████████████████▋                                                          | 107/250 [08:04<16:40,  7.00s/art]2026-06-07 20:45:53 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.sina.com.cn/c/2026-06-04/doc-iniaeyvw3807044.shtml
+2026-06-07 20:45:56 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:45:56 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.sina.com.cn/c/2026-06-04/doc-iniaeyvw3807044.shtml
+GDELT China-Romania:  43%|████████████████████████████████████████████                                                          | 108/250 [08:08<14:30,  6.13s/art]2026-06-07 20:45:58 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.ifeng.com/c/8tg1e0si3fa
+GDELT China-Romania:  44%|████████████████████████████████████████████▍                                                         | 109/250 [08:11<12:11,  5.19s/art]2026-06-07 20:46:00 | INFO     | src.ingestion.translator | Translating article [ru → en]: https://runews24.ru/politics/01/06/2026/safe-na-150-mlrd-kak-evropa-pe
+GDELT China-Romania:  44%|████████████████████████████████████████████▉                                                         | 110/250 [08:12<09:15,  3.97s/art]2026-06-07 20:46:01 | INFO     | src.ingestion.translator | Translating article [it → en]: https://www.ansa.it/sito/notizie/cultura/libri/2026/06/04/a-michele-ma
+GDELT China-Romania:  44%|█████████████████████████████████████████████▎                                                        | 111/250 [08:14<07:47,  3.36s/art]2026-06-07 20:46:03 | INFO     | src.ingestion.translator | Translating article [it → en]: https://www.ansa.it/sito/notizie/cultura/libri/narrativa/2026/06/04/a-
+GDELT China-Romania:  45%|██████████████████████████████████████████████                                                        | 113/250 [08:16<05:06,  2.24s/art]2026-06-07 20:46:05 | INFO     | src.ingestion.translator | Translating article [sk → en]: https://dennikn.sk/newsletter/5379930/zjednotenie-moldavska-a-rumunska
+GDELT China-Romania:  46%|██████████████████████████████████████████████▌                                                       | 114/250 [08:19<04:59,  2.20s/art]2026-06-07 20:46:08 | INFO     | src.ingestion.translator | Translating article [da → en]: http://fund.cnfol.com/jijindongtai/20260604/32269363.shtml
+2026-06-07 20:46:11 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:46:11 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://fund.cnfol.com/jijindongtai/20260604/32269363.shtml
+GDELT China-Romania:  46%|██████████████████████████████████████████████▉                                                       | 115/250 [08:23<06:21,  2.82s/art]2026-06-07 20:46:12 | INFO     | src.ingestion.translator | Translating article [bg → en]: https://www.investor.bg/a/538-pazari/431411-analizator-listvane-na-dar
+2026-06-07 20:46:15 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:46:17 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.investor.bg/a/538-pazari/431411-analizator-listvane-na-darzhavni-kom
+GDELT China-Romania:  46%|███████████████████████████████████████████████▎                                                      | 116/250 [08:29<08:15,  3.70s/art]2026-06-07 20:46:21 | INFO     | src.ingestion.translator | Translating article [auto → en]: http://hx.cnd.org/2026/06/03/%E5%90%B4%E9%91%AB%E5%B2%A9%EF%BC%9A%E8%B
+GDELT China-Romania:  47%|███████████████████████████████████████████████▋                                                      | 117/250 [08:33<08:58,  4.05s/art]2026-06-07 20:46:23 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.81.cn/yw_208727/16465908.html
+GDELT China-Romania:  47%|████████████████████████████████████████████████▏                                                     | 118/250 [08:35<07:12,  3.27s/art]2026-06-07 20:46:24 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://ziarulunirea.ro/foto-fostul-premier-viorica-dancila-promoveaza
+GDELT China-Romania:  48%|████████████████████████████████████████████████▌                                                     | 119/250 [08:38<06:58,  3.19s/art]2026-06-07 20:46:28 | INFO     | src.ingestion.translator | Translating article [vi → en]: http://www.jzrb.com/news/guoji/202606/953279.shtml
+2026-06-07 20:46:32 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:46:32 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.jzrb.com/news/guoji/202606/953279.shtml
+GDELT China-Romania:  48%|████████████████████████████████████████████████▉                                                     | 120/250 [08:43<08:26,  3.89s/art]2026-06-07 20:46:33 | INFO     | src.ingestion.translator | Translating article [bg → en]: https://www.investor.bg/a/524-industriya/431395-a-kadiev-s-unikalniya-
+2026-06-07 20:46:36 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:46:38 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.investor.bg/a/524-industriya/431395-a-kadiev-s-unikalniya-si-dizayn-
+GDELT China-Romania:  48%|█████████████████████████████████████████████████▎                                                    | 121/250 [08:49<09:31,  4.43s/art]2026-06-07 20:46:38 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.dw.com/zh/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E9%87%87%E5%8F%96%E6
+GDELT China-Romania:  49%|█████████████████████████████████████████████████▊                                                    | 122/250 [08:52<08:34,  4.02s/art]2026-06-07 20:46:41 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUEAPQAC055080L4.html
+GDELT China-Romania:  49%|██████████████████████████████████████████████████▏                                                   | 123/250 [08:55<07:55,  3.74s/art]2026-06-07 20:46:44 | INFO     | src.ingestion.translator | Translating article [ar → en]: https://arabic.euronews.com/2026/06/02/world-cup-major-absentees-forgo
+2026-06-07 20:46:47 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:46:48 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://arabic.euronews.com/2026/06/02/world-cup-major-absentees-forgotten-giant
+GDELT China-Romania:  50%|██████████████████████████████████████████████████▌                                                   | 124/250 [09:00<08:16,  3.94s/art]2026-06-07 20:46:49 | INFO     | src.ingestion.translator | Translating article [uk → en]: https://news.bigmir.net/ua/world/10365210-jes-na-20-procent-skorotiv-v
+GDELT China-Romania:  50%|███████████████████████████████████████████████████▍                                                  | 126/250 [09:03<05:36,  2.72s/art]2026-06-07 20:46:54 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.chinesepress.com/archives/162642
+GDELT China-Romania:  51%|███████████████████████████████████████████████████▊                                                  | 127/250 [09:07<06:19,  3.08s/art]2026-06-07 20:46:56 | INFO     | src.ingestion.translator | Translating article [sv → en]: http://edu.people.com.cn/n1/2026/0604/c367001-40733606.html
+2026-06-07 20:46:59 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:01 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:01 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://edu.people.com.cn/n1/2026/0604/c367001-40733606.html
+GDELT China-Romania:  51%|████████████████████████████████████████████████████▏                                                 | 128/250 [09:13<07:48,  3.84s/art]2026-06-07 20:47:03 | INFO     | src.ingestion.translator | Translating article [sv → en]: http://ent.people.com.cn/n1/2026/0604/c1012-40733578.html
+2026-06-07 20:47:06 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:08 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:08 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://ent.people.com.cn/n1/2026/0604/c1012-40733578.html
+GDELT China-Romania:  52%|████████████████████████████████████████████████████▋                                                 | 129/250 [09:19<09:28,  4.70s/art]2026-06-07 20:47:09 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://www.realitatea.net/stiri/actual/cum-a-inceput-de-fapt-ziua-cop
+GDELT China-Romania:  52%|█████████████████████████████████████████████████████                                                 | 130/250 [09:22<08:13,  4.11s/art]2026-06-07 20:47:12 | INFO     | src.ingestion.translator | Translating article [sv → en]: http://news.cnwest.com/szyw/a/2026/06/02/23367389.html
+2026-06-07 20:47:16 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:18 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:19 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://news.cnwest.com/szyw/a/2026/06/02/23367389.html
+GDELT China-Romania:  52%|█████████████████████████████████████████████████████▍                                                | 131/250 [09:31<10:52,  5.48s/art]2026-06-07 20:47:20 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://hunan.voc.com.cn/news/202606/32830970.html
+GDELT China-Romania:  53%|█████████████████████████████████████████████████████▊                                                | 132/250 [09:34<09:20,  4.75s/art]2026-06-07 20:47:23 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.epochtimes.com/gb/26/6/1/n14779866.htm
+GDELT China-Romania:  53%|██████████████████████████████████████████████████████▎                                               | 133/250 [09:36<07:52,  4.04s/art]2026-06-07 20:47:27 | INFO     | src.ingestion.translator | Translating article [sv → en]: http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111486952.html
+2026-06-07 20:47:29 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:29 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111486952.html
+GDELT China-Romania:  54%|██████████████████████████████████████████████████████▋                                               | 134/250 [09:41<08:06,  4.19s/art]2026-06-07 20:47:30 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KULD52JU0514B0JK.html
+GDELT China-Romania:  54%|███████████████████████████████████████████████████████                                               | 135/250 [09:43<06:56,  3.62s/art]2026-06-07 20:47:32 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/dy/article/KUIFOKB705346936.html
+GDELT China-Romania:  54%|███████████████████████████████████████████████████████▍                                              | 136/250 [09:46<06:27,  3.40s/art]2026-06-07 20:47:35 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.cqnews.net/web/content_1512852535820873728.html
+GDELT China-Romania:  55%|███████████████████████████████████████████████████████▉                                              | 137/250 [09:48<05:33,  2.95s/art]2026-06-07 20:47:37 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.chinaz.com/ainews/28684.shtml
+GDELT China-Romania:  55%|████████████████████████████████████████████████████████▎                                             | 138/250 [09:50<05:15,  2.81s/art]2026-06-07 20:47:39 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.zaobao.com.sg/news/china/story20260601-9137018
+GDELT China-Romania:  56%|████████████████████████████████████████████████████████▋                                             | 139/250 [09:53<05:09,  2.79s/art]2026-06-07 20:47:43 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.bjnews.com.cn/detail/1780706344129662.html
+GDELT China-Romania:  56%|█████████████████████████████████████████████████████████                                             | 140/250 [09:57<05:25,  2.96s/art]2026-06-07 20:47:46 | INFO     | src.ingestion.translator | Translating article [zh-TW → en]: https://www.hkcna.hk/docDetail.jsp?id=101337059&channel=2810
+2026-06-07 20:47:50 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:50 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.hkcna.hk/docDetail.jsp?id=101337059&channel=2810
+GDELT China-Romania:  56%|█████████████████████████████████████████████████████████▌                                            | 141/250 [10:01<06:16,  3.45s/art]2026-06-07 20:47:50 | INFO     | src.ingestion.translator | Translating article [zh-TW → en]: https://www.hkcna.hk/docDetail.jsp?id=101337059&channel=2803
+2026-06-07 20:47:53 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:47:53 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.hkcna.hk/docDetail.jsp?id=101337059&channel=2803
+GDELT China-Romania:  57%|█████████████████████████████████████████████████████████▉                                            | 142/250 [10:05<06:22,  3.54s/art]2026-06-07 20:47:55 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn/page?n=2828600&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn/page?n=2828600&m=1&s=1044
+GDELT China-Romania:  57%|██████████████████████████████████████████████████████████▎                                           | 143/250 [10:06<05:13,  2.93s/art]2026-06-07 20:47:56 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.chinaz.com/tags/huaweixinji.shtml
+GDELT China-Romania:  58%|██████████████████████████████████████████████████████████▊                                           | 144/250 [10:09<04:59,  2.82s/art]2026-06-07 20:47:58 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.orientaldaily.com.my/news/east-malaysia/2026/06/06/823956
+GDELT China-Romania:  58%|███████████████████████████████████████████████████████████▏                                          | 145/250 [10:12<05:05,  2.90s/art]2026-06-07 20:48:01 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://www.renminbao.com/rmb/articles/2026/6/3/95399.html
+2026-06-07 20:48:04 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:05 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.renminbao.com/rmb/articles/2026/6/3/95399.html
+GDELT China-Romania:  58%|███████████████████████████████████████████████████████████▌                                          | 146/250 [10:17<05:56,  3.43s/art]2026-06-07 20:48:06 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.zavtra.ru/blogs/evropa_na_dne
+GDELT China-Romania:  59%|████████████████████████████████████████████████████████████▍                                         | 148/250 [10:18<03:29,  2.05s/art]2026-06-07 20:48:07 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://www.digi24.ro/opinii/agora-digi/cum-isi-apara-taiwan-democrati
+GDELT China-Romania:  60%|████████████████████████████████████████████████████████████▊                                         | 149/250 [10:26<06:20,  3.76s/art]2026-06-07 20:48:17 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn/page?n=2828089&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn/page?n=2828089&m=1&s=1044
+GDELT China-Romania:  60%|█████████████████████████████████████████████████████████████▏                                        | 150/250 [10:28<05:24,  3.25s/art]2026-06-07 20:48:17 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://www.libertatea.ro/stiri/ue-risc-pierdere-milion-slujbe-preturi
+GDELT China-Romania:  60%|█████████████████████████████████████████████████████████████▌                                        | 151/250 [10:30<04:39,  2.82s/art]2026-06-07 20:48:19 | INFO     | src.ingestion.translator | Translating article [th → en]: https://www.posttoday.com/lifestyle/743464
+2026-06-07 20:48:23 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:23 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.posttoday.com/lifestyle/743464
+GDELT China-Romania:  61%|██████████████████████████████████████████████████████████████                                        | 152/250 [10:34<05:19,  3.26s/art]2026-06-07 20:48:24 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUQMTUAF055040N3.html
+GDELT China-Romania:  61%|██████████████████████████████████████████████████████████████▍                                       | 153/250 [10:37<05:05,  3.15s/art]2026-06-07 20:48:27 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.zj.xinhuanet.com/20260605/9f3f32f8e5d54302882925652f874b05/
+2026-06-07 20:48:30 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:30 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.zj.xinhuanet.com/20260605/9f3f32f8e5d54302882925652f874b05/c.html
+GDELT China-Romania:  62%|██████████████████████████████████████████████████████████████▊                                       | 154/250 [10:41<05:33,  3.47s/art]2026-06-07 20:48:30 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.qq.com/rain/a/20260607A0584Z00
+GDELT China-Romania:  62%|███████████████████████████████████████████████████████████████▏                                      | 155/250 [10:43<04:45,  3.00s/art]2026-06-07 20:48:33 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://news.china.com.cn/2026-06/07/content_118535242.shtml
+GDELT China-Romania:  62%|███████████████████████████████████████████████████████████████▋                                      | 156/250 [10:46<04:26,  2.83s/art]2026-06-07 20:48:36 | INFO     | src.ingestion.translator | Translating article [da → en]: https://www.oeeee.com/html/202606/07/1713649.html
+2026-06-07 20:48:39 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:39 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.oeeee.com/html/202606/07/1713649.html
+GDELT China-Romania:  63%|████████████████████████████████████████████████████████████████                                      | 157/250 [10:51<05:29,  3.54s/art]2026-06-07 20:48:42 | INFO     | src.ingestion.translator | Translating article [da → en]: https://focus.scol.com.cn/gcdt/202606/83266982.html
+2026-06-07 20:48:45 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:45 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://focus.scol.com.cn/gcdt/202606/83266982.html
+GDELT China-Romania:  63%|████████████████████████████████████████████████████████████████▍                                     | 158/250 [10:56<06:15,  4.08s/art]2026-06-07 20:48:46 | INFO     | src.ingestion.translator | Translating article [da → en]: https://www.southcn.com/node_07e973c1a3/74aabcf914.shtml
+2026-06-07 20:48:49 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:49 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.southcn.com/node_07e973c1a3/74aabcf914.shtml
+GDELT China-Romania:  64%|████████████████████████████████████████████████████████████████▊                                     | 159/250 [11:00<06:11,  4.08s/art]2026-06-07 20:48:49 | INFO     | src.ingestion.translator | Translating article [da → en]: http://news.cyol.com/gb/articles/2026-06/07/content_KalpxZuBAZ.html
+2026-06-07 20:48:52 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:48:55 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://news.cyol.com/gb/articles/2026-06/07/content_KalpxZuBAZ.html
+GDELT China-Romania:  64%|█████████████████████████████████████████████████████████████████▎                                    | 160/250 [11:07<07:11,  4.80s/art]2026-06-07 20:48:58 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.dayoo.com/china/202606/07/139997_54967289.htm
+2026-06-07 20:49:01 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:03 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:04 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.dayoo.com/china/202606/07/139997_54967289.htm
+GDELT China-Romania:  64%|█████████████████████████████████████████████████████████████████▋                                    | 161/250 [11:16<09:05,  6.13s/art]2026-06-07 20:49:05 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.ycwb.com/ikimvkmtkl/content_54162665.htm
+2026-06-07 20:49:08 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:08 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.ycwb.com/ikimvkmtkl/content_54162665.htm
+GDELT China-Romania:  65%|██████████████████████████████████████████████████████████████████                                    | 162/250 [11:19<07:41,  5.24s/art]2026-06-07 20:49:08 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUIK4HCQ05299JMD.html
+GDELT China-Romania:  65%|██████████████████████████████████████████████████████████████████▌                                   | 163/250 [11:22<06:23,  4.41s/art]2026-06-07 20:49:12 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.iqilu.com/china/gedi/2026/0607/5920201.shtml
+2026-06-07 20:49:15 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:15 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.iqilu.com/china/gedi/2026/0607/5920201.shtml
+GDELT China-Romania:  66%|██████████████████████████████████████████████████████████████████▉                                   | 164/250 [11:26<06:25,  4.48s/art]2026-06-07 20:49:16 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.hangzhou.com.cn/szxw/content/content_9235548.htm
+2026-06-07 20:49:19 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:19 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.hangzhou.com.cn/szxw/content/content_9235548.htm
+GDELT China-Romania:  66%|███████████████████████████████████████████████████████████████████▎                                  | 165/250 [11:30<06:05,  4.30s/art]2026-06-07 20:49:19 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://www.romaniatv.net/eduard-hellvig-ue-serbia-balcanii-de-vest_96
+GDELT China-Romania:  66%|███████████████████████████████████████████████████████████████████▋                                  | 166/250 [11:32<04:52,  3.48s/art]2026-06-07 20:49:22 | INFO     | src.ingestion.translator | Translating article [da → en]: http://www.legaldaily.com.cn/index_article/content/2026-06/07/content_
+2026-06-07 20:49:25 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:25 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.legaldaily.com.cn/index_article/content/2026-06/07/content_9402900.ht
+GDELT China-Romania:  67%|████████████████████████████████████████████████████████████████████▏                                 | 167/250 [11:36<05:19,  3.84s/art]2026-06-07 20:49:26 | INFO     | src.ingestion.translator | Translating article [da → en]: https://www.chinanews.com.cn/sh/2026/06-06/10635273.shtml
+2026-06-07 20:49:30 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:31 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.chinanews.com.cn/sh/2026/06-06/10635273.shtml
+GDELT China-Romania:  67%|████████████████████████████████████████████████████████████████████▌                                 | 168/250 [11:42<06:02,  4.43s/art]2026-06-07 20:49:32 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.ycwb.com/ikimvkmtkh/content_54155564.htm
+2026-06-07 20:49:36 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:38 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:39 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.ycwb.com/ikimvkmtkh/content_54155564.htm
+GDELT China-Romania:  68%|████████████████████████████████████████████████████████████████████▉                                 | 169/250 [11:51<07:35,  5.63s/art]2026-06-07 20:49:40 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/dy/article/KUC449BB053469KC.html
+GDELT China-Romania:  68%|█████████████████████████████████████████████████████████████████████▎                                | 170/250 [11:53<06:12,  4.66s/art]2026-06-07 20:49:45 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.aa.com.tr/tr/dunya/nato-ankara-zirvesinde-taahhutler-artik
+GDELT China-Romania:  68%|█████████████████████████████████████████████████████████████████████▊                                | 171/250 [11:58<06:17,  4.78s/art]2026-06-07 20:49:48 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://xuexi.voc.com.cn/news/202606/32849215.html
+GDELT China-Romania:  69%|██████████████████████████████████████████████████████████████████████▏                               | 172/250 [12:01<05:22,  4.13s/art]2026-06-07 20:49:50 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://nra.lv/latvija/kriminalzinas/522655-rigas-lidostas-robezkontro
+GDELT China-Romania:  69%|██████████████████████████████████████████████████████████████████████▌                               | 173/250 [12:03<04:24,  3.44s/art]2026-06-07 20:49:53 | INFO     | src.ingestion.translator | Translating article [da → en]: https://www.yangtse.com/news/tt/202606/t20260607_360313.html
+2026-06-07 20:49:56 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:49:57 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.yangtse.com/news/tt/202606/t20260607_360313.html
+GDELT China-Romania:  70%|██████████████████████████████████████████████████████████████████████▉                               | 174/250 [12:08<05:11,  4.10s/art]2026-06-07 20:49:57 | INFO     | src.ingestion.translator | Translating article [tr → en]: https://www.bursahakimiyet.com.tr/dunya/nato-ankara-zirvesi-nde-taahhu
+GDELT China-Romania:  70%|███████████████████████████████████████████████████████████████████████▍                              | 175/250 [12:10<04:12,  3.36s/art]2026-06-07 20:49:59 | INFO     | src.ingestion.translator | Translating article [da → en]: http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111487121.html
+2026-06-07 20:50:02 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:04 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111487121.html
+GDELT China-Romania:  70%|███████████████████████████████████████████████████████████████████████▊                              | 176/250 [12:16<05:10,  4.20s/art]2026-06-07 20:50:05 | INFO     | src.ingestion.translator | Translating article [da → en]: https://zjnews.zjol.com.cn/yc/qmt/202606/t20260602_31701224.shtml
+2026-06-07 20:50:09 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:10 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://zjnews.zjol.com.cn/yc/qmt/202606/t20260602_31701224.shtml
+GDELT China-Romania:  71%|████████████████████████████████████████████████████████████████████████▏                             | 177/250 [12:22<05:37,  4.62s/art]2026-06-07 20:50:12 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/news/article/KUA585RB0001899O.html
+GDELT China-Romania:  71%|████████████████████████████████████████████████████████████████████████▌                             | 178/250 [12:25<05:00,  4.18s/art]2026-06-07 20:50:16 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn/page?n=2828198&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn/page?n=2828198&m=1&s=1044
+GDELT China-Romania:  72%|█████████████████████████████████████████████████████████████████████████                             | 179/250 [12:27<04:25,  3.73s/art]2026-06-07 20:50:17 | INFO     | src.ingestion.translator | Translating article [ro → en]: https://ampress.ro/diana-iovanovici-sosoaca-presedintele-s-o-s-romania
+GDELT China-Romania:  72%|█████████████████████████████████████████████████████████████████████████▍                            | 180/250 [12:31<04:11,  3.60s/art]2026-06-07 20:50:20 | INFO     | src.ingestion.translator | Translating article [tr → en]: https://www.konhaber.com/dunya/nato_ankara_zirvesi_nde_taahhutler_arti
+GDELT China-Romania:  72%|█████████████████████████████████████████████████████████████████████████▊                            | 181/250 [12:33<03:46,  3.28s/art]2026-06-07 20:50:23 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://news.ifeng.com/c/8tlW3liFL0l
+2026-06-07 20:50:26 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:26 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.ifeng.com/c/8tlW3liFL0l
+GDELT China-Romania:  73%|██████████████████████████████████████████████████████████████████████████▎                           | 182/250 [12:38<04:05,  3.61s/art]2026-06-07 20:50:27 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://news.ltn.com.tw/news/Taipei/breakingnews/5459058
+GDELT China-Romania:  73%|██████████████████████████████████████████████████████████████████████████▋                           | 183/250 [12:41<03:48,  3.41s/art]2026-06-07 20:50:30 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://news.ltn.com.tw/news/politics/breakingnews/5459058
+GDELT China-Romania:  74%|███████████████████████████████████████████████████████████████████████████                           | 184/250 [12:45<04:04,  3.71s/art]2026-06-07 20:50:35 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://travel.china.com.cn/txt/2026-06/01/content_118524965.shtml
+GDELT China-Romania:  74%|███████████████████████████████████████████████████████████████████████████▍                          | 185/250 [12:48<03:50,  3.55s/art]2026-06-07 20:50:38 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://news.ltn.com.tw/news/life/breakingnews/5456745
+GDELT China-Romania:  74%|███████████████████████████████████████████████████████████████████████████▉                          | 186/250 [12:52<04:01,  3.78s/art]2026-06-07 20:50:41 | INFO     | src.ingestion.translator | Translating article [da → en]: http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111487049.html
+2026-06-07 20:50:44 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:44 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.jyb.cn/rmtzcg/xwy/wzxw/202606/t20260603_2111487049.html
+GDELT China-Romania:  75%|████████████████████████████████████████████████████████████████████████████▎                         | 187/250 [12:56<03:52,  3.69s/art]2026-06-07 20:50:45 | INFO     | src.ingestion.translator | Translating article [uk → en]: https://www.dw.com/uk/nato-zapustilo-novij-pidrozdil-dla-zahistu-finla
+GDELT China-Romania:  75%|████████████████████████████████████████████████████████████████████████████▋                         | 188/250 [12:58<03:08,  3.04s/art]2026-06-07 20:50:46 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://www.yangtse.com/news/yw/202606/t20260604_359300.html
+2026-06-07 20:50:49 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:49 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.yangtse.com/news/yw/202606/t20260604_359300.html
+GDELT China-Romania:  76%|█████████████████████████████████████████████████████████████████████████████                         | 189/250 [13:01<03:08,  3.08s/art]2026-06-07 20:50:50 | INFO     | src.ingestion.translator | Translating article [tr → en]: https://www.haberler.com/guncel/nato-dan-ankara-zirvesi-oncesi-taahhut
+GDELT China-Romania:  76%|█████████████████████████████████████████████████████████████████████████████▌                        | 190/250 [13:03<02:46,  2.78s/art]2026-06-07 20:50:52 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://finance.sina.com.cn/jjxw/2026-06-06/doc-iniamnzy7780602.shtml
+2026-06-07 20:50:55 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:50:58 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:00 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:00 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/jjxw/2026-06-06/doc-iniamnzy7780602.shtml
+GDELT China-Romania:  76%|█████████████████████████████████████████████████████████████████████████████▉                        | 191/250 [13:11<04:27,  4.54s/art]2026-06-07 20:51:00 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.alwatan.com.sa/article/1181404
+GDELT China-Romania:  78%|███████████████████████████████████████████████████████████████████████████████▏                      | 194/250 [13:14<01:57,  2.11s/art]2026-06-07 20:51:03 | INFO     | src.ingestion.translator | Translating article [tr → en]: https://www.ahaber.com.tr/dunya/2026/06/01/natodan-ankara-zirvesi-mesa
+GDELT China-Romania:  78%|███████████████████████████████████████████████████████████████████████████████▌                      | 195/250 [13:16<01:50,  2.01s/art]2026-06-07 20:51:06 | INFO     | src.ingestion.translator | Translating article [da → en]: https://finance.sina.com.cn/stock/aigc/zl/2026-06-06/doc-iniamnzv89928
+2026-06-07 20:51:09 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:11 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:13 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:16 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:18 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:18 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/stock/aigc/zl/2026-06-06/doc-iniamnzv8992822.shtml
+GDELT China-Romania:  78%|███████████████████████████████████████████████████████████████████████████████▉                      | 196/250 [13:29<04:57,  5.51s/art]2026-06-07 20:51:18 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUIPNHKN0514BE2Q.html
+GDELT China-Romania:  79%|████████████████████████████████████████████████████████████████████████████████▍                     | 197/250 [13:32<04:08,  4.70s/art]2026-06-07 20:51:21 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://www.163.com/dy/article/KUL9DTP405118HA4.html
+GDELT China-Romania:  80%|█████████████████████████████████████████████████████████████████████████████████▏                    | 199/250 [13:35<02:23,  2.82s/art]2026-06-07 20:51:24 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://www.etoday.co.kr/news/view/2590903
+2026-06-07 20:51:28 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:29 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.etoday.co.kr/news/view/2590903
+GDELT China-Romania:  80%|█████████████████████████████████████████████████████████████████████████████████▌                    | 200/250 [13:41<03:10,  3.80s/art]2026-06-07 20:51:31 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.cfi.net.cn/p20260605001667.html
+2026-06-07 20:51:34 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:51:34 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.cfi.net.cn/p20260605001667.html
+GDELT China-Romania:  80%|██████████████████████████████████████████████████████████████████████████████████                    | 201/250 [13:45<03:15,  4.00s/art]2026-06-07 20:51:34 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.163.com/dy/article/KUR2GPBM0529TPTB.html
+GDELT China-Romania:  81%|██████████████████████████████████████████████████████████████████████████████████▊                   | 203/250 [13:47<01:57,  2.50s/art]2026-06-07 20:52:08 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://finance.eastmoney.com/a/202606063762601411.html
+GDELT China-Romania:  82%|███████████████████████████████████████████████████████████████████████████████████▏                  | 204/250 [14:22<09:11, 12.00s/art]2026-06-07 20:52:12 | INFO     | src.ingestion.translator | Translating article [lt → en]: https://www.15min.lt/naujiena/aktualu/pasaulis/nato-dislokuoja-naujas-
+GDELT China-Romania:  82%|███████████████████████████████████████████████████████████████████████████████████▋                  | 205/250 [14:25<07:03,  9.42s/art]2026-06-07 20:52:15 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://baijiahao.baidu.com/s?id=1867163797002235561
+GDELT China-Romania:  82%|████████████████████████████████████████████████████████████████████████████████████                  | 206/250 [14:29<05:41,  7.76s/art]2026-06-07 20:52:18 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://finance.sina.com.cn/tech/discovery/2026-06-02/doc-inhzzcpm4475
+2026-06-07 20:52:22 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:52:23 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/tech/discovery/2026-06-02/doc-inhzzcpm4475252.shtml
+GDELT China-Romania:  83%|████████████████████████████████████████████████████████████████████████████████████▍                 | 207/250 [14:35<05:08,  7.17s/art]2026-06-07 20:52:25 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn:443/page?n=2828314&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn:443/page?n=2828314&m=1&s=1044
+GDELT China-Romania:  83%|████████████████████████████████████████████████████████████████████████████████████▊                 | 208/250 [14:37<03:56,  5.63s/art]2026-06-07 20:52:26 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: http://www.cfi.net.cn/p20260605002597.html
+2026-06-07 20:52:29 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:52:29 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://www.cfi.net.cn/p20260605002597.html
+GDELT China-Romania:  84%|█████████████████████████████████████████████████████████████████████████████████████▎                | 209/250 [14:41<03:31,  5.16s/art]2026-06-07 20:52:30 | INFO     | src.ingestion.translator | Translating article [da → en]: https://finance.sina.com.cn/tech/roll/2026-06-02/doc-inhzynrr7940412.s
+2026-06-07 20:52:33 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:52:35 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/tech/roll/2026-06-02/doc-inhzynrr7940412.shtml
+GDELT China-Romania:  84%|█████████████████████████████████████████████████████████████████████████████████████▋                | 210/250 [14:46<03:31,  5.28s/art]2026-06-07 20:52:35 | INFO     | src.ingestion.translator | Translating article [ko → en]: https://www.163.com/dy/article/KUBU3DK2055040N3.html
+GDELT China-Romania:  84%|██████████████████████████████████████████████████████████████████████████████████████                | 211/250 [14:50<03:04,  4.74s/art]2026-06-07 20:52:39 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://jx.ifeng.com/c/8tdEUtGaLrA
+GDELT China-Romania:  85%|██████████████████████████████████████████████████████████████████████████████████████▍               | 212/250 [14:53<02:40,  4.22s/art]2026-06-07 20:52:45 | INFO     | src.ingestion.translator | Translating article [da → en]: https://digi.china.com/articles/20260602/202606021884452.html
+2026-06-07 20:52:48 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:52:50 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:52:50 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://digi.china.com/articles/20260602/202606021884452.html
+GDELT China-Romania:  85%|██████████████████████████████████████████████████████████████████████████████████████▉               | 213/250 [15:01<03:24,  5.53s/art]2026-06-07 20:52:50 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn/page?n=2829044&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn/page?n=2829044&m=1&s=1044
+GDELT China-Romania:  86%|███████████████████████████████████████████████████████████████████████████████████████▎              | 214/250 [15:02<02:23,  3.99s/art]2026-06-07 20:52:52 | WARNING  | src.ingestion.article_downloader | Download failed for https://www.hinews.cn:443/page?n=2829044&m=1&s=1044: 403 Client Error: Forbidden for url: https://www.hinews.cn:443/page?n=2829044&m=1&s=1044
+GDELT China-Romania:  86%|███████████████████████████████████████████████████████████████████████████████████████▋              | 215/250 [15:03<01:50,  3.17s/art]2026-06-07 20:52:52 | INFO     | src.ingestion.translator | Translating article [it → en]: https://www.corriere.it/esteri/26_giugno_04/andrew-tate-gerhard-schroe
+GDELT China-Romania:  86%|████████████████████████████████████████████████████████████████████████████████████████▏             | 216/250 [15:05<01:39,  2.93s/art]2026-06-07 20:52:54 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://ua.korrespondent.net/articles/4883353-yes-rozrobliaie-novyi-21
+GDELT China-Romania:  87%|████████████████████████████████████████████████████████████████████████████████████████▌             | 217/250 [15:06<01:16,  2.32s/art]2026-06-07 20:52:57 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.jjxw.cn/article/2026/06/01/780040.html
+GDELT China-Romania:  88%|█████████████████████████████████████████████████████████████████████████████████████████▎            | 219/250 [15:12<01:15,  2.44s/art]2026-06-07 20:53:02 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://m.mp.oeeee.com/a/BAAFRD0000202606061603856.html
+GDELT China-Romania:  88%|█████████████████████████████████████████████████████████████████████████████████████████▊            | 220/250 [15:16<01:24,  2.80s/art]2026-06-07 20:53:07 | INFO     | src.ingestion.translator | Translating article [da → en]: https://www.qzwb.com/gb/content/2026-06/07/content_9234840.htm
+2026-06-07 20:53:11 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:53:12 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.qzwb.com/gb/content/2026-06/07/content_9234840.htm
+GDELT China-Romania:  88%|██████████████████████████████████████████████████████████████████████████████████████████▏           | 221/250 [15:23<01:58,  4.10s/art]2026-06-07 20:53:12 | INFO     | src.ingestion.translator | Translating article [ru → en]: https://vz.ru/news/2026/6/2/1424035.html
+GDELT China-Romania:  89%|██████████████████████████████████████████████████████████████████████████████████████████▌           | 222/250 [15:26<01:44,  3.72s/art]2026-06-07 20:53:52 | WARNING  | src.ingestion.article_downloader | Download failed for https://ria.ru/20260602/moratoriy-2095997070.html: HTTPSConnectionPool(host='ria.ru', port=443): Max retries exceeded with url: /20260602/moratoriy-2095997070.html (Caused by NameResolutionError("HTTPSConnection(host='ria.ru', port=443): Failed to resolve 'ria.ru' ([Errno -3] Temporary failure in name resolution)"))
+GDELT China-Romania:  89%|██████████████████████████████████████████████████████████████████████████████████████████▉           | 223/250 [16:03<06:12, 13.81s/art]2026-06-07 20:53:53 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://news.china.com/socialgd/10000169/20260605/49532920.html
+GDELT China-Romania:  90%|███████████████████████████████████████████████████████████████████████████████████████████▍          | 224/250 [16:07<04:38, 10.73s/art]2026-06-07 20:53:56 | INFO     | src.ingestion.translator | Translating article [lv → en]: https://www.diena.lv/raksts/latvija/kriminalzinas/lidosta-aiztur-divus
+GDELT China-Romania:  90%|███████████████████████████████████████████████████████████████████████████████████████████▊          | 225/250 [16:10<03:30,  8.42s/art]2026-06-07 20:53:59 | INFO     | src.ingestion.translator | Translating article [vi → en]: https://www.chinapress.com.my/20260605/2026%E7%BE%8E%E5%8A%A0%E5%A2%A8
+GDELT China-Romania:  90%|████████████████████████████████████████████████████████████████████████████████████████████▏         | 226/250 [16:12<02:37,  6.56s/art]2026-06-07 20:54:02 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.leiphone.com/category/zaobao/HiubaQdZiMf44U3A.html
+2026-06-07 20:54:06 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:08 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:08 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.leiphone.com/category/zaobao/HiubaQdZiMf44U3A.html
+GDELT China-Romania:  91%|████████████████████████████████████████████████████████████████████████████████████████████▌         | 227/250 [16:19<02:37,  6.83s/art]2026-06-07 20:54:09 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/news/article/KUG1VVNE0001899O.html
+GDELT China-Romania:  91%|█████████████████████████████████████████████████████████████████████████████████████████████         | 228/250 [16:22<02:01,  5.53s/art]2026-06-07 20:54:12 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://finance.sina.com.cn/tech/roll/2026-06-02/doc-inhzyxfm7814892.s
+2026-06-07 20:54:15 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:18 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:20 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:22 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:26 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/tech/roll/2026-06-02/doc-inhzyxfm7814892.shtml
+GDELT China-Romania:  92%|█████████████████████████████████████████████████████████████████████████████████████████████▍        | 229/250 [16:38<03:02,  8.67s/art]2026-06-07 20:54:29 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://hea.china.com/articles/20260602/202606021884041.html
+2026-06-07 20:54:32 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:34 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:37 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:39 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:41 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:43 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:43 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://hea.china.com/articles/20260602/202606021884041.html
+GDELT China-Romania:  92%|█████████████████████████████████████████████████████████████████████████████████████████████▊        | 230/250 [16:55<03:42, 11.15s/art]2026-06-07 20:54:44 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://finance.sina.com.cn/roll/2026-06-02/doc-inhzyhiy3420052.shtml
+2026-06-07 20:54:47 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:49 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:52 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:54:52 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/roll/2026-06-02/doc-inhzyhiy3420052.shtml
+GDELT China-Romania:  92%|██████████████████████████████████████████████████████████████████████████████████████████████▏       | 231/250 [17:03<03:14, 10.26s/art]2026-06-07 20:54:53 | INFO     | src.ingestion.translator | Translating article [zh-TW → en]: https://www.wenweipo.com/a/202606/04/AP6a20880fe4b0b49ad1bded10.html
+GDELT China-Romania:  93%|██████████████████████████████████████████████████████████████████████████████████████████████▋       | 232/250 [17:08<02:36,  8.68s/art]2026-06-07 20:54:57 | INFO     | src.ingestion.translator | Translating article [da → en]: https://finance.sina.com.cn/tech/roll/2026-06-03/doc-iniachns4184173.s
+2026-06-07 20:55:00 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:00 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/tech/roll/2026-06-03/doc-iniachns4184173.shtml
+GDELT China-Romania:  93%|███████████████████████████████████████████████████████████████████████████████████████████████       | 233/250 [17:12<02:03,  7.24s/art]2026-06-07 20:55:02 | INFO     | src.ingestion.translator | Translating article [da → en]: https://k.sina.com.cn/article_2219338054_8448694602701ift6.html
+2026-06-07 20:55:05 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:05 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://k.sina.com.cn/article_2219338054_8448694602701ift6.html
+GDELT China-Romania:  94%|███████████████████████████████████████████████████████████████████████████████████████████████▍      | 234/250 [17:17<01:42,  6.43s/art]2026-06-07 20:55:06 | INFO     | src.ingestion.translator | Translating article [da → en]: https://finance.sina.com.cn/tech/roll/2026-06-04/doc-iniahhrm2369419.s
+2026-06-07 20:55:08 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:09 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://finance.sina.com.cn/tech/roll/2026-06-04/doc-iniahhrm2369419.shtml
+GDELT China-Romania:  94%|███████████████████████████████████████████████████████████████████████████████████████████████▉      | 235/250 [17:21<01:26,  5.80s/art]2026-06-07 20:55:10 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.cqnews.net/web/content_1511410696363384832.html
+GDELT China-Romania:  94%|████████████████████████████████████████████████████████████████████████████████████████████████▎     | 236/250 [17:24<01:08,  4.90s/art]2026-06-07 20:55:12 | INFO     | src.ingestion.translator | Translating article [fr → en]: https://www.bfmtv.com/economie/replay-emissions/le-18h-eco/le-19h-eco-
+GDELT China-Romania:  95%|████████████████████████████████████████████████████████████████████████████████████████████████▋     | 237/250 [17:26<00:53,  4.09s/art]2026-06-07 20:55:15 | INFO     | src.ingestion.translator | Translating article [vi → en]: https://www.163.com/dy/article/KUL1LG6G0514R9OJ.html
+GDELT China-Romania:  95%|█████████████████████████████████████████████████████████████████████████████████████████████████     | 238/250 [17:28<00:42,  3.58s/art]2026-06-07 20:55:19 | INFO     | src.ingestion.translator | Translating article [da → en]: https://m.tech.china.com/redian/2026/0602/062026_1884550.html
+GDELT China-Romania:  96%|█████████████████████████████████████████████████████████████████████████████████████████████████▌    | 239/250 [17:33<00:42,  3.82s/art]2026-06-07 20:55:22 | INFO     | src.ingestion.translator | Translating article [da → en]: http://world.people.com.cn/n1/2026/0602/c1002-40731934.html
+2026-06-07 20:55:25 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:27 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:30 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:33 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:33 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://world.people.com.cn/n1/2026/0602/c1002-40731934.html
+GDELT China-Romania:  96%|█████████████████████████████████████████████████████████████████████████████████████████████████▉    | 240/250 [17:44<01:01,  6.12s/art]2026-06-07 20:55:40 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://digi.china.com/articles/20260603/202606031884841.html
+2026-06-07 20:55:43 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:45 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:46 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://digi.china.com/articles/20260603/202606031884841.html
+GDELT China-Romania:  96%|██████████████████████████████████████████████████████████████████████████████████████████████████▎   | 241/250 [17:58<01:15,  8.42s/art]2026-06-07 20:55:47 | INFO     | src.ingestion.translator | Translating article [da → en]: http://sc.stock.cnfol.com/ggzixun/20260605/32270830.shtml
+2026-06-07 20:55:50 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:51 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): http://sc.stock.cnfol.com/ggzixun/20260605/32270830.shtml
+GDELT China-Romania:  97%|██████████████████████████████████████████████████████████████████████████████████████████████████▋   | 242/250 [18:02<00:57,  7.18s/art]2026-06-07 20:55:52 | INFO     | src.ingestion.translator | Translating article [da → en]: https://news.ycwb.com/ikimvkmtkm/content_54160463.htm
+2026-06-07 20:55:55 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:55:55 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://news.ycwb.com/ikimvkmtkm/content_54160463.htm
+GDELT China-Romania:  98%|███████████████████████████████████████████████████████████████████████████████████████████████████▌  | 244/250 [18:07<00:27,  4.60s/art]2026-06-07 20:55:57 | INFO     | src.ingestion.translator | Translating article [da → en]: https://sp.ycwb.com/ikimvkmtkn/content_54158457.htm
+2026-06-07 20:56:00 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:00 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://sp.ycwb.com/ikimvkmtkn/content_54158457.htm
+GDELT China-Romania:  98%|███████████████████████████████████████████████████████████████████████████████████████████████████▉  | 245/250 [18:12<00:22,  4.57s/art]2026-06-07 20:56:01 | INFO     | src.ingestion.translator | Translating article [sv → en]: https://www.qstheory.cn/20260603/715c7ab780ce4fdea5a226533e064b1a/c.ht
+2026-06-07 20:56:04 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:07 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:08 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://www.qstheory.cn/20260603/715c7ab780ce4fdea5a226533e064b1a/c.html
+GDELT China-Romania:  98%|████████████████████████████████████████████████████████████████████████████████████████████████████▎ | 246/250 [18:20<00:22,  5.72s/art]2026-06-07 20:56:09 | INFO     | src.ingestion.translator | Translating article [auto → en]: https://www.163.com/dy/article/KUJUVOO605298CTE.html
+GDELT China-Romania:  99%|████████████████████████████████████████████████████████████████████████████████████████████████████▊ | 247/250 [18:22<00:13,  4.60s/art]2026-06-07 20:56:11 | INFO     | src.ingestion.translator | Translating article [tr → en]: https://www.haberler.com/politika/ab-nin-savunma-sefi-kubilius-ukrayna
+GDELT China-Romania:  99%|█████████████████████████████████████████████████████████████████████████████████████████████████████▏| 248/250 [18:27<00:09,  4.68s/art]2026-06-07 20:56:16 | INFO     | src.ingestion.translator | Translating article [da → en]: https://hea.china.com/articles/20260601/202606011883582.html
+2026-06-07 20:56:19 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:22 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:24 | WARNING  | src.ingestion.translator | Translation failed after 2 attempts: Request exception can happen due to an api connection error. Please check your connection and try again — keeping original
+2026-06-07 20:56:25 | WARNING  | src.ingestion.pipeline | SKIP (translation_error): https://hea.china.com/articles/20260601/202606011883582.html
+GDELT China-Romania: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████▌| 249/250 [18:37<00:06,  6.21s/art]2026-06-07 20:56:26 | INFO     | src.ingestion.translator | Translating article [zh-CN → en]: https://www.stcn.com/article/detail/3945737.html
+GDELT China-Romania: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 250/250 [18:40<00:00,  4.48s/art]
+2026-06-07 20:56:29 | INFO     | src.ingestion.pipeline | Feed 'GDELT China-Romania' done: 147 new, 4 dup, 49 relevant, 99 errors (1129.1s)
+2026-06-07 20:56:29 | INFO     | src.ingestion.gdelt_pipeline | GDELT ingestion complete: 147 new, 4 dup, 49 relevant, 99 errors (1129.1s)
+
+════════════════════════════════════════════════════════════════════════
+  Ingestion complete — 2026-06-07 17:56 UTC
+════════════════════════════════════════════════════════════════════════
+  Feed                                  New   Dup   Rel   Err      s
+  ────────────────────────────────────────────────────────────────────
+  GDELT China-Romania                   147     4    49    99   1129 ✓
+  ────────────────────────────────────────────────────────────────────
+  TOTAL: 147 new  |  4 duplicates  |  49 relevant  |  99 errors
+════════════════════════════════════════════════════════════════════════
+
+
+  Latest relevant article(s) with both China + Romania matches:
+  ────────────────────────────────────────────────────────────────────
+  [2026-06-01] (en) Ukraine victory from the EU: Putin is helpless
+         https://www.haberler.com/politika/ab-nin-savunma-sefi-kubilius-ukrayna-ne-kadar-19899301-haberi/
+         matched_china: China
+         matched_romania: Romania, Romanian, Black Sea
+  [2026-06-04] (en) Romania seeks partnerships with Chinese energy storage firm
+         https://actmedia.eu/energy-and-environment/romania-seeks-partnerships-with-chinese-energy-storage-firm/119935
+         matched_china: Chinese, Beijing, China
+         matched_romania: Romania, Romanian
+  [2026-06-01] (en) 7 p.m. Eco – Monday June 1st
+         https://www.bfmtv.com/economie/replay-emissions/le-18h-eco/le-19h-eco-lundi-1er-juin_EN-202606010851.html
+         matched_china: Beijing, China
+         matched_romania: Romania
+  [2026-06-03] (en) Zverev doesn’t talk lightly about the French Open title - [...]
+         https://www.wenweipo.com/a/202606/04/AP6a20880fe4b0b49ad1bded10.html
+         matched_china: Hong Kong, Xinhua
+         matched_romania: Romanian
+  [2026-06-04] (en) Two people wanted by the police are detained at the airport
+         https://www.diena.lv/raksts/latvija/kriminalzinas/lidosta-aiztur-divus-policijas-meklesana-izsludinatus-cilvekus-14352756
+         matched_china: China
+         matched_romania: Moldova, Romania
+  [2026-06-02] (en) The issuance of Schengen multiple visas to Russians has [...]
+         https://vz.ru/news/2026/6/2/1424035.html
+         matched_china: China
+         matched_romania: Romania
+  [2026-06-05] (en) The War Is Expanding Whether They Admit It Or Not
+         https://www.armstrongeconomics.com/world-news/war/the-war-is-expanding-whether-they-admit-it-or-not/
+         matched_china: China
+         matched_romania: Romanian, Romania
+  [2026-06-07] (en) NATO is deploying new military forces in Finland
+         https://www.15min.lt/naujiena/aktualu/pasaulis/nato-dislokuoja-naujas-karines-pajegas-suomijoje-57-2699762
+         matched_china: China
+         matched_romania: Romania
+  [2026-06-06] (en) Highlights of CCTV News Broadcast on the evening of June 6 [...]
+         https://finance.eastmoney.com/a/202606063762601411.html
+         matched_china: Xi Jinping, China, Chinese, Shanghai, Han Zheng, yuan
+         matched_romania: Romania, Black Sea
+  [2026-06-02] (en) Us Iran Peace Deal : US - Iran Nuclear Deal Prospects , [...]
+         https://timesofindia.indiatimes.com/world/rest-of-world/the-week-that-was-in-international-affairs-us-iran-deal-hangs-on-nukes-hormuz-russia-tests-nato/articleshow/131452869.cms
+         matched_china: China, South China Sea
+         matched_romania: Romania, Bucharest
+
+
+[entity_extraction]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_entity_extraction.py
+2026-06-07 20:57:32 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0140d6898743da827fd78d9c625e3af2af8c03ba4386284044d8bdc4adfdb27b
+2026-06-07 20:57:32 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 01eda5264cd82d6a805ada3314fe3ab0c003a09537be71124146bf2c90420c28
+2026-06-07 20:57:33 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 024b41a13348acbbb6d626ca507e85ce7e68987c67d04397e3d3f640e07aff90
+2026-06-07 20:57:33 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0290e0ec9e995651ca804e2bc0e41a7bedfac786186fee14447899b9c7f03efe
+2026-06-07 20:57:33 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 02ad6851e7c283d46fff61a2a59b9051995b4a6090777e7271e3af427a05d09d
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 02f3ca8e6df6e91f2eac8a2bad5c5b83cd51ed502e98374176633218a9c7b8fb
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 037f3c17b9d0d0d9afbb767b85eddd35a24f08bfba69ea98580f5a09739c2bdb
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 03e5949b102b90e6361173d3ce4e7491c6b62ed03f069f13903a5d1ce50f1171
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 049cd0df001add28aacf8ccb726d35fb91a742066dc9d9b4372ca4371d058123
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0548002658de0157973e1e894a60f698a13fd657fc4fb315af68979fec918659
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 05ba7bd31d347b3e742c965542ffb996184f699019c5d272531d226266d020d6
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 05d5232bed2e96a773182a9ea0eee1ec7b442d42bb3e9d3cf448b1144d893266
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 09da0407ec9b2fbbdbdbc4bfee4c9bf8fcf42b02e377c9773b7a9704899332b6
+2026-06-07 20:57:34 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0cc4dea68f73c4d7f7afc84c7a3871d1e7e8a9776d17f95f02912c06f9ab6829
+2026-06-07 20:57:35 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0e4904132531e91d9f1dc347f57856d20e85a8b512bdcf3f93949d3dc38ecf20
+2026-06-07 20:57:35 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0f02aa7c3aa0d49b32096fcd1bd42d66d455ac33344dbd5f7b88576fb5a719ff
+2026-06-07 20:57:35 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 0f78dbc3212e69fc3a430319c4d93c88b06c84d00cfa2ad5ae0656a35284fae6
+2026-06-07 20:57:35 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 1011fe943fb14ea7d7f15b934e8ceed557f96d08f086d43606529fe5e8b02c27
+2026-06-07 20:57:35 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 107764461d476dac7364df93b58a7f364d305136a879505ed724859581f4f938
+2026-06-07 20:57:36 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 10e907f8798bc7bf857ef2a6b588c6fdc9593c4614c90930876769e2398d78e4
+2026-06-07 20:57:36 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 1142a731d4f8e528b4f593c0f219020b1fdfa1b99756391ce900ad0125b273d5
+2026-06-07 20:57:36 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 119be196bff2b4d41fc348e20e4e47947d8d4560e15859b054f470323a2c8a84
+2026-06-07 20:57:36 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 11e268f3e77784e94d64562359381e3db2a2b38a745d6e12b7930295cf8fbf06
+2026-06-07 20:57:36 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 11f54f78dfd6d5958259aa930b06dfe6811d010bb98e19ecd935ac2493769668
+2026-06-07 20:57:37 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 1275d8ccccf62cf39a33027b746ad9bd0a698e3a2a5736e497fb58e2c1bb6ca4
+2026-06-07 20:57:37 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 13b1d084bd647dc4741c2f908d9ea0ca4dc163635d513c1697d9e004a3bc6739
+2026-06-07 20:57:37 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 145f5a1a464135a082fc87eb482a9bd063ece95feec18d0080c57ea3dee2c6e7
+2026-06-07 20:57:37 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 148c2ee5ddddb2befc95fb839cbf846fc8bcc1e7157bfb750e16cd3069ba33ca
+2026-06-07 20:57:37 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 164178f89abc156560bf23555d6aa0533ec266f0102e87e454aea974bc73c8a9
+2026-06-07 20:57:38 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 17dacd164e35466fe5040469ca9b5835517ed1d63ed170cb0d7fd8f6f452fc7f
+2026-06-07 20:57:39 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 1d8de5ddfe56d3cc84c2055aa11b663d2e309a6acd782016b53dbe51726964d6
+2026-06-07 20:57:39 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 1e56e18569dcf6393244a319c379dd55fc3f70d52c0dcf2db62f5337100685f7
+2026-06-07 20:57:40 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 202f83696dbfe1bc3593ecc953b5b804e1acf168dab48d86d34d05fd143e515d
+2026-06-07 20:57:41 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 22120c971d8cef86b66086d5c8287157a15cc6a548cb2b8201dc4257f89e748e
+2026-06-07 20:57:41 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 23cae6b70d351139a4d3402c61faea9446a52cd5646fe5e910a1f6c71296921f
+2026-06-07 20:57:41 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 241e816fdfb0607ec099308afa8e196b9ba5ede1a784ac10e076216b396b3300
+2026-06-07 20:57:41 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2518b8e0ec79fbc4499f4cc3419471d3a42cf5cbe8baf0f1f535387071e6d49a
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2804897dbfb4e93f6b51a1effefc545d6a3a637ff84809eafc13da2c8837d5e7
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 289e04ab0e78c21c47f7d1e2676adad7673fb0fb0a781cdc29f875f5f37cdefb
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 298ea5d63a258b0a5fe0b850e9fb68515478c713a792a6e3227a8354ace5d6c5
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2b44d6cc81b66eb3c20e584cf8e4d07451154445d075e8b7939c7a07bd5b46f2
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2de25d966129e180e81271892b8c4f2a5101203069816d13a1c16cad11ea2cf2
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2e22521306f6ccf6b0aaa967574891579ee66b0b193816f61346debc58c9b438
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2e73cf1dba488df45540d14e7a37e4fd46bba2b52fc5d9a722e75c7cbd0234fb
+2026-06-07 20:57:42 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2e91e2e3db94acb9c004ddfd5ef41384359bf626fa9077326d9c3e2118af0c04
+2026-06-07 20:57:43 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 2f6bc10468e6b4c9be8adfcf9a8cc7ee0e7e227bfdabb05d8a95c602ed0ec0bc
+2026-06-07 20:57:43 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3070e06d81a78847514e5f0b6e750f311f5f3aebec932e31d1b03bfbd5fd8df2
+2026-06-07 20:57:43 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 31da73b546b253b9404b7bed607e2a7d7cdc06572d9eec8c54159f951ce7409b
+2026-06-07 20:57:43 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3219f18dca391631ee2fc970986d52462452c1e2c82a3091b483bd6e8f6a21d3
+2026-06-07 20:57:44 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 35b993c1bb0c4f639fac0a742f82104da64d43144a9116cc4684fbe726c925cb
+2026-06-07 20:57:44 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 361a1087c98d7df21081d6caf62ccd60b1903c0c3dff4ee2fcf72eae5b19364b
+2026-06-07 20:57:44 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 36c3d6044d42a8faece7b3e1126b52cea6ee126667ca202f03aa32d51477a22f
+2026-06-07 20:57:44 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 39cedbe287ed3131d1ec5b7d974bce30a4e4b1c2bf38051263b471f49feb2511
+2026-06-07 20:57:45 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3b4bff5cda99618de2eed53106dae324557ff4df724107c5793325aac29774e7
+2026-06-07 20:57:45 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3b64e7c591fb665898aeb11c6ec0c1ab0867d25b501b0a8a0918df21eb6691ad
+2026-06-07 20:57:46 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3ba628df5685cb67a485fba4fca654da9c39ff91dbac5df664ad679eccea846c
+2026-06-07 20:57:46 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3c526ed31e54b3fceefd4bb3279efa7fc80e451013a767e58ad373f39f991176
+2026-06-07 20:57:46 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3d815fb3bd72432bb7ec5cf526728ad235d446d9651c39b4699faf1bcd28132e
+2026-06-07 20:57:46 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3e0927c4332f95e9dbed94dd8df4d07b0ea9c89905a0af4154de34eb3cebb770
+2026-06-07 20:57:46 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3e096be7a9359f76791588e9035face0e4428cb46de6b1c1d2260c090c7c2c43
+2026-06-07 20:57:47 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 3e644f25b0275d419737122a63dc2882c8347805ded342d0b3b966f4a92e6fbe
+2026-06-07 20:57:47 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 41643e0ca91b23e910b24d05606733ab40da0b6cc679047b630c4dcdffd55945
+2026-06-07 20:57:47 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 430a551716ba6e55200ab5ea3b7f0c853a0184528cc4160e86480946fb697110
+2026-06-07 20:57:47 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 44450388357f6532d3be89218ecfc56a86c97156cb895b75c127beb189232f48
+2026-06-07 20:57:48 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 44c9788cddffec2d933d057a0a0fd217e2ad1568630e2c0e2664bb0c0abdcc6c
+2026-06-07 20:57:48 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 463d81774918e1703cef2b5d46ab8377c9777ad4a0dfac5faf222fc2b84c17b8
+2026-06-07 20:57:48 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 46d79952b1dc2833b47323348bd5250db5c7d143a806a437b09a077d84c64efe
+2026-06-07 20:57:48 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 47c166cf0991c55034e6dc4340bfcd2a350368d23678d4f35dda56d6785cdbb6
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 49fcac0b7d51c631817d716e22cf5ef293c4ce303f07a76668bf020b6a8b73c9
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4a044bb824fbfe9cae82375e2cd0e621c0b6554030a425cb84926e677452eec8
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4a9be6e67514a259c708c4f76196a62a64edd921fb1bb457d18135fe14003354
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4b33dba7eb50d865d4182ff2f798577abd731a25f81df79435e0af873252de24
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4d26b23d73a23558581d9b825c68e1353acc77df7d964b6769b4a105ce8337b3
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4dbef3585c823976ed4dc8ad54a8ca2018bed33275fde8b10bbbc6a3b616fc7e
+2026-06-07 20:57:49 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4e0b62e06ecf87eb69b1d79e9b14ee17f9f624be108add13a411a88338322064
+2026-06-07 20:57:50 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4e20e68f8dbd25c71548af1f041e3c1ce02d50648e2cc5cf5ee38b830e6136e8
+2026-06-07 20:57:50 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 4fd9e27c772d7ed4b8fc678367a6878233aced59d616f2fa653de74c6958a7fc
+2026-06-07 20:57:50 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5001495ece36969647e2e898839317dd41d3c485bf12579cd9f8464f8b91c1cb
+2026-06-07 20:57:50 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 50632b4c70594ff95b8ab0fd73ca2ea5ec6cc4c6aa8ed1f84feeb08e2eaf4042
+2026-06-07 20:57:50 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 511a71cebacee8641c57ef073c8c8753c92fd55f141a106de39fac46d91a2dd9
+2026-06-07 20:57:51 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 517b0d72d064d60365ee8758e451671d3c5e5d58d6acd6b2f555d93780ae72f8
+2026-06-07 20:57:51 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 520e4e074872f1f583feaad5d154ea82ee15c80f93bfc07216dce8a91c3c02e7
+2026-06-07 20:57:51 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 53882a60a467af9f368a62525afd85a956c4786899682c301d99c9bf5aa2602b
+2026-06-07 20:57:51 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 56a3fa73e73807b1063e974bc91400ec9aff0142d24b06ef22d994a6f4e52526
+2026-06-07 20:57:51 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 575b1c9e7a50c36cb0019768f18ca5f4c40e0ae979c4b2fc7f5abdc02dcd6bf6
+2026-06-07 20:57:52 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 59347dc992b72a974dc1a53f01b6401598ee19257cebc88ff39e6ba9221b1d0e
+2026-06-07 20:57:52 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 59a8cd49f85917e879038c13b7bf83c37737b8fe67f662d0f60358d0d3448d1e
+2026-06-07 20:57:52 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5a209f9ae03a876b95fe301cccd20a10a3e83706c010251a2dc7ef26612771fa
+2026-06-07 20:57:53 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5b93482aaaca9a4e688aee90e82bab494bdadab8701bd4c733924cdf37b1a51b
+2026-06-07 20:57:53 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5ca7be5a512013a57d402e3093554cb81f060f446ab8e24f84b0bfccb414a317
+2026-06-07 20:57:53 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5e59d2d0751b5a181a4c8ec754096935bb7d3b7615982912a737d75125c8f812
+2026-06-07 20:57:54 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 5f831a336981fc702c1ae33bf3bc76af5590d2effb8f7c45973ae4394b95e874
+2026-06-07 20:57:54 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6076b5c6a0f253c4abb36bc5850892dd1581663d8e3d63014945aacd6bf0526b
+2026-06-07 20:57:54 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 60f2d5b30ea0f1bd7e174d17043e1a9e0470e1d49d721694f67b71c3488ef64d
+2026-06-07 20:57:55 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 62134db84d3aefeb1dd777edacbd5c1ffabe8c7277b27a911c69403df051722d
+2026-06-07 20:57:55 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 636a2c57f41d7e768319b3c2ab2f3936f8a40afd9277f72346b2085e5e91965d
+2026-06-07 20:57:56 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 661dfbe6ff6fd2bdf8fc21a7643ed735b6974c726007cb26c491feac800c4465
+2026-06-07 20:57:56 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 66da4e812c269740e1cec709e644ada5e15755b1705ec772b3729904a7d2b6ce
+2026-06-07 20:57:56 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 67128f6aa61575abda41b01e6eb8caf6b3cb13aa3ffb30b36a495940c387fdbb
+2026-06-07 20:57:56 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6921c73a962f14e32886d4aae26289535b5e3a8e83a8f04df9afefe9b6989159
+2026-06-07 20:57:57 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6ca40a4f89c3bed5a59d190266ccf203956153d505e13384139dc85c601d5513
+2026-06-07 20:57:57 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6ccc710b4ba342f11df6038f59d7d1dbf468e4fa177a3d23e74f140d878a08bf
+2026-06-07 20:57:57 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6d09151b6bd32a137f90e85b6875ea99f82aff65f74d7a65d8b3a523226247d7
+2026-06-07 20:57:57 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6d328767dcc19aa038fcfbcceaffd0b935d09dfe516de2950cd3acbc2368c0df
+2026-06-07 20:57:57 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6e0cc00aa55fb8818679ac6e972462f6416d1808da838d1ec6b6c8a32048d802
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 6fbd0bcd1dce167ed8de5ce3c3a494f9b7d6b98b1159f6451aec76b165ccaf69
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7074b76bde54c7828419495635b9bd0747f51fd97bd5d2c147b123a2b76cf8f7
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 719f401fd0869b7fd8105af9abbd7a34c8d0e8cc16d94d39338f13e69a090cce
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 71d675285a78905260b87565f973dbd217bec0fc818f5068fda9e9c30c8b5881
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 71dd3ea514e05e42a7063f05fbc9c25832d97bb14fab7347bec629fac0f856e3
+2026-06-07 20:57:58 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 74429801e896fecd10aaaa7d42db38ffbe846ac8690b3b1ecc3be483dfcc69ba
+2026-06-07 20:57:59 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 744c1aca62bad790ca3899798ee2681c8927172cbfd7042dca6a78275d989883
+2026-06-07 20:57:59 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 74880a0f6cb6db52ecdc76bfa4cd5bbdb407301f70caa48f0a28d8eebf7fb4ea
+2026-06-07 20:57:59 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 748839533931b440a07dd3ebce47aa74d15a07c0cdf3819edb7e461b884173f9
+2026-06-07 20:57:59 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7563eab2b8a3945bf0f190c77404d435190fc86f95382289fb916795083c4bb7
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 761a5d769f79de8a0f49f27cb73bbbc67ae71de32bf9699b47d5d7365da9b76c
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 76672c693b51a51af750ef12fa5dbabe4856b6eaef3b6f1a60715c06c3b6b823
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7726e474e483118a6068e75f13383f5342dd96f6e05f7eb2188ea6e42409501c
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 77d6958d1d0c12cba2dffac1208848f6f0188d1042adee767459fc93525852d7
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7878dcf429654e7ea6d893a5bff1924be91847173c5826fdfd3c704a5ad17a1a
+2026-06-07 20:58:00 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 78b98bee31ddb50b83d2095a511739d269f6a4b5f47a7d7c8eb5f49e6239ba16
+2026-06-07 20:58:01 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7b621c1e7aecba1235271c45381e0ab8fa224a4b026ca811fdc7ca9f4270517b
+2026-06-07 20:58:01 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7d3b71a9af13285d3118651ffd6575b662f570cd38648e3cf7d55c55d050f05e
+2026-06-07 20:58:01 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7dc1d3efb07a118eae073920436be2d76f652f3cc6277f19e3a346be0b921444
+2026-06-07 20:58:01 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7ee2cf9b7cc724667cd1ac70e9b77c79338a8fa98bfa832cd5240daf5d42d3b6
+2026-06-07 20:58:01 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 7fc43d4af80410768c842314a94060098fa436a704cab4ca3bb8c0a119ab1588
+2026-06-07 20:58:02 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 816e4ee227c581a75a9293a231333f3d533fe6d8d6aad08b5b45823bf838858b
+2026-06-07 20:58:02 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 82006f7259d64a8aa4f71fd5fda397febb6aebf96598489d5c9720b353df168e
+2026-06-07 20:58:02 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 82360b0688b5b0bec23037b7ade655de74a569d4090cb15f0c9fbe401762fc85
+2026-06-07 20:58:02 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 830541f24d8de0ef6b59f7e5d2ca32caad43ebf2da899d51e635353f86807d30
+2026-06-07 20:58:03 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 84960ab6e77cecab9779a25d8bfba6391f975df8bb0f6372f53725a1640de7f0
+2026-06-07 20:58:03 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 87ed038261850b513797df1331225583ce080b15352901038c3f07dabc06e62c
+2026-06-07 20:58:04 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 88616cd49b5ac45b9745d855e1bb40a31d64852f04380434962bd2fe350fc143
+2026-06-07 20:58:04 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 8b25616ca3baaa6477bc21b5faa7f504e0465146db0be60ebd4f5d80e49f23d5
+2026-06-07 20:58:04 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 8b617e29728a377c14b4dce48d1111d631036379886b1cab997c7b6848dcfe74
+2026-06-07 20:58:05 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 8c77bee2ef704db9c958792e2180f414e57f67f309d0f8a759685ff6663e9560
+2026-06-07 20:58:05 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 8f338d25f228731ad626631f0e0a37c5dced8a5cdc7fa6d7985bb8c5ecd171fb
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 907657c21ad0bf23bf0c1d1bf583acb02ddaf696afda8cdc86429bd6ec095420
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9182a734f8758ede4b2af89b355942f31d4c974654c5b17371cb8308ce73ad86
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9221219ee0df0d29555c8e0a0bbf72baf6d74a483972340653be2ba64ce5d1ca
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 930444fe49919407fd31a456adefdab55066f46fd477af0b7ed5f47b98695809
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 945b7f93d9e6c52e480bfb38d35dd18ff1e866240ff6c547630a890ac4c9df25
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 951d89b16cd9d8295abf525d9e521e5e9a44621bd1452a716a75974c0edcbc4f
+2026-06-07 20:58:06 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 95320c000d22c8059ccf098382d513693012b0103a66add574fd4af55b245fc7
+2026-06-07 20:58:07 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9730480f77f936c4dca8ee8865fd20766275cb16003431327635874be9cca753
+2026-06-07 20:58:07 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 995a4a9ed4590cb09008e9ee042d0d768511eab41c2ca17676be58cdb3d00213
+2026-06-07 20:58:07 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 996ec971a2dbff9b281d38e1a3da1e6dc685b9a919c2fb2a920916e65648e10c
+2026-06-07 20:58:07 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 99828aae77819aa3fcef7a03f4dfc2a13d1da6fce0040f423e7ad6abe039ea05
+2026-06-07 20:58:07 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 99f31080b7dd3ef5cb35e42b07005aa78c7136dce977b33430250ef42f0fb781
+2026-06-07 20:58:08 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9a0947ebc74b010228cc0b7890eaffea9dfa915aba7859d2690ab6992ba4efe0
+2026-06-07 20:58:08 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9a36d0cae918874c6b06ab7978a856c81cfa3ae6a0df260eea3522b04953faba
+2026-06-07 20:58:08 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9a8fab2c76bc10a7afbe4e8776d842d06e717e47847fcd9536cc11b99c41be94
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9aff0329270423d0a18d018f5864d89f0b533d59943e66a398d31ff4ad4f9432
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9c13fc6d660b91c75149b0246c23ed725efeb9be61ffe06f9165218cb68e5d17
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9ddafc324bfe843ab2bceab812357a1cd5ebca8145a310bca14324a571a76b39
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9e3ef7bba4ce99d288a4c5c93679174f17516b92daa25f598ff366ac9a04cb30
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9f7207ed96cf3d18551f241909563b7fa14cea78428d5dae43944c7157a53b83
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for 9f8f0d412802d58d86c4b0db7d19643b1184709d893f76a6dcab59fabf7a8f85
+2026-06-07 20:58:09 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a103ec364fe0395fbda911691c71c0c6566b0587b94e0ec518a604dd7bce2774
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a1073cc8b365bc6c7b984e2d923996290a3d3bbf037e6be904d89be4a8de4c36
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a21990913df4ff2ce80db52075030fad7d9880695b90ccb1e20bc0d398b9e2a9
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a2e0ac3aed61da66fe2d80967094a1f0477b9d3c80c6e1badb52223cd1220539
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a34ccb7c3f49aa13919b7ebd3ba48da94112d19bcabfbfd307ed44a772238eca
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a361889d6f2628eac64135eeff2813b734d4d4c419185005195141b5efc3156d
+2026-06-07 20:58:10 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a3ab2884f275d05a1ee11c05222297a6ba0681251ce3abd531a0ae0fc530267f
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a53fa461cbe08f2becef1e82de271430fd0e292d174213f630c1c5659f36a160
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a54625a2fef44743f13aff512fcca008ba908c436d621ec6d3334153120ef9a4
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a64c0f89aa71b219ced0e00bab40c6695887a7fec55bc38eb7c1064271afa37f
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a66b7e2d7874299c8df0989da8075c97f5bfb19a144c04e87e016a8e7bc17cdf
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for a866dc31ec513f09b0637e50008230f7cd0e7a139acf232138d69a64b695131e
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for aa3004468e949c52c19e678227ef8efc55a31892d24ed18dca646c68cbfa32de
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for aaf9bea3346b307fc689bc03c05f4741ab525b06c258c7754201449ff3b5cc55
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ab95742058e0aa79a75852d8fa337a134c7c0454dd8b96884e3921ebf6ead99d
+2026-06-07 20:58:11 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for abc385f2a56507fd169d88200df4bdd28f86276dc693343f64954e15c750a4fb
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for adae0fc782a16db41538789760e0cab68dc336f49a5b94f913499e3570fdaaac
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ae64047a022dc2c2ecb4e639dfb24702ebf0ef82ed571a17948feaafd40b7485
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ae77cf4369e9a89c1d22c253074d4135621159be8100d95dbfb3171f73bb4254
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for aeb1e094dfbf906cd887fb29be4f1b7ce172936deb8c3d17afa52ce99a9619dd
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for af405f922c043c57f03a6b395699a3b31f5afd12657503efe60b9dbe17594b57
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b1696e03785f13f2fa7612e615c4afd78fc292a3c5bbbb3de53c4437f18b8bd2
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b2ae54f51fc4ed419a1d7e14ed9044f14d503ab4bb01694552ec99199afa4aae
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b32296274038f8233e8657d8a25cba10b22789b101c3f50a105bd82969cb6b97
+2026-06-07 20:58:12 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b353462d30a977da9f9baf581adb97babd5c1e7becc627d0b685ae727d98deae
+2026-06-07 20:58:14 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b38b5519bf13b3b8416ed69e7074da1157945b528390b60a27fea41e675582a5
+2026-06-07 20:58:14 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b66a2a7b10d2b8da58a30f3ee4fd8d99cb855d8f504817f6a0ce4efbc837c440
+2026-06-07 20:58:14 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b6a0c6ccc1c03db3739f17f1022aa2894b6e688ad554c3a98c3203cd1e963638
+2026-06-07 20:58:14 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b781c5dee3b801a8baa44f9c3593628404c2449c77ea6ca8b628b9e386185e94
+2026-06-07 20:58:14 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b79564e5da10a456f6dcdd59ef45d40d5d429d6c54d24bd1fb7cc26a597e036e
+2026-06-07 20:58:15 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for b85e13a792b97aa7241a0a3c8f419191afa608a2c42506e79ce1249fe7a52d33
+2026-06-07 20:58:15 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for bb8b9c5873b59b242b0ec46ae3f1d98c0662e9fc9f6fbccec015d868c00ac406
+2026-06-07 20:58:15 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for bbe3f30b3d87769721098caade1dc7b2b95b9ac0495c232fc1f83a7f0ab655ed
+2026-06-07 20:58:16 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for bfe6a6d8f3413d46e7a8a7ca2af6e1a61cbd84af699eda7529d198026ce9c6f3
+2026-06-07 20:58:16 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c1e73861311df59e99eb914818a17b27aab085a41c6688913a276a1cdfec8164
+2026-06-07 20:58:16 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c1e8f9176d7390e80ead274000dfa1f34f11b49d21d7d7826bb2b0b1984162a1
+2026-06-07 20:58:17 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c387740ed55c41c47b77999cd53a340a1e075da7a0832d54c75fcf6d14b8571c
+2026-06-07 20:58:17 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c56731296ab8162ac7bcf09905389dfa011310236a6ce8ad3a496676a74a7033
+2026-06-07 20:58:17 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c622bdeb5a36ad155ac2f7966731975ead41faa636c204d805ee44eb3981f5ba
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for c90cf97fd7be1d66c95b0327abbd6a43c0aa3e3067db259a4820be167c9da63c
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ca4648d9e90eb61ec1e5f8868d7e25c8a4d2e6145c80e99c94733307cba28e2c
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for cb1916814acd6dddd1f68578bc45fcbfc872cc66f92c25d6bb3e2f57fd96c5fc
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for cb9ab43304089b840c5b84805f60eb746141e87753a60e9c94adcbf9821d994d
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for cdb4314e2f6f1dddc8da7b82d8400ab683e61e5e4002f71ec72db2d1aae5d620
+2026-06-07 20:58:18 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for cf2fbdf7ce644fcb603fa8ed265ad4db6daa1bdf6af7ca700682b9ca7803a96d
+2026-06-07 20:58:19 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d0631a121a56c04c5e23328d6f1426ec7e4e8ec82ff4b7390f2addcb955140aa
+2026-06-07 20:58:19 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d231207934dc1f6c212fb61c702f42618f9c3c1d4a8cb425a3e4afbcd5af94fc
+2026-06-07 20:58:19 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d23f3fbcf6aaeefd3ffd0aad83f42c04d546a18c331e4856389c23d713c1da33
+2026-06-07 20:58:20 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d598384be42fe9de9a9b76c7b6b1bc3508f1bc345a0391e0fb7287217c867a3e
+2026-06-07 20:58:20 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d5b368f06b8a7eb51c01bd305066e52d8b4fce994a936939a3a9bbd096a8324c
+2026-06-07 20:58:20 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d65eef18048b2adf6a70bfcaeb12fc73245a400f452e91ddeaf98d8c677e0c3b
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d6ca433814eadf46bcb940b32d0eaeec8dfcc5c3967ffc62d9afdd3b05ceb103
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for d8f163d9fdd419aa21100a09e9de3ba468d4b3d8e4cb35220e0d6b329ae9798b
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for da1e761159bf9b0bcc3f64131e7cf6f2da531a168c57530696bdfb00b59271f2
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for da5294987fb2eb81aa97b25ff3538a4fafd9dfc65360e6845ffa2469d805fcf9
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for dbe69db40484169b99831cc80d733a0a514069c6cafe2f72b7e868d5776ea794
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for dc2002f661ce534491b911e75292194b179dfdccd742042ae1c052a599973dfb
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for dcced9ea3e5693a8e8a3f4c25f2c769670758d7fbcd16336d4a6c3e502b127a0
+2026-06-07 20:58:21 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for dcedc13a68a2bd6a98dd5ca28727de4d8b235eabc6729cecbc505c1266216816
+2026-06-07 20:58:22 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for df7aa970bdfe0ca5f5f92a8e7487994a200522ce5ff0376ec7ccd69cf10ccede
+2026-06-07 20:58:22 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for e126a5e244aad571f8f5c96c9546cdf992869f992f384bfb13bc32785dc5e7ed
+2026-06-07 20:58:22 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for e1c568565c49eb12c66c9087bf548eb0a9c8d4b459f184003372d4aa68c61962
+2026-06-07 20:58:22 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for e324780bafbf53e6884d3e965d744e164ae4c134a01a6af5be8bedd51d829799
+2026-06-07 20:58:23 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for e3634f379f52f80caebcd9461c576a2dba21e80e24c1d75316a98942f9cb6493
+2026-06-07 20:58:24 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for e99b0688c273371b8885a8a84d372b55142806d069abfdb13f05ddd3d3d3e40c
+2026-06-07 20:58:24 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ea0a4066365b0149b460e7626262f7d02f875394f50b0a7e7ff229e96c252121
+2026-06-07 20:58:24 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ead0040fb149d2d4c5ddb34b54e72c160fb1ab73943711e17e79231a32b8efea
+2026-06-07 20:58:24 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ec1396d9fe736c68bf310c301d3328f23ae2350afdd57638d4d4eb3c4ad6089b
+2026-06-07 20:58:24 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for eed7e7580d548db64e56c59d25b044969347df6bd2aa0a74da468be288efdaf6
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ef28baf88f30252209d2cbf0f7057e7e9601d1f284d268a470604caaf86ec221
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ef9e758fd1d80e3eceaa6f255a38ea363da786fbc22d88df88613c369464d4eb
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f0e66c499bbc832d984a71fcce790aa9a651a244ad8ddf31aad0639a402485b0
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f168005ae3e6cb7a9639211c6b7c0eba734ccf89c73609b122d60acbfd5ec7cd
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f26ef3e342477ff98ca908a43ddb782ae002d4a5d01aea2eda5224306fe26ef6
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f33df23060120b2ec6c4a93a793ac86e1b3fd27946ee97f90a53ca06dd92c977
+2026-06-07 20:58:25 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f3edae84c9c0b6b3a2a275d455e44bec0ae54218c2e1aab609515f5d042673c2
+2026-06-07 20:58:26 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f6d0b9f797684673c2aacb0f7a1ad126373e12e0d6508f9647849f4e00b8c153
+2026-06-07 20:58:26 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f7b91e34f8db7adb97632fac92119a1d830d83136f823fdfd0d6f1b2e1617ac6
+2026-06-07 20:58:26 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f8b1017fade824f0f45ffdcaa598d338a163cf6e6651d2d63a24ff41dd44d9b1
+2026-06-07 20:58:26 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for f976b5facc829292fd0f5b05313a85cf243be5fe48f3e4efd7d334d561af101e
+2026-06-07 20:58:26 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fa133788f9544bd808601fadb0f1c70a3c139bae7ade2ed2035a634b7045a937
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fa916cf53f84cdc4b6cc140c968a5e9aeba85115075ef380f4b0a0b3b6c87594
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fa976e1929b5e3d267bf2dae82fb4db44f3953fa61fbd1ad08e4666772a0e070
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fcca59e321b7e4ec7cc6b447773a5734f2edb510c6316e1b77cae55c77e024d5
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fd2d37a8cb70122e2982cbd3734a35c3abc2129c628b9e4e4fb9342dd7c65679
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for fe03bbfcd0401c3ca8f96e2b4824a24ef495a68ab8caf0eaf3fa1ef86b5d29a4
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ff5c0d78d84df7abad7e90cdcca55f4ee1ccce330863dae3a2b60e8ef9259d8a
+2026-06-07 20:58:27 | WARNING  | src.extraction.entity_extractor | DeepKE output missing for ff6adb382a9c47d1fa0322bcf3881be68f7c5030e3e39da8c47b49a8544e3a33
+Wrote entity outputs for 922 article(s) to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/entities
+
+[temporal_extraction]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_temporal_extraction.py --engine regex
+2026-06-07 20:58:29 | INFO     | src.temporal.temporal_extractor | Temporal engine: regex
+Wrote temporal outputs for 922 article(s) to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/temporals
+
+[event_extraction]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_event_extraction.py
+Wrote event outputs for 922 article(s) to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/events
+
+[relation_extraction]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_relation_extraction.py
+Wrote relation outputs for 922 article(s) to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/relations
+
+[corroboration_analysis]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_corroboration_analysis.py
+{
+  "events_json": "/mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/corroboration.events.json",
+  "events_csv": "/mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/corroboration.events.csv",
+  "claims_json": "/mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/corroboration.claims.json",
+  "claims_csv": "/mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/corroboration.claims.csv"
+}
+
+[claim_assessment]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/run_fake_news_analysis.py
+Wrote 3621 assessments to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/claim_assessments.json
+
+[export_contradictions_fake_news]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/export_contradictions_fake_news.py --credibility-threshold 0.3 --fake-news-threshold 0.9
+Wrote categorized claims to /mnt/c/Users/Deea/Desktop/groza_project/data/exports/credibility/contradictions_fake_news.json
+Summary: {'total_assessed': 3621, 'flagged_total': 1317, 'contradictions': 0, 'fake_news': 1317, 'both': 0, 'just_contradiction': 0, 'just_fake_news': 1317}
+
+Last 3 both:
+
+Last 3 just_contradiction:
+
+Last 3 just_fake_news:
+{
+  "record_key": "ff2f0d71adf9dd9f77a1a225",
+  "verification_status": "unverified",
+  "credibility_score": 0.5,
+  "support_count": 1,
+  "source_diversity": 1,
+  "contradiction_flag": false,
+  "temporal_issues": [],
+  "labels": [
+    "fake_news"
+  ],
+  "reasons": [
+    "status:unverified",
+    "fake_news_score:<0.9"
+  ]
+}
+{
+  "record_key": "ff31715ae5119591d6364298",
+  "verification_status": "unverified",
+  "credibility_score": 0.5,
+  "support_count": 1,
+  "source_diversity": 1,
+  "contradiction_flag": false,
+  "temporal_issues": [],
+  "labels": [
+    "fake_news"
+  ],
+  "reasons": [
+    "status:unverified",
+    "fake_news_score:<0.9"
+  ]
+}
+{
+  "record_key": "ffec0d4468e2f564655d5ff3",
+  "verification_status": "unverified",
+  "credibility_score": 0.5,
+  "support_count": 1,
+  "source_diversity": 1,
+  "contradiction_flag": false,
+  "temporal_issues": [],
+  "labels": [
+    "fake_news"
+  ],
+  "reasons": [
+    "status:unverified",
+    "fake_news_score:<0.9"
+  ]
+}
+
+[neo4j_load]
+$ /home/deea/miniconda3/envs/temporal_kg/bin/python scripts/load_graph.py
+2026-06-07 21:01:06 | INFO     | src.graph.neo4j_connector | Connected to Neo4j at neo4j+s://66120de3.databases.neo4j.io

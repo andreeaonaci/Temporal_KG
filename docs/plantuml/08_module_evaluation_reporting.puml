@@ -1,0 +1,55 @@
+@startuml
+title Module Pipeline - Evaluation and Reporting
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "CLI user" as U
+
+folder "data/exports" as EXP
+folder "reports" as REPOUT
+
+package "scripts" {
+  component "run_evaluation.py" as EVALCLI
+  component "run_graph_visualization.py" as VIZCLI
+  component "run_event_timelines.py" as TIMECLI
+  component "run_entity_analysis.py" as ENCLI
+}
+
+package "src.evaluation" {
+  component "pipeline.py" as EP
+  component "gold_loader.py" as GL
+  component "metrics.py" as MT
+  component "report_generator.py" as RG
+}
+
+package "src.reporting" {
+  component "helpers.py" as HP
+  component "plotly_viz.py" as PV
+}
+
+U --> EVALCLI
+EVALCLI --> EP
+EXP --> EP
+EP --> GL
+EP --> MT
+EP --> RG
+RG --> REPOUT
+
+U --> VIZCLI
+U --> TIMECLI
+U --> ENCLI
+
+VIZCLI --> PV
+TIMECLI --> HP
+ENCLI --> HP
+HP --> REPOUT
+PV --> REPOUT
+
+note bottom
+These modules consume pipeline outputs and generate analysis artifacts,
+figures, and evaluation reports used in notebooks and final reporting.
+end note
+
+@enduml

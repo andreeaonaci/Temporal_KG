@@ -1,0 +1,49 @@
+@startuml
+title Sequence - Top-Level Full Pipeline
+
+actor Operator
+participant "run_full_pipeline.py" as RUN
+participant "init_project.py" as INIT
+participant "run_ingestion.py" as ING
+participant "run_deepke_extraction.py" as DEEPKE
+participant "run_entity_extraction.py" as ENT
+participant "run_temporal_extraction.py" as TMP
+participant "run_event_extraction.py" as EVT
+participant "run_relation_extraction.py" as REL
+participant "run_corroboration_analysis.py" as COR
+participant "run_fake_news_analysis.py" as FAKE
+participant "export_contradictions_fake_news.py" as EXP
+participant "load_graph.py" as LOAD
+participant "run_competency_queries.py" as CQ
+
+Operator -> RUN : execute
+RUN -> INIT : initialize project + migrations
+
+opt ingestion enabled
+  RUN -> ING : fetch + process articles
+end
+
+opt --with-deepke
+  RUN -> DEEPKE : run deepke extraction
+end
+
+RUN -> ENT : extract entities
+RUN -> TMP : extract temporals
+RUN -> EVT : extract events
+RUN -> REL : extract relations
+
+RUN -> COR : corroboration analysis
+RUN -> FAKE : claim assessment
+RUN -> EXP : export contradictions/fake-news
+
+opt --with-neo4j-load
+  RUN -> LOAD : load exports into Neo4j
+end
+
+opt --with-competency-queries
+  RUN -> CQ : run competency queries + write report
+end
+
+RUN --> Operator : pipeline completed
+
+@enduml

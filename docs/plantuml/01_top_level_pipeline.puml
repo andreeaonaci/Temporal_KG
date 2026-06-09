@@ -1,0 +1,186 @@
+@startuml top_level_pipeline
+title Temporal KG Pipeline - Top-Level Architecture
+top to bottom direction
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam dpi 180
+
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+
+skinparam package {
+  BorderColor #2F3E46
+  FontColor #1F2933
+  BackgroundColor #F8FAFC
+}
+
+skinparam component {
+  BorderColor #475569
+  FontColor #0F172A
+  BackgroundColor #FFFFFF
+}
+
+skinparam database {
+  BorderColor #3F3F46
+  BackgroundColor #F4F4F5
+}
+
+skinparam folder {
+  BorderColor #334155
+  BackgroundColor #F1F5F9
+}
+
+skinparam ArrowColor #334155
+skinparam ArrowThickness 1.2
+
+actor "Operator" as OP
+
+package "L0 - Orchestration" <<orch>> {
+  component "scripts/run_full_pipeline.py" as RUN
+}
+
+package "L1 - Ingestion & Bootstrap" <<ingest>> {
+  component "scripts/init_project.py" as INIT
+  component "scripts/run_ingestion.py" as ING
+
+  cloud "GDELT API" as GDELT
+
+  database "SQLite\ndb/temporal_kg.sqlite" as SQLITE
+
+  folder "db/migrations" as MIG
+  folder "data/processed" as PROC
+
+  INIT -[hidden]-> ING
+  MIG -[hidden]-> SQLITE
+}
+
+package "L2 - Information Extraction" <<extract>> {
+  component "scripts/run_entity_extraction.py" as ENT
+  component "scripts/run_temporal_extraction.py" as TMP
+  component "scripts/run_event_extraction.py" as EVT
+  component "scripts/run_relation_extraction.py" as REL
+  component "scripts/run_deepke_extraction.py\n(optional)" as DPK
+
+  folder "data/exports/entities" as ENTX
+  folder "data/exports/temporals" as TMPX
+  folder "data/exports/events" as EVTX
+  folder "data/exports/relations" as RELX
+
+  ENT -[hidden]-> TMP
+  TMP -[hidden]-> EVT
+  EVT -[hidden]-> REL
+  REL -[hidden]-> DPK
+
+  ENTX -[hidden]-> TMPX
+  TMPX -[hidden]-> EVTX
+  EVTX -[hidden]-> RELX
+}
+
+package "L3 - Credibility Assessment" <<cred>> {
+  component "scripts/run_corroboration_analysis.py" as COR
+  component "scripts/run_fake_news_analysis.py" as FAK
+  component "scripts/export_contradictions_fake_news.py" as EXP
+
+  folder "data/exports/credibility" as CRDX
+
+  COR -[hidden]-> FAK
+  FAK -[hidden]-> EXP
+}
+
+package "L4 - Graph & Reporting" <<serve>> {
+  component "scripts/load_graph.py\n(optional)" as LOAD
+  component "scripts/run_competency_queries.py\n(optional)" as CQ
+
+  database "Neo4j" as NEO
+  folder "data/exports/reports" as REP
+
+  LOAD -[hidden]-> CQ
+}
+
+skinparam package<<orch>> BackgroundColor #E8F1FF
+skinparam package<<ingest>> BackgroundColor #EEFDF3
+skinparam package<<extract>> BackgroundColor #FFF8E8
+skinparam package<<cred>> BackgroundColor #FFF1F2
+skinparam package<<serve>> BackgroundColor #F5F3FF
+
+OP --> RUN
+
+RUN --> INIT
+INIT --> MIG
+INIT --> SQLITE
+
+RUN --> ING : default
+ING --> GDELT
+ING --> PROC
+ING --> SQLITE
+
+RUN --> DPK : optional (--with-deepke)
+RUN --> ENT
+RUN --> TMP
+RUN --> EVT
+RUN --> REL
+
+PROC --> ENT
+PROC --> TMP
+PROC --> EVT
+PROC --> REL
+
+ENT --> ENTX
+TMP --> TMPX
+EVT --> EVTX
+REL --> RELX
+
+ENTX --> EVT
+TMPX --> EVT
+
+ENTX --> REL
+TMPX --> REL
+EVTX --> REL
+
+RUN --> COR
+RUN --> FAK
+RUN --> EXP
+
+ENTX --> COR
+TMPX --> COR
+EVTX --> COR
+COR --> CRDX
+
+ENTX --> FAK
+TMPX --> FAK
+EVTX --> FAK
+FAK --> CRDX
+
+CRDX --> EXP
+EXP --> CRDX
+
+RUN --> LOAD : optional (--with-neo4j-load)
+ENTX --> LOAD
+TMPX --> LOAD
+EVTX --> LOAD
+RELX --> LOAD
+LOAD --> NEO
+
+RUN --> CQ : optional (--with-competency-queries)
+CQ --> NEO
+CQ --> REP
+
+legend bottom
+  L0: Orchestration entrypoint
+  L1: Data acquisition + project bootstrap
+  L2: Structured information extraction
+  L3: Credibility and contradiction analysis
+  L4: Graph serving and reporting outputs
+endlegend
+
+note right of RUN
+Default path:
+init -> ingestion -> entity -> temporal
+-> event -> relation
+-> corroboration -> claim assessment
+-> contradictions export
+end note
+
+@enduml

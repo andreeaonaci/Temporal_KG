@@ -1,0 +1,48 @@
+@startuml
+title Module Pipeline - Graph Load and Competency Queries
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "CLI user" as U
+
+folder "data/exports/entities" as ENTX
+folder "data/exports/temporals" as TMPX
+folder "data/exports/events" as EVTX
+folder "data/exports/relations" as RELX
+folder "data/exports/reports" as REP
+
+package "scripts" {
+  component "load_graph.py" as LOADCLI
+  component "run_competency_queries.py" as QCLI
+}
+
+package "src.graph" {
+  component "graph_loader.py" as LOAD
+  component "cypher.py" as CYP
+  component "neo4j_connector.py" as NEO4JCON
+  component "query_layer.py" as QL
+  component "competency_queries.py" as CQ
+}
+
+database "Neo4j" as NEO
+
+U --> LOADCLI
+LOADCLI --> LOAD
+ENTX --> LOAD
+TMPX --> LOAD
+EVTX --> LOAD
+RELX --> LOAD
+LOAD --> CYP
+LOAD --> NEO4JCON
+NEO4JCON --> NEO
+
+U --> QCLI
+QCLI --> CQ
+CQ --> QL
+QL --> CYP
+CQ --> NEO4JCON
+CQ --> REP
+
+@enduml

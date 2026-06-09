@@ -1,0 +1,30 @@
+@startuml
+title Sequence - Evaluation and Reporting Module
+
+actor "CLI user" as U
+collections "pipeline exports" as EXP
+participant "run_evaluation.py" as ECLI
+participant "evaluation/pipeline.py" as EP
+participant "gold_loader.py" as GL
+participant "metrics.py" as MT
+participant "report_generator.py" as RG
+participant "run_graph_visualization.py" as VCLI
+participant "reporting/plotly_viz.py" as PV
+participant "reporting/helpers.py" as HP
+collections "reports/" as REP
+
+U -> ECLI : run evaluation
+ECLI -> EP : execute evaluation flow
+EP -> EXP : read predictions/exports
+EP -> GL : load gold annotations
+EP -> MT : compute metrics
+EP -> RG : render evaluation outputs
+RG -> REP : write reports
+
+U -> VCLI : run visualization scripts
+VCLI -> PV : build graph figures
+VCLI -> HP : utility formatting/exports
+PV -> REP : write plots/artifacts
+HP -> REP : write helper outputs
+
+@enduml

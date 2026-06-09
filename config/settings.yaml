@@ -1,0 +1,244 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# temporal_kg — central configuration
+# All values can be overridden with environment variables.
+# Convention: TEMPORAL_KG_<SECTION>_<KEY>  (upper-snake-case)
+# ─────────────────────────────────────────────────────────────────────────────
+
+project:
+  name: "temporal_kg"
+  version: "0.1.0"
+  focus_countries: ["China", "Romania"]
+  default_language: "en"
+
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  data_exports: "data/exports"
+  db: "db/temporal_kg.sqlite"
+  logs: "logs"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  log_to_file: true
+  log_file: "logs/temporal_kg.log"
+  max_bytes: 10485760
+  backup_count: 5
+
+database:
+  sqlite_path: "db/temporal_kg.sqlite"
+  neo4j_uri: "bolt://localhost:7687"
+  neo4j_user: "neo4j"
+  neo4j_password: ""
+
+ingestion:
+  translate_to_english: true
+  translate_unknown_to_english: true
+  translation_target_language: "en"
+  require_translation_success: true
+  user_agent: "temporal-kg-bot/0.1 (+research)"
+  request_timeout: 10
+  retry_attempts: 3
+  retry_backoff: 2.0
+  rate_limit_delay: 1.5
+  save_raw_html: true              # persist raw HTML to data/raw/
+  save_json: true                  # persist cleaned article JSON to data/processed/
+
+relevance:
+  mode: "feed_aware"   # strict | feed_aware | either
+  china_terms:
+    - "China"
+    - "Chinese"
+    - "Beijing"
+    - "PRC"
+    - "Sino"
+    - "Xi Jinping"
+    - "Li Qiang"
+    - "Wang Yi"
+    - "Ding Xuexiang"
+    - "Zhao Leji"
+    - "Cai Qi"
+    - "Li Xi"
+    - "Han Zheng"
+    - "He Lifeng"
+    - "Pan Gongsheng"
+    - "Mao Ning"
+    - "Hua Chunying"
+    - "Ren Zhengfei"
+    - "Jack Ma"
+    - "Pony Ma"
+    - "Robin Li"
+    - "Lei Jun"
+    - "Wang Chuanfu"
+    - "Zhang Yiming"
+    - "CCP"
+    - "People's Republic"
+    - "Mainland China"
+    - "Zhongguo"
+    - "Peking"
+    - "Shanghai"
+    - "Shenzhen"
+    - "Guangzhou"
+    - "Hong Kong"
+    - "Macau"
+    - "Hainan"
+    - "Xinjiang"
+    - "Tibet"
+    - "Tibetan"
+    - "Inner Mongolia"
+    - "Guangdong"
+    - "Sichuan"
+    - "Wuhan"
+    - "Chongqing"
+    - "Nanjing"
+    - "Hangzhou"
+    - "Qingdao"
+    - "Urumqi"
+    - "PLA"
+    - "People's Liberation Army"
+    - "State Council of China"
+    - "National People's Congress"
+    - "Belt and Road"
+    - "BRI"
+    - "Made in China"
+    - "Yuan"
+    - "Renminbi"
+    - "CNY"
+    - "PBOC"
+    - "People's Bank of China"
+    - "MOFCOM"
+    - "Xinhua"
+    - "Global Times"
+    - "CGTN"
+    - "China Daily"
+    - "South China Sea"
+    - "Taiwan Strait"
+    - "HKSAR"
+    - "SAR"
+    - "Greater Bay Area"
+    - "SCO"
+    - "Tiananmen Square"
+    
+  romania_terms:
+    - "Romania"
+    - "Romanian"
+    - "Bucharest"
+    - "Romania's"
+    - "Romania"
+    - "Romanian government"
+    - "Romanian parliament"
+    - "Romanian presidency"
+    - "Romanian MFA"
+    - "Dacia"
+    - "Romanians"
+    - "Bucharest"
+    - "Cluj"
+    - "Cluj-Napoca"
+    - "Timisoara"
+    - "Iasi"
+    - "Constanta"
+    - "Brasov"
+    - "Sibiu"
+    - "Oradea"
+    - "Craiova"
+    - "Ploiesti"
+    - "Transylvania"
+    - "Moldavia"
+    - "Wallachia"
+    - "Dobruja"
+    - "Maramures"
+    - "Carpathians"
+    - "Black Sea"
+    - "Danube"
+    - "Danube Delta"
+    - "Moldova"
+    - "Moldovan"
+    - "Chisinau"
+    - "Chișinău"
+    - "Republic of Moldova"
+    - "Moldovan-Romanian"
+    - "MFA Romania"
+    - "Government of Romania"
+    - "Romanian Government"
+    - "Presidency of Romania"
+    - "Parliament of Romania"
+    - "BNR"
+    - "National Bank of Romania"
+    - "Leu"
+    - "RON"
+    - "ro"
+    - "Nicusor Dan"
+    - "Klaus Iohannis"
+    - "PNL"
+    - "PSD"
+    - "USR"
+    - "AUR"
+    - "SRI"
+    - "SIE"
+    - "MAI"
+    - "DIICOT"
+    - "Victor Ponta"
+    - "Liviu Dragnea"
+    - "Dacian Ciolos"
+    - "Bolojan"
+
+extraction:
+  spacy_model: "en_core_web_sm"
+  entity_types:
+    - "PERSON"
+    - "ORG"
+    - "GPE"
+    - "LOC"
+    - "EVENT"
+    - "DATE"
+    - "NORP"
+  relation_confidence_threshold: 0.5
+  use_deepke: true
+  deepke:
+    enabled: true
+    command_template: "python ../../scripts/deepke_runner.py --input {input} --output {output}"
+    conda_env: "deepke_py38"
+    working_dir: "tools/deepke"
+    output_dir: "data/exports/deepke"
+    timeout_seconds: 600
+    
+temporal:
+  engine: "heideltime"  # regex | heideltime
+  heideltime:
+    enabled: true
+    jar_path: "tools/heideltime/HeidelTimeStandalone.jar"
+    config_dir: "tools/heideltime/config"
+    language: "en"
+    document_type: "news"
+  default_granularity: "day"
+  unknown_date_strategy: "infer_from_context"
+
+graph:
+  neo4j_batch_size: 500
+  node_label_article: "Article"
+  node_label_entity: "Entity"
+  node_label_event: "Event"
+
+gdelt:
+  base_url: "https://api.gdeltproject.org/api/v2/doc/doc"
+  query: "China Romania"
+  mode: "artlist"
+  format: "json"
+  max_records: 250          # GDELT max is 250 per request
+  default_timespan: "1week" # used when no explicit date range is given
+  default_credibility: 0.7  # GDELT articles are unscored; default before scorer runs
+  request_timeout: 30
+  rate_limit_delay: 1.0
+
+credibility:
+  default_score: 0.5
+  known_reliable_domains:
+    - "reuters.com"
+    - "bbc.co.uk"
+    - "bbc.com"
+    - "apnews.com"
+    - "ft.com"
+    - "scmp.com"
+    - "rfi.ro"
+    - "g4media.ro"

@@ -1,0 +1,49 @@
+@startuml
+title Module Pipeline - Ontology and Taxonomy Mapping
+top to bottom direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+package "Inputs" {
+  folder "events (data/exports/events)" as EVTX
+  folder "relations (data/exports/relations)" as RELX
+  folder "entities (data/exports/entities)" as ENTX
+}
+
+package "src.ontology" {
+  component "taxonomy.py" as TAX
+}
+
+package "Semantic standards" {
+  component "CAMEO / GDELT event taxonomy" as CAMEO
+  component "IPTC media topics" as IPTC
+  component "OWL-Time temporal concepts" as OWLT
+}
+
+package "Consumers" {
+  component "event_extractor.py" as EVT
+  component "relation_extractor.py" as REL
+  component "graph_loader.py" as LOAD
+  component "competency_queries.py" as CQ
+}
+
+EVTX --> TAX
+RELX --> TAX
+ENTX --> TAX
+
+TAX --> CAMEO
+TAX --> IPTC
+TAX --> OWLT
+
+TAX --> EVT
+TAX --> REL
+TAX --> LOAD
+TAX --> CQ
+
+note bottom of TAX
+Provides normalized labels and mapping logic used by extraction,
+graph materialization, and downstream analytics.
+end note
+
+@enduml

@@ -1,0 +1,77 @@
+@startuml
+title Module Pipeline - Extraction
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "CLI user" as U
+folder "data/processed" as PROC
+
+package "Entity layer" {
+  component "scripts/run_entity_extraction.py" as ENTCLI
+  component "entity_extractor.py" as ENT
+  folder "data/exports/entities" as ENTX
+}
+
+package "Temporal layer" {
+  component "scripts/run_temporal_extraction.py" as TMPCLI
+  component "temporal_extractor.py" as TMP
+  folder "data/exports/temporals" as TMPX
+}
+
+package "Event layer" {
+  component "scripts/run_event_extraction.py" as EVTCLI
+  component "event_extractor.py" as EVT
+  folder "data/exports/events" as EVTX
+}
+
+package "Relation layer" {
+  component "scripts/run_relation_extraction.py" as RELCLI
+  component "relation_extractor.py" as REL
+  folder "data/exports/relations" as RELX
+}
+
+package "Optional DeepKE" {
+  component "scripts/run_deepke_extraction.py" as DPKCLI
+  component "deepke_client.py" as DPKC
+  component "deepke_adapter.py" as DPKA
+  folder "data/exports/deepke" as DPKX
+}
+
+component "pipeline_utils.py\n(iter/load/write helpers)" as UTIL
+
+U --> ENTCLI
+U --> TMPCLI
+U --> EVTCLI
+U --> RELCLI
+U --> DPKCLI
+
+PROC --> UTIL
+
+ENTCLI --> ENT
+ENT --> UTIL
+ENT --> ENTX
+
+TMPCLI --> TMP
+TMP --> UTIL
+TMP --> TMPX
+
+EVTCLI --> EVT
+EVT --> UTIL
+ENTX --> EVT
+TMPX --> EVT
+EVT --> EVTX
+
+RELCLI --> REL
+REL --> UTIL
+ENTX --> REL
+TMPX --> REL
+EVTX --> REL
+REL --> RELX
+
+DPKCLI --> DPKA
+DPKA --> DPKC
+DPKC --> DPKX
+
+@enduml

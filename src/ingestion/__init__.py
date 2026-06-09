@@ -1,0 +1,1 @@
+"""temporal_kg.src.ingestion — GDELT-based article fetching and processing."""

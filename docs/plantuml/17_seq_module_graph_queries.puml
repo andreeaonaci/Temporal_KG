@@ -1,0 +1,33 @@
+@startuml
+title Sequence - Graph Load and Competency Queries
+
+actor "CLI user" as U
+collections "entities/temporals/events/relations" as EXPORTED
+participant "load_graph.py" as LOADCLI
+participant "graph_loader.py" as LOAD
+participant "cypher.py" as CYP
+participant "neo4j_connector.py" as CONN
+database "Neo4j" as NEO
+participant "run_competency_queries.py" as QCLI
+participant "competency_queries.py" as CQ
+participant "query_layer.py" as QL
+collections "data/exports/reports" as REP
+
+U -> LOADCLI : run graph load
+LOADCLI -> LOAD : load(...)
+LOAD -> EXPORTED : read extraction outputs
+LOAD -> CYP : build merge/load statements
+LOAD -> CONN : execute batches
+CONN -> NEO : write nodes/edges
+NEO --> CONN : load stats
+
+U -> QCLI : run competency queries
+QCLI -> CQ : execute selected/all queries
+CQ -> QL : build query plan
+QL -> CYP : generate Cypher text
+CQ -> CONN : run Cypher
+CONN -> NEO : query graph
+NEO --> CONN : result rows
+CQ -> REP : write JSON/text report
+
+@enduml

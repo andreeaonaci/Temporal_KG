@@ -1,0 +1,43 @@
+@startuml seq_module_ingestion
+title Sequence - Ingestion Module
+
+actor "CLI user" as U
+participant "run_ingestion.py" as CLI
+participant "gdelt_pipeline.py" as PIPE
+participant "gdelt_fetcher.py" as FETCH
+participant "GDELT API" as API
+participant "GDELT text prep" as PREP
+participant "language_detector.py" as LANG
+participant "translator.py" as TR
+participant "deduplicator.py" as DEDUP
+participant "relevance_filter.py" as RF
+participant "article_store.py" as STORE
+database "SQLite" as DB
+collections "data/processed" as FS
+
+U -> CLI : run ingestion command
+CLI -> PIPE : pipeline.run(...)
+PIPE -> FETCH : fetch stubs
+FETCH -> API : query
+API --> FETCH : article stubs
+
+loop for each article
+  PIPE -> PREP : build content_clean from title/snippet
+  PIPE -> LANG : detect language from GDELT text fields
+  alt non-English
+    PIPE -> TR : translate to English
+  end
+  PIPE -> DEDUP : check duplicate
+  alt not duplicate
+    PIPE -> RF : evaluate China+Romania relevance
+    alt relevant
+      PIPE -> STORE : persist article
+      STORE -> DB : upsert metadata/content
+      STORE -> FS : write processed JSON
+    end
+  end
+end
+
+CLI --> U : summary and sample relevant items
+
+@enduml

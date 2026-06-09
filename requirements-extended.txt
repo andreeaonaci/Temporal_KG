@@ -1,0 +1,4 @@
+# Optional extras for extended tooling
+plotly>=5.22
+streamlit>=1.36
+neo4j-viz

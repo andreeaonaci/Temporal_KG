@@ -1,0 +1,39 @@
+@startuml
+title Sequence - Extraction Module
+
+actor "CLI user" as U
+collections "data/processed" as PROC
+collections "data/exports" as EXP
+participant "pipeline_utils.py" as UTIL
+participant "entity_extractor.py" as ENT
+participant "temporal_extractor.py" as TMP
+participant "event_extractor.py" as EVT
+participant "relation_extractor.py" as REL
+participant "deepke_adapter.py" as DPKA
+participant "deepke_client.py" as DPKC
+
+U -> UTIL : iterate cleaned articles
+UTIL -> PROC : read article JSON files
+
+loop each article
+  U -> ENT : extract_article(article)
+  ENT -> EXP : write entities/<article>.json
+
+  U -> TMP : extract_article(article)
+  TMP -> EXP : write temporals/<article>.json
+
+  U -> EVT : extract_article(article, entities, temporals)
+  EVT -> EXP : write events/<article>.json
+
+  U -> REL : extract_article(article, entities, temporals, events)
+  REL -> EXP : write relations/<article>.json
+end
+
+opt optional DeepKE path
+  U -> DPKA : run DeepKE extraction
+  DPKA -> DPKC : invoke model/service
+  DPKC --> DPKA : entities/relations payload
+  DPKA -> EXP : write deepke outputs
+end
+
+@enduml

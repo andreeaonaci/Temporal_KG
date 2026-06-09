@@ -1,0 +1,36 @@
+@startuml
+title Sequence - Temporal Module
+
+actor "Temporal pipeline" as FLOW
+participant "run_temporal_extraction.py" as CLI
+participant "temporal_extractor.py" as EX
+participant "engine selector" as SEL
+participant "regex parser" as REGEX
+participant "heideltime_client.py" as HT
+participant "date_normaliser.py" as DN
+participant "reasoner.py" as RSN
+collections "data/exports/temporals" as TMPX
+
+FLOW -> CLI : run temporal extraction
+CLI -> EX : extract_article(article)
+EX -> SEL : choose engine
+
+alt engine=regex
+  SEL -> REGEX : parse temporal expressions
+  REGEX --> EX : raw temporal spans
+else engine=heideltime
+  SEL -> HT : request TIMEX extraction
+  HT --> EX : timex expressions
+end
+
+EX -> DN : normalize dates/intervals
+DN --> EX : normalized temporal entities
+EX -> TMPX : write temporals output
+
+opt reasoning/consistency checks
+  FLOW -> RSN : validate temporal logic
+  RSN -> TMPX : read temporal layer
+  RSN --> FLOW : issues/contradiction signals
+end
+
+@enduml

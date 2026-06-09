@@ -1,0 +1,71 @@
+name: temporal_kg
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  - ipykernel
+  - jupyterlab
+  - notebook
+
+  # Core data
+  - pandas>=2.0
+  - numpy>=1.25
+  - matplotlib>=3.8
+  - networkx>=3.3
+
+  # Config & environment
+  - python-dotenv
+
+  # NLP / extraction (conda-forge builds)
+  - spacy>=3.7
+  - nltk
+  # HTTP / scraping
+  - requests
+  - httpx
+  - beautifulsoup4
+  - lxml
+
+  # Date parsing
+  - python-dateutil
+  - arrow
+
+  # Testing
+  - pytest
+  - pytest-cov
+
+  # Dev utilities
+  - black
+  - isort
+  - flake8
+
+  - pip:
+      # Graph
+      - neo4j>=5.0
+      # Translation
+      - deep-translator>=1.11
+      # Language detection
+      - langdetect>=1.0.9
+      # NLP extras
+      - spacy-transformers
+      # Temporal extraction - HeidelTime Python wrapper
+      - py-heideltime>=1.0.6
+      # Knowledge extraction - DeepKE
+      # NOTE: Do not install "deepke" from PyPI here.
+      # The PyPI package is unreliable in this environment and may fail
+      # during wheel metadata build. Install DeepKE manually from GitHub
+      # into tools/deepke when needed.
+      # Serialisation
+      - orjson
+      # Retry / resilience
+      - tenacity
+      # Progress bars
+      - tqdm
+      # YAML config
+      - pyyaml
+      # RSS feed parsing
+      - feedparser
+      # Async HTTP
+      - aiohttp

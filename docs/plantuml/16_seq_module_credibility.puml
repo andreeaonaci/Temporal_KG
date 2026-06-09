@@ -1,0 +1,35 @@
+@startuml
+title Sequence - Credibility and Fake-News Module
+
+actor "CLI user" as U
+collections "entities/temporals/events" as EXPORTED
+participant "run_corroboration_analysis.py" as CORCLI
+participant "corroboration.py" as COR
+participant "scorer.py" as SCR
+participant "run_fake_news_analysis.py" as FAKCLI
+participant "fake_news.py" as FAK
+participant "reasoner.py" as RSN
+participant "export_contradictions_fake_news.py" as EXPCLI
+collections "data/exports/credibility" as CRDX
+
+U -> CORCLI : run corroboration analysis
+CORCLI -> COR : analyze_directories(...)
+COR -> EXPORTED : read entities/temporals/events
+COR -> SCR : compute credibility signals
+COR --> CORCLI : corroboration result set
+CORCLI -> CRDX : write corroboration outputs
+
+U -> FAKCLI : run claim verification
+FAKCLI -> FAK : assess(...)
+FAK -> EXPORTED : read entities/temporals/events
+FAK -> SCR : source credibility score
+FAK -> RSN : temporal consistency checks
+FAK --> FAKCLI : claim assessments
+FAKCLI -> CRDX : write claim_assessments.json
+
+U -> EXPCLI : export contradictions/fake-news
+EXPCLI -> CRDX : read claim assessments
+EXPCLI -> FAK : apply thresholded fake-news rules
+EXPCLI -> CRDX : write contradictions_fake_news.json
+
+@enduml

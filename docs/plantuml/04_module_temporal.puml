@@ -1,0 +1,41 @@
+@startuml
+title Module Pipeline - Temporal Extraction and Reasoning
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Extraction flow" as FLOW
+folder "data/processed" as PROC
+folder "data/exports/temporals" as TMPX
+
+package "src.temporal" {
+  component "temporal_extractor.py" as EX
+  component "date_normaliser.py" as DN
+  component "heideltime_client.py" as HT
+  component "reasoner.py" as RSN
+}
+
+component "Regex temporal parser" as RGX
+component "Engine selector\n(regex | heideltime)" as SEL
+
+FLOW --> EX
+PROC --> EX
+EX --> SEL
+
+SEL --> RGX : default/fallback path
+SEL --> HT : when --engine heideltime
+
+RGX --> DN
+HT --> DN
+DN --> TMPX
+
+TMPX --> RSN
+RSN --> TMPX : consistency notes/issues
+
+note right of RSN
+Reasoner checks temporal validity,
+ordering, and contradiction signals.
+end note
+
+@enduml

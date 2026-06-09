@@ -1,0 +1,47 @@
+@startuml module_ingestion
+title Module Pipeline - Ingestion
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "CLI user" as U
+component "scripts/run_ingestion.py" as CLI
+
+package "src.ingestion" {
+  component "gdelt_fetcher.py" as FETCH
+  component "gdelt text prep\n(title/snippet -> content_clean)" as PREP
+  component "language_detector.py" as LANG
+  component "translator.py" as TR
+  component "deduplicator.py" as DEDUP
+  component "relevance_filter.py" as RF
+  component "article_store.py" as STORE
+  component "gdelt_pipeline.py" as PIPE
+}
+
+cloud "GDELT API" as API
+folder "data/processed" as PROC
+database "SQLite" as DB
+
+U --> CLI
+CLI --> PIPE
+
+PIPE --> FETCH
+FETCH --> API
+
+PIPE --> PREP
+PREP --> LANG
+LANG --> TR
+TR --> DEDUP
+DEDUP --> RF
+
+RF --> STORE
+STORE --> DB
+STORE --> PROC
+
+note right of RF
+Relevance rule keeps documents
+mentioning both China and Romania.
+end note
+
+@enduml

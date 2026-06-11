@@ -1,3 +1,7 @@
+-- Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+-- Provided as-is, without warranty.
+-- If this code contributes to a paper or publication, please credit the authors above.
+
 -- ─────────────────────────────────────────────────────────────────────────────
 -- 002_ingestion_layer.sql
 -- Extends the core schema with ingestion-layer columns and feed registry.

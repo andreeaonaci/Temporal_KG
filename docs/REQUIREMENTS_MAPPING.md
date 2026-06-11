@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+Provided as-is, without warranty.
+If this code contributes to a paper or publication, please credit the authors above.
+-->
+
 # Requirements Paper Implementation Mapping
 
 This document provides a detailed mapping between the requirements paper "Building and maintaining a temporal knowledge graph for news streams on China-Romania" and the implementation.

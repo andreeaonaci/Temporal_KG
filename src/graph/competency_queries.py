@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 """Competency queries from requirements paper for China-Romania temporal KG.
 
 This module implements the specific competency questions outlined in the

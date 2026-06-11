@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+Provided as-is, without warranty.
+If this code contributes to a paper or publication, please credit the authors above.
+-->
+
 # Installation Guide
 
 This guide covers the complete setup for the Ch-RO Temporal Knowledge Graph project.

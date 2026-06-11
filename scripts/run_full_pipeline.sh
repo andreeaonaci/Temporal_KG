@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 # One-command launcher for the full Temporal KG pipeline.
 # Uses an advanced default profile and forwards any extra CLI args.
 

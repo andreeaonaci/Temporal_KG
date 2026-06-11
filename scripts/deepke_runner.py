@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 """Project-local wrapper for DeepKE-style extraction.
 
 This script accepts a simple --input/--output interface so the main pipeline

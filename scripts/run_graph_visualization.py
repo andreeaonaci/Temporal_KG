@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 """Build a lightweight event-entity graph and persist it from CLI."""
 
 from __future__ import annotations

@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 """Entity extraction and article-level entity export helpers."""
 
 from __future__ import annotations

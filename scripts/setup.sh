@@ -1,4 +1,8 @@
 #!/bin/bash
+# Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+# Provided as-is, without warranty.
+# If this code contributes to a paper or publication, please credit the authors above.
+
 # Setup script for Ch-RO Temporal Knowledge Graph project
 # This script installs all necessary dependencies and sets up the environment
 

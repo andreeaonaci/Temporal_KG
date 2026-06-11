@@ -1,3 +1,9 @@
+<!--
+Copyright (c) 2026 Macarie Mihaela-Ancau, Onaci Andreea-Maria, Paul Petrut-Betuel.
+Provided as-is, without warranty.
+If this code contributes to a paper or publication, please credit the authors above.
+-->
+
 # Temporal Knowledge Graph — China & Romania
 
 A modular Python research project that builds a **temporal knowledge graph** from news articles about China and Romania. This implementation follows the requirements paper: "Building and maintaining a temporal knowledge graph for news streams on China-Romania" which combines ontology reasoning for semantic consistency, temporal modeling for event ordering and validity, and a fake news detection layer that evaluates claims using provenance, cross-source corroboration, and graph consistency.

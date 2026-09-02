@@ -102,6 +102,35 @@ DATE_LABELS = set(
     settings("extraction.entity_types", ["PERSON", "ORG", "GPE", "LOC", "DATE"])
 )
 
+# Maps spaCy's statistical-NER labels onto this project's entity taxonomy.
+# GPE is resolved dynamically per-mention (COUNTRY vs LOCATION) since spaCy
+# does not distinguish the two. Labels absent from this map are ignored --
+# DATE/CARDINAL/etc. are handled by the dedicated temporal-extraction layer.
+SPACY_LABEL_MAP = {
+    "PERSON": "PERSON",
+    "ORG": "ORGANIZATION",
+    "GPE": "GPE",
+    "LOC": "LOCATION",
+    "FAC": "LOCATION",
+    # NORP ("Russian", "Chinese", "Muslim") is a demonym/adjective label, not
+    # an organization or a named entity this project's taxonomy models --
+    # deliberately absent so it's ignored, not mapped to ORGANIZATION.
+}
+
+# Leading determiners and trailing possessive markers that spaCy includes in
+# entity spans ("the United Nations", "China's") but the gazetteer and the
+# gold-eval set do not. Stripped from every mention's surface text so the two
+# paths land on the same canonical form instead of double-counting one real
+# entity as both a false positive and a false negative.
+_LEADING_DETERMINERS = ("the ", "a ", "an ")
+_TRAILING_POSSESSIVES = ("'s", "’s", "'", "’")
+# Confidence assigned to spaCy statistical-NER mentions: below the
+# hand-tuned title-pattern cue (0.93, near-zero false-positive rate) but
+# above generic capitalized-phrase heuristics (0.74/0.78, which fire on any
+# capitalized bigram) since statistical NER uses real context, not surface
+# form alone.
+SPACY_NER_CONFIDENCE = 0.85
+
 
 @dataclass
 class ExtractedEntity:
@@ -136,6 +165,8 @@ class EntityExtractor:
         self._model = settings("extraction.spacy_model", "en_core_web_sm")
         self._use_deepke = bool(settings("extraction.use_deepke", False))
         self._deepke_client = DeepKEClient()
+        self._use_spacy_ner = bool(settings("extraction.use_spacy_ner", True))
+        self._last_doc: Any = None
 
     def _load_model(self) -> None:
         if self._nlp is not None:
@@ -260,7 +291,8 @@ class EntityExtractor:
 
         mentions: list[EntityMention] = []
         seen_spans: set[tuple[int, int, str]] = set()
-        for sentence_text, sentence_index, sentence_start in self._iter_sentences(text):
+        sentence_bounds = self._iter_sentences(text)
+        for sentence_text, sentence_index, sentence_start in sentence_bounds:
             mentions.extend(
                 self._extract_country_mentions(
                     sentence_text,
@@ -306,6 +338,15 @@ class EntityExtractor:
                     seen_spans,
                 )
             )
+        if self._use_spacy_ner and self._last_doc is not None:
+            mentions.extend(
+                self._extract_spacy_ner_mentions(
+                    self._last_doc,
+                    sentence_bounds,
+                    article_id,
+                    seen_spans,
+                )
+            )
         return sorted(
             mentions,
             key=lambda item: (item.start_char, item.end_char, item.entity_type),
@@ -313,8 +354,10 @@ class EntityExtractor:
 
     def _iter_sentences(self, text: str) -> list[tuple[str, int, int]]:
         self._load_model()
+        self._last_doc = None
         if self._nlp and self._nlp is not False:
             doc = self._nlp(text)
+            self._last_doc = doc
             return [
                 (sent.text.strip(), index, sent.start_char)
                 for index, sent in enumerate(doc.sents)
@@ -327,6 +370,76 @@ class EntityExtractor:
             if sentence:
                 matches.append((sentence, index, match.start()))
         return matches
+
+    def _extract_spacy_ner_mentions(
+        self,
+        doc: Any,
+        sentence_bounds: list[tuple[str, int, int]],
+        article_id: str,
+        seen_spans: set[tuple[int, int, str]],
+    ) -> list[EntityMention]:
+        """Ensemble spaCy's statistical NER on top of the gazetteer/regex pass.
+
+        The gazetteer catches high-precision domain terms (bilateral country
+        aliases, title-cued officials); spaCy's statistical model recovers
+        names, organizations, and locations the gazetteer has no lexicon
+        entry for (e.g. a company or official never seen before). Exact-span
+        duplicates are skipped via ``seen_spans``; near-duplicates with
+        different boundaries are left for downstream corroboration/dedup.
+        """
+        mentions: list[EntityMention] = []
+        if not sentence_bounds:
+            return mentions
+        starts = [start for _, _, start in sentence_bounds]
+
+        for ent in doc.ents:
+            mapped_type = SPACY_LABEL_MAP.get(ent.label_)
+            if not mapped_type:
+                continue
+            # Locate the enclosing sentence via its start offset.
+            sent_pos = 0
+            for i, start in enumerate(starts):
+                if start <= ent.start_char:
+                    sent_pos = i
+                else:
+                    break
+            sentence_text, sentence_index, sentence_start = sentence_bounds[sent_pos]
+
+            entity_type = mapped_type
+            if mapped_type == "GPE":
+                canonical = None
+                for name, aliases in COUNTRY_ALIASES.items():
+                    if ent.text.strip() in aliases or ent.text.strip() == name:
+                        canonical = name
+                        break
+                entity_type = "COUNTRY" if canonical else "LOCATION"
+                override_name = canonical
+            else:
+                override_name = None
+
+            local_start = ent.start_char - sentence_start
+            local_end = ent.end_char - sentence_start
+            if local_start < 0 or local_end > len(sentence_text):
+                continue
+            mention = self._build_mention(
+                article_id,
+                sentence_text,
+                sentence_index,
+                sentence_start,
+                local_start,
+                local_end,
+                entity_type,
+                seen_spans,
+                confidence=SPACY_NER_CONFIDENCE,
+                override_name=override_name,
+                # Statistical NER uses sentence context, not surface form
+                # alone, so (unlike the gazetteer heuristics) it can be
+                # trusted on single-token person names ("Xi", "Wang").
+                min_person_tokens=1,
+            )
+            if mention:
+                mentions.append(mention)
+        return mentions
 
     def _extract_country_mentions(
         self,
@@ -506,6 +619,7 @@ class EntityExtractor:
         seen_spans: set[tuple[int, int, str]],
         confidence: float | None = None,
         override_name: str | None = None,
+        min_person_tokens: int = 2,
     ) -> EntityMention | None:
         start_char = sentence_start + local_start
         end_char = sentence_start + local_end
@@ -514,9 +628,10 @@ class EntityExtractor:
             return None
 
         text = sentence[local_start:local_end].strip(" ,.;:()[]{}\"'")
+        text = self._strip_determiner_and_possessive(text)
         if not text:
             return None
-        if entity_type == "PERSON" and len(text.split()) < 2:
+        if entity_type == "PERSON" and len(text.split()) < min_person_tokens:
             return None
         normalized = self._normaliser.normalise(override_name or text, entity_type)
         seen_spans.add(span_key)
@@ -533,6 +648,22 @@ class EntityExtractor:
             end_char=end_char,
             confidence=round(confidence or normalized.confidence, 3),
         )
+
+    @staticmethod
+    def _strip_determiner_and_possessive(text: str) -> str:
+        stripped = text
+        lowered = stripped.lower()
+        for det in _LEADING_DETERMINERS:
+            if lowered.startswith(det):
+                stripped = stripped[len(det):]
+                lowered = stripped.lower()
+                break
+        for suffix in _TRAILING_POSSESSIVES:
+            if lowered.endswith(suffix):
+                stripped = stripped[: -len(suffix)]
+                lowered = stripped.lower()
+                break
+        return stripped.strip()
 
     @staticmethod
     def _legacy_label(entity_type: str) -> str:

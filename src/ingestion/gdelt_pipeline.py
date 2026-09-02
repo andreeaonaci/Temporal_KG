@@ -98,6 +98,8 @@ class GdeltIngestionPipeline:
         log.info("GDELT ingestion pipeline starting (query=%r)", self._query)
         log.info("=" * 60)
 
+        started_at = datetime.utcnow()
+
         # ── Step 1: fetch stubs from GDELT ────────────────────────────────────
         stubs = self._fetcher.fetch(
             start_date=start_date,
@@ -108,10 +110,15 @@ class GdeltIngestionPipeline:
 
         if not stubs:
             log.warning("GDELT returned no articles for query %r.", self._query)
+            # started_at is captured *before* the fetch call above, not here --
+            # otherwise duration_seconds always reads ~0 on this path
+            # regardless of how long the actual HTTP request took, which
+            # made a rate-limited/failed fetch indistinguishable from an
+            # instant no-op in the printed summary table.
             return IngestionRunStats(
                 feed_name="GDELT China-Romania",
                 feed_url=_GDELT_FEED_URL,
-                started_at=datetime.utcnow(),
+                started_at=started_at,
                 finished_at=datetime.utcnow(),
                 status="success",
             )

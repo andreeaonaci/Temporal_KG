@@ -206,7 +206,21 @@ class GdeltFetcher:
                 )
                 return None
 
-            data = resp.json()
+            try:
+                data = resp.json()
+            except ValueError:
+                # GDELT's rate-limit response is plain text ("Please limit
+                # requests to one every 5 seconds..."), not JSON -- surface
+                # this distinctly instead of letting it fall into the
+                # generic except-block below and read as "0 results, 0
+                # errors" (the except block still returns None, but this
+                # makes the actual cause visible in the log instead of
+                # requiring a raw-response dump to diagnose).
+                log.error(
+                    "GDELT response was not JSON (likely rate-limited): %r",
+                    resp.text[:200],
+                )
+                return None
             articles = data.get("articles")
             if articles is None:
                 log.info("GDELT response contained no 'articles' key (empty result set).")

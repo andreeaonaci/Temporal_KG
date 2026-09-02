@@ -41,16 +41,76 @@ ingestion:
   translate_unknown_to_english: true
   translation_target_language: "en"
   require_translation_success: true
+  translation_rate_limit_delay: 2.0  # seconds between deep-translator calls. Added
+  # 2026-08-25: translating short titles only (pre-full-text-scraping) never sent
+  # enough requests to trip Google Translate's free-endpoint rate limit, so this
+  # delay didn't exist. Once article_scraper.py started feeding real (much longer,
+  # multi-chunk) body text through the same translator with zero delay between
+  # calls, a historical-backfill run tripped rate limiting almost immediately:
+  # 72/78 translation attempts failed, and some "successes" were actually Google's
+  # HTML error page silently returned as translated text (see
+  # _looks_like_error_page in translator.py) rather than raising an exception.
   user_agent: "temporal-kg-bot/0.1 (+research)"
   request_timeout: 10
   retry_attempts: 3
   retry_backoff: 2.0
   rate_limit_delay: 1.5
+  scrape_full_text: true  # download each article's URL and extract body text via
+  # trafilatura (src/ingestion/article_scraper.py), instead of relying on GDELT's
+  # title/snippet alone. Confirmed 2026-08-24: GDELT's DOC 2.0 API essentially
+  # never returns a snippet, so without this every article's "content" was just
+  # its headline (303/303 articles in the corpus had content_raw == ""), and
+  # event/claim extraction ran on headline text only. Best-effort per article --
+  # falls back to title/snippet text on any fetch/extraction failure rather than
+  # dropping the article. Set false to restore the old title-only behavior (e.g.
+  # for a fast/offline test run).
   save_raw_html: true              # persist raw HTML to data/raw/
   save_json: true                  # persist cleaned article JSON to data/processed/
+  resolve_google_news_urls: true   # decode Google News RSS wrapper links to the real
+  # publisher URL (see src/ingestion/google_news_resolver.py) -- without this, every
+  # Google-News-sourced article's source_domain reads as "news.google.com", which
+  # silently destroys corroboration source-diversity and credibility-domain scoring.
+  # Uses an unofficial decoder (googlenewsdecoder package); set false to skip it if
+  # that package breaks or you'd rather not pay the extra network round-trip per article.
+  # RSS/Atom feeds fetched by src/ingestion/rss_fetcher.py -- see
+  # docs/REQUIREMENTS_MAPPING.md Section A, which claimed these were already
+  # wired up (they weren't, as of 2026-08-19; this block and rss_fetcher.py
+  # are the actual first implementation). CGTN is left out deliberately:
+  # REQUIREMENTS_MAPPING.md names it ("CGTN feeds, filtered for Romania
+  # content") without a concrete feed URL, and guessing one risks a dead or
+  # wrong link -- add it once a real CGTN RSS endpoint is confirmed.
+  rss_feeds:
+    - name: "Google News (China+Romania)"
+      url: "https://news.google.com/rss/search?q=%22Romania%22%20%22China%22&hl=en-US&gl=US&ceid=US:en"
+      country: "bilateral"
+      credibility: 0.6  # aggregator of many sources, not a single newsroom
+    - name: "Radio Romania International"
+      url: "https://www.rri.ro/en/feed"
+      country: "Romania"
+      credibility: 0.8  # public broadcaster
+    # "Bursa Romania (Business News)" (https://www.bursa.ro/titluribursa.xml) is
+    # left out: confirmed HTTP 404 as of 2026-08-19, a dead link despite being
+    # named in docs/REQUIREMENTS_MAPPING.md -- re-add once a live replacement
+    # URL is found on bursa.ro.
+    - name: "Bursa Romania (Capital Markets)"
+      url: "https://www.bursa.ro/piata-capital-bursa.xml"
+      country: "Romania"
+      credibility: 0.6
+    - name: "Radio Free Europe/Radio Liberty"
+      url: "https://www.rferl.org/api/ziiivl-vomx-tpemgmt"
+      country: "general"
+      credibility: 0.8  # established international broadcaster; confirmed live/valid
+      # RSS as of 2026-08-19 but returned 0 <item> entries at check time -- kept
+      # configured since the feed itself is real, just possibly transiently empty
 
 relevance:
   mode: "feed_aware"   # strict | feed_aware | either
+  exclude_sports_content: true  # drop otherwise-relevant articles whose text
+  # trips a sports-competition marker (see relevance_filter.py). Confirmed
+  # 2026-08-26: a real China-vs-Romania table-tennis match report passed
+  # china+romania_co-occurrence, then leaked an unrelated match's sentence
+  # into event extraction -- sports results are out of scope for this
+  # project's bilateral-relations ontology (none of the 11 event types fit).
   china_terms:
     - "China"
     - "Chinese"
@@ -189,6 +249,8 @@ relevance:
 
 extraction:
   spacy_model: "en_core_web_sm"
+  use_spacy_ner: true  # ensemble statistical NER on top of the gazetteer/regex pass
+  use_dependency_parse: true  # trigger events off verb lemmas + syntactic args, not raw substrings
   entity_types:
     - "PERSON"
     - "ORG"
@@ -233,10 +295,39 @@ gdelt:
   default_timespan: "1week" # used when no explicit date range is given
   default_credibility: 0.7  # GDELT articles are unscored; default before scorer runs
   request_timeout: 30
-  rate_limit_delay: 1.0
+  rate_limit_delay: 6.0  # GDELT enforces "one request every 5 seconds" (confirmed via their
+  # own rate-limit response text); 1.0 was below that, causing every request after the first
+  # in any multi-query run (e.g. run_big_experiment.sh's quarterly loop) to get rate-limited
 
 credibility:
   default_score: 0.5
+  use_veracity_score: true  # composite weighted score (veracity_score.py) vs. the legacy if/elif cascade
+  veracity_weights:
+    credibility: 0.3
+    corroboration: 0.4
+    temporal_consistency: 0.3
+  semantic_similarity:
+    enabled: true  # embed claim sentences and match near-duplicates across articles
+    merge_corroboration: true  # fold semantic matches into corroboration groups, not just report them
+    model: "sentence-transformers/all-MiniLM-L6-v2"
+    threshold: 0.75  # cosine similarity; see evaluate_corroboration.py for the precision/recall tradeoff at this cutoff
+  lexical_baseline:
+    threshold: 0.3  # Jaccard token-overlap cutoff -- see evaluate_corroboration.py --baseline lexical
+  contradiction_nli:
+    enabled: true  # pairwise NLI contradiction check within a corroboration group
+    model: "cross-encoder/nli-deberta-v3-xsmall"
+    threshold: 0.5  # contradiction probability; see evaluate_contradiction.py
+    min_relevance_similarity: 0.15  # skip NLI for topically-unrelated pairs (see evaluate_contradiction.py --gate;
+    # calibrated low deliberately -- true contradictions can still diverge a lot in
+    # surface wording, e.g. 0.19 similarity for a genuine "took place" vs. "was
+    # cancelled" contradiction, so this only needs to catch clearly unrelated pairs)
+    temporal_gate: true  # reclassify an NLI-contradictory pair as claim evolution (not
+    # a real contradiction) when the two events' dates are Allen before/after/meets/
+    # met_by rather than temporally coincident -- see evaluate_temporal_contradiction.py
+    lifecycle_verification: true  # when temporal_gate says "evolution", additionally check
+    # the group's full date-ordered claims trace a legal path through the event type's
+    # lifecycle FSM (src/temporal/lifecycle.py) -- an illegal transition (e.g. "ratified"
+    # before "signed") is downgraded back to a genuine contradiction, not evolution
   known_reliable_domains:
     - "reuters.com"
     - "bbc.co.uk"
@@ -246,3 +337,48 @@ credibility:
     - "scmp.com"
     - "rfi.ro"
     - "g4media.ro"
+    # Added from real ingested data (2026-08-19), independent professional
+    # outlets only -- see state_affiliated_domains below for the ones that
+    # aren't editorially independent of a government.
+    - "romania-insider.com"  # independent English-language Romanian business/news outlet
+    - "seenews.com"          # established Southeast Europe business news wire agency
+    - "rri.ro"               # Radio Romania International, public broadcaster (same
+    # category as bbc.com above: state-funded but editorially independent, not the
+    # same thing as state-affiliated media -- see state_affiliated_domains)
+    - "bursa.ro"             # Romanian financial/business newspaper, independent
+    - "romaniajournal.ro"    # The Romania Journal, independent English-language Romanian
+    # news outlet -- missed in the first pass (2026-08-19), added after review of a real
+    # corroboration group that included it alongside seenews.com/romania-insider.com
+    # informat.ro and bastillepost.com also showed up in real ingested data but are
+    # deliberately left off this list -- no confident basis to vouch for their
+    # editorial standards, so they fall through to credibility.default_score instead
+    # of being asserted as "reliable" without real evidence.
+  state_affiliated_domains:
+    # Real, identifiable, professionally-run outlets -- not anonymous or low-quality
+    # sources -- but not editorially independent of the Chinese government, so scored
+    # separately from known_reliable_domains rather than lumped in at the same 1.0.
+    - "chinadaily.com.cn"    # China Daily, PRC state media
+    - "radio.cgtn.com"       # CGTN, China's state broadcaster's international arm
+  state_affiliated_score: 0.65  # above credibility.default_score (0.5, "unknown source")
+  # since these are real identifiable outlets, but below the 1.0 known_reliable_domains
+  # tier, reflecting standard media-literacy treatment of state-affiliated sources
+  # Maps a domain to a shared publisher identifier for corroboration's
+  # source_diversity (see src/credibility/publisher_networks.py) -- confirmed on
+  # real data (2026-08-24) that raw-domain counting overstated diversity=8 for a
+  # single Xinhua/People's Daily wire story mirrored across language editions.
+  # Deliberately conservative: only networks with clear same-institution naming
+  # evidence directly observed in real ingested domains are listed here.
+  # china.org.cn, qianlong.com, gmw.cn, jstv.com etc. are NOT merged into this --
+  # no direct evidence they're mirrors rather than genuinely separate outlets that
+  # happen to also carry state-media wire copy (most outlets, state or not, run
+  # wire-service stories; that alone isn't evidence of common ownership).
+  publisher_networks:
+    xinhua:
+      - "xinhuanet.com"
+      - "news.cn"
+    peoples_daily:
+      - "people.com.cn"
+      - "peopledaily.com.cn"
+      - "people.cn"
+    cgtn:
+      - "cgtn.com"

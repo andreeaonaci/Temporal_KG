@@ -71,5 +71,8 @@ dependencies:
       - pyyaml
       # RSS feed parsing
       - feedparser
+      # Resolves Google News RSS wrapper URLs to the real publisher URL
+      # (see src/ingestion/google_news_resolver.py for why this matters)
+      - googlenewsdecoder
       # Async HTTP
       - aiohttp

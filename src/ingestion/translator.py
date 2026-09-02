@@ -31,6 +31,22 @@ _CHUNK_SIZE = 4500       # Google Translate safe limit per request
 _RETRY_DELAY = 2.0       # seconds to wait between retries
 _MAX_RETRIES = 2
 
+# deep-translator's GoogleTranslator sometimes does not raise on failure --
+# it returns Google's HTML error page's own text as if it were a successful
+# translation. Confirmed 2026-08-25: at request volumes big enough to trip
+# Google's free-endpoint rate limiting (real body text translated in bulk
+# during a historical backfill, vs. the short titles this previously only
+# ever translated), GoogleTranslator('你好') returned the string below
+# instead of raising -- which would have been silently written into the
+# corpus as if it were a real translation. Never seen at title-only volume,
+# only appeared once full-article-text translation (src/ingestion/
+# article_scraper.py) made per-run request counts much higher.
+_ERROR_PAGE_MARKERS = ("Error 500 (Server Error)", "That's an error", "That’s an error")
+
+
+def _looks_like_error_page(text: str) -> bool:
+    return any(marker in text for marker in _ERROR_PAGE_MARKERS)
+
 
 def _chunk_text(text: str, size: int = _CHUNK_SIZE) -> list[str]:
     """Split *text* into chunks of at most *size* characters, breaking on newlines."""
@@ -66,13 +82,16 @@ def _translate_text_with_status(text: str, source_lang: str, target_lang: str = 
     chunks = _chunk_text(text)
     translated_chunks: list[str] = []
     all_ok = True
+    rate_delay = float(settings("ingestion.translation_rate_limit_delay", 2.0))
 
     for chunk in chunks:
         for attempt in range(1, _MAX_RETRIES + 1):
             try:
                 translator = GoogleTranslator(source=source_lang, target=target_lang)
                 result = translator.translate(chunk)
-                translated_chunks.append(result or chunk)
+                if not result or _looks_like_error_page(result):
+                    raise RuntimeError(f"translator returned an error page: {result!r:.120}")
+                translated_chunks.append(result)
                 break
             except Exception as exc:
                 if attempt == _MAX_RETRIES:
@@ -84,6 +103,7 @@ def _translate_text_with_status(text: str, source_lang: str, target_lang: str = 
                     all_ok = False
                 else:
                     time.sleep(_RETRY_DELAY)
+        time.sleep(rate_delay)
 
     return "\n".join(translated_chunks), all_ok
 

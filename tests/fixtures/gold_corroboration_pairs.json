@@ -1,0 +1,75 @@
+{
+  "_note": "Sentence pairs for validating the semantic corroboration matcher's cosine-similarity threshold. Sentence A in each pair is verbatim from gold_eval_set.json (real ingested article text); sentence B is a hand-written paraphrase or a genuinely distinct claim about the same topic. This is a threshold-calibration set, not a claim-level fact-check gold set -- once real ingestion has run and produced duplicate/near-duplicate coverage of the same event across multiple outlets, re-derive this fixture from that real duplication instead of paraphrases (see evaluate_corroboration.py docstring).",
+  "items": [
+    {
+      "id": "pair_001",
+      "sentence_a": "According to reports, a Russian drone struck an apartment building in Romania, injuring civilians.",
+      "sentence_b": "Civilians were injured after a drone of Russian origin hit a residential building in Romania.",
+      "same_claim": true,
+      "reason": "paraphrase of the same drone-strike report"
+    },
+    {
+      "id": "pair_002",
+      "sentence_a": "China's Permanent Representative to the United Nations Fu Cong spoke at the Security Council's emergency public meeting on the Romanian drone incident on June 1.",
+      "sentence_b": "At an emergency UN Security Council session on June 1, China's UN envoy Fu Cong addressed the drone incident affecting Romania.",
+      "same_claim": true,
+      "reason": "paraphrase of the same UN Security Council statement"
+    },
+    {
+      "id": "pair_003",
+      "sentence_a": "Among the key economic sectors mentioned by the Chinese side for joint investment are robotics, electric vehicle production and the development of green energy.",
+      "sentence_b": "Chinese representatives proposed joint investment in robotics, EV manufacturing, and green-energy development.",
+      "same_claim": true,
+      "reason": "paraphrase of the same investment-sectors claim"
+    },
+    {
+      "id": "pair_004",
+      "sentence_a": "Romania and China are building a solid economic relationship together, and CCIR assumes an active role in this direction.",
+      "sentence_b": "CCIR is playing an active part in strengthening the economic partnership between Romania and China.",
+      "same_claim": true,
+      "reason": "paraphrase of the same CCIR-role claim"
+    },
+    {
+      "id": "pair_005",
+      "sentence_a": "In addition, high energy prices in Europe create real opportunities for new technologies, including energy storage, an area in which Romania is actively interested.",
+      "sentence_b": "Because energy costs are high across Europe, Romania sees real potential in emerging technologies such as energy storage.",
+      "same_claim": true,
+      "reason": "paraphrase of the same energy-storage-opportunity claim"
+    },
+    {
+      "id": "pair_006",
+      "sentence_a": "China's Permanent Representative to the United Nations Fu Cong spoke at the Security Council's emergency public meeting on the Romanian drone incident on June 1.",
+      "sentence_b": "Alexandru Muraru reacted to the Chinese official's statement and emphasized that Romanian parliamentarians should not be accountable to an embassy of an authoritarian state.",
+      "same_claim": false,
+      "reason": "both PolicyStatement, but a UN speech is not the same claim as a Romanian MP's rebuttal of it"
+    },
+    {
+      "id": "pair_007",
+      "sentence_a": "Among the key economic sectors mentioned by the Chinese side for joint investment are robotics, electric vehicle production and the development of green energy.",
+      "sentence_b": "Romania seeks partnerships with a Chinese energy-storage firm for a new battery plant in Bihor.",
+      "same_claim": false,
+      "reason": "both about China-Romania investment, but distinct proposals"
+    },
+    {
+      "id": "pair_008",
+      "sentence_a": "According to reports, a Russian drone struck an apartment building in Romania, injuring civilians.",
+      "sentence_b": "He said that China has taken note of reports of drones entering Romanian airspace and causing injuries, as well as the statements and reactions of Romania and Russia.",
+      "same_claim": false,
+      "reason": "the incident report is not the same claim as a diplomatic reaction to it"
+    },
+    {
+      "id": "pair_009",
+      "sentence_a": "Romania and China are building a solid economic relationship together, and CCIR assumes an active role in this direction.",
+      "sentence_b": "The Romanian official explained to the Chinese partners that national legislation offers a major benefit for companies established in Romania.",
+      "same_claim": false,
+      "reason": "both economic-cooperation context, but distinct specific claims"
+    },
+    {
+      "id": "pair_010",
+      "sentence_a": "In addition, high energy prices in Europe create real opportunities for new technologies, including energy storage, an area in which Romania is actively interested.",
+      "sentence_b": "A Russian drone struck an apartment building in Romania, injuring civilians.",
+      "same_claim": false,
+      "reason": "unrelated topics -- sanity-check easy negative"
+    }
+  ]
+}

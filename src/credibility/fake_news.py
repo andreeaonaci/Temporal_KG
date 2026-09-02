@@ -11,7 +11,9 @@ from typing import Any
 
 from src.credibility.corroboration import CorroborationAnalyzer
 from src.credibility.scorer import CredibilityScorer
+from src.credibility.veracity_score import VeracityFeatures, VeracityScorer
 from src.temporal.reasoner import detect_temporal_inconsistencies
+from src.utils.config import settings
 
 
 @dataclass
@@ -23,14 +25,24 @@ class ClaimAssessment:
     source_diversity: int
     contradiction_flag: bool
     temporal_issues: list[dict[str, Any]]
+    veracity_score: float | None = None
 
 
 class ClaimVerifier:
-    """Aggregate corroboration and temporal checks into a verification label."""
+    """Aggregate corroboration and temporal checks into a verification label.
+
+    Labeling defaults to the composite :class:`VeracityScorer` (weighted,
+    ablatable). Set ``credibility.use_veracity_score: false`` in
+    settings.yaml to fall back to the original hard-coded if/elif cascade.
+    """
 
     def __init__(self) -> None:
         self._corroboration = CorroborationAnalyzer()
         self._scorer = CredibilityScorer()
+        self._use_veracity_score = bool(
+            settings("credibility.use_veracity_score", True)
+        )
+        self._veracity_scorer = VeracityScorer()
 
     def assess(
         self,
@@ -67,12 +79,26 @@ class ClaimVerifier:
                 if event_id in temporal_issue_map:
                     issues.append(temporal_issue_map[event_id])
 
-            if contradiction or issues:
-                status = "contested"
-            elif support >= 2 and diversity >= 2 and score >= 0.6:
-                status = "corroborated"
-            elif support <= 1 or diversity <= 1:
-                status = "unverified"
+            veracity_score = None
+            if self._use_veracity_score:
+                result = self._veracity_scorer.score(
+                    VeracityFeatures(
+                        credibility_score=score,
+                        support_count=support,
+                        source_diversity=diversity,
+                        contradiction_flag=contradiction,
+                        temporal_issue_count=len(issues),
+                    )
+                )
+                status = result.label
+                veracity_score = result.score
+            else:
+                if contradiction or issues:
+                    status = "contested"
+                elif support >= 2 and diversity >= 2 and score >= 0.6:
+                    status = "corroborated"
+                elif support <= 1 or diversity <= 1:
+                    status = "unverified"
 
             assessments.append(
                 ClaimAssessment(
@@ -83,6 +109,7 @@ class ClaimVerifier:
                     source_diversity=diversity,
                     contradiction_flag=contradiction,
                     temporal_issues=issues,
+                    veracity_score=veracity_score,
                 )
             )
         return assessments

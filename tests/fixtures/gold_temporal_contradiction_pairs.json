@@ -1,0 +1,117 @@
+{
+  "_note": "Pairs for validating temporal-aware contradiction resolution: an NLI-flagged disagreement between two claims should only be a genuine contradiction (is_true_contradiction=true) when both claims describe the same point/window in time (their extracted event dates are Allen-coincident). If the dates are sequential (before/after/meets/met_by -- a lifecycle transition like proposed->signed->rejected), the disagreement is claim evolution, not contradiction, even though a naive NLI-only check would flag it. This is the ablation for src/credibility/corroboration.py's temporal_gate: naive NLI-only vs. NLI+Allen-relation-gated. See evaluate_temporal_contradiction.py. eq_00X/contra_00X/neutral_00X (10 items) use point dates only (date_a == end_a implicitly); interval_00X (2 items) add real start != end intervals (end_a/end_b fields) specifically to differentiate full Allen-relation reasoning from a coarse same-day/week/month distance-bucket baseline (src/temporal/time_bucket_gate.py) -- point-only pairs can't expose that gap, since a coarse bucket and an exact point relation agree on every point-only case.",
+  "items": [
+    {
+      "id": "eq_001",
+      "sentence_a": "The China-Romania energy deal was proposed during talks in Bucharest.",
+      "date_a": "2025-01-10",
+      "sentence_b": "The China-Romania energy deal was signed by both governments.",
+      "date_b": "2025-03-01",
+      "is_true_contradiction": false,
+      "reason": "sequential lifecycle stages (proposed -> signed), not a contradiction"
+    },
+    {
+      "id": "eq_002",
+      "sentence_a": "Trade agreement negotiations opened this week in Beijing.",
+      "date_a": "2025-02-01",
+      "sentence_b": "The trade agreement was rejected by the Romanian parliament.",
+      "date_b": "2025-04-15",
+      "is_true_contradiction": false,
+      "reason": "sequential lifecycle stages (opened -> rejected), not a contradiction"
+    },
+    {
+      "id": "eq_003",
+      "sentence_a": "The meeting between the two delegations was scheduled for June 1.",
+      "date_a": "2025-06-01",
+      "sentence_b": "The meeting between the two delegations was cancelled.",
+      "date_b": "2025-06-20",
+      "is_true_contradiction": false,
+      "reason": "scheduled, then later cancelled -- sequential, not contradictory"
+    },
+    {
+      "id": "eq_004",
+      "sentence_a": "Construction on the battery plant began in March.",
+      "date_a": "2025-03-01",
+      "sentence_b": "The battery plant project was suspended.",
+      "date_b": "2025-09-01",
+      "is_true_contradiction": false,
+      "reason": "began, then later suspended -- sequential, not contradictory"
+    },
+    {
+      "id": "contra_001",
+      "sentence_a": "Twelve people were injured in the June 1 drone strike.",
+      "date_a": "2025-06-01",
+      "sentence_b": "Only two people were injured in the June 1 drone strike.",
+      "date_b": "2025-06-01",
+      "is_true_contradiction": true,
+      "reason": "same incident, same date, conflicting casualty counts"
+    },
+    {
+      "id": "contra_002",
+      "sentence_a": "Romania and China signed the energy deal on June 1.",
+      "date_a": "2025-06-01",
+      "sentence_b": "Talks on the energy deal collapsed on June 1 without an agreement.",
+      "date_b": "2025-06-01",
+      "is_true_contradiction": true,
+      "reason": "same date, mutually exclusive outcomes for the same negotiation"
+    },
+    {
+      "id": "contra_003",
+      "sentence_a": "The summit held on June 1 saw high turnout.",
+      "date_a": "2025-06-01",
+      "sentence_b": "The summit held on June 1 saw low turnout.",
+      "date_b": "2025-06-01",
+      "is_true_contradiction": true,
+      "reason": "same summit, same date, conflicting turnout description"
+    },
+    {
+      "id": "contra_004",
+      "sentence_a": "Officials confirmed the June 1 drone entered Romanian airspace.",
+      "date_a": "2025-06-01",
+      "sentence_b": "Officials denied the June 1 drone entered Romanian airspace.",
+      "date_b": "2025-06-01",
+      "is_true_contradiction": true,
+      "reason": "same date, confirmed vs. denied the same factual claim"
+    },
+    {
+      "id": "neutral_001",
+      "sentence_a": "China's Permanent Representative to the United Nations Fu Cong spoke at the Security Council's emergency meeting on June 1.",
+      "date_a": "2025-06-01",
+      "sentence_b": "Fu Cong, China's UN envoy, addressed the Security Council during an emergency session held on June 1.",
+      "date_b": "2025-06-01",
+      "is_true_contradiction": false,
+      "reason": "paraphrase, not a disagreement at all"
+    },
+    {
+      "id": "neutral_002",
+      "sentence_a": "In addition, high energy prices in Europe create real opportunities for new technologies, including energy storage.",
+      "date_a": "2025-05-01",
+      "sentence_b": "Romania's parliament debated an unrelated agricultural subsidy bill on Tuesday.",
+      "date_b": "2025-05-06",
+      "is_true_contradiction": false,
+      "reason": "unrelated topics, not a disagreement -- sanity-check negative"
+    },
+    {
+      "id": "interval_001",
+      "sentence_a": "The trade agreement was in effect from March 1 to June 30, 2025.",
+      "date_a": "2025-03-01",
+      "end_a": "2025-06-30",
+      "sentence_b": "The trade agreement was suspended on April 15, 2025.",
+      "date_b": "2025-04-15",
+      "end_b": "2025-04-15",
+      "is_true_contradiction": true,
+      "reason": "Allen differentiation case: April 15 falls INSIDE the March-June validity interval (Allen relation 'contains', temporally coincident), so 'in effect' vs 'suspended' is a real contradiction about the same window -- but a coarse distance bucket anchored on the interval's start date (March 1) sees April 15 as ~45 days away and would wrongly reclassify this as evolution. This is the case point-only pairs (eq_00X/contra_00X above) cannot expose."
+    },
+    {
+      "id": "interval_002",
+      "sentence_a": "The pilot program ran from January 1 to March 31, 2025.",
+      "date_a": "2025-01-01",
+      "end_a": "2025-03-31",
+      "sentence_b": "A new expanded program launched in September 2025.",
+      "date_b": "2025-09-01",
+      "end_b": "2025-09-30",
+      "is_true_contradiction": false,
+      "reason": "Allen 'before' relation (the two intervals don't overlap at all) -- legitimate sequential evolution, both the Allen gate and a coarse distance bucket should agree here (included as a fair companion case, not just ones rigged to favor the interval-aware method)."
+    }
+  ]
+}

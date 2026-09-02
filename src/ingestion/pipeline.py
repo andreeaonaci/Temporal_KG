@@ -27,16 +27,19 @@ Usage
 
 from __future__ import annotations
 
+import time
 from datetime import datetime, timezone
 from typing import Optional
 
 from tqdm import tqdm
 
+from src.ingestion.article_scraper import ArticleScraper
 from src.ingestion.article_store import ArticleStore
 from src.ingestion.deduplicator import Deduplicator
 from src.ingestion.language_detector import detect_language
 from src.ingestion.models import ArticleRecord, ArticleStatus, FeedConfig, IngestionRunStats
 from src.ingestion.relevance_filter import RelevanceFilter
+from src.utils.config import settings
 from src.utils.db import DatabaseManager, get_db
 from src.utils.logger import get_logger
 from src.ingestion.translator import Translator
@@ -70,6 +73,9 @@ class IngestionPipeline:
         # Shared stateless components
         self._relevance = RelevanceFilter()
         self._translator = Translator()
+        self._scraper = ArticleScraper()
+        self._scrape_enabled = bool(settings("ingestion.scrape_full_text", True))
+        self._scrape_delay = float(settings("ingestion.rate_limit_delay", 1.5))
 
     # ── Public API ────────────────────────────────────────────────────────────
 
@@ -191,10 +197,20 @@ class IngestionPipeline:
             log.debug("SKIP (url_dup): %s", article.url[:80])
             return "dup"
 
-        # ── GDELT-only text preparation (no URL fetch/scraping) ─────────────
+        # ── Full-text scraping (falls back to title/snippet on failure) ─────
         article.fetched_at = datetime.now(timezone.utc)
-        gdelt_text_parts = [article.title.strip(), article.content_clean.strip()]
-        article.content_clean = "\n".join(part for part in gdelt_text_parts if part).strip()
+
+        body_text = ""
+        if self._scrape_enabled and article.url:
+            scraped = self._scraper.fetch(article.url)
+            if scraped.ok:
+                body_text = scraped.text
+            else:
+                article.fetch_error = scraped.error
+            time.sleep(self._scrape_delay)
+
+        text_parts = [article.title.strip(), body_text or article.content_clean.strip()]
+        article.content_clean = "\n".join(part for part in text_parts if part).strip()
         article.content_raw = ""
 
         if not article.content_clean and article.url:

@@ -10,10 +10,16 @@ import re
 import json
 from typing import Any
 
-from src.extraction.pipeline_utils import stable_id
+from src.extraction.pipeline_utils import dependency_argument_mentions, stable_id
 from src.extraction.deepke_adapter import normalize_relations
 from src.extraction.deepke_client import DeepKEClient
 from src.utils.config import settings
+from src.utils.logger import get_logger
+
+log = get_logger(__name__)
+
+_SUBJECT_DEPS = {"nsubj", "nsubjpass"}
+_OBJECT_DEPS = {"dobj", "pobj", "attr", "dative", "oprd"}
 
 
 class RelationExtractor:
@@ -22,6 +28,30 @@ class RelationExtractor:
     def __init__(self) -> None:
         self._use_deepke = bool(settings("extraction.use_deepke", False))
         self._deepke_client = DeepKEClient()
+        self._nlp: Any = None
+        self._model = settings("extraction.spacy_model", "en_core_web_sm")
+        self._use_dependency_parse = bool(
+            settings("extraction.use_dependency_parse", True)
+        )
+
+    def _load_model(self) -> None:
+        if self._nlp is not None:
+            return
+        if not self._use_dependency_parse:
+            self._nlp = False
+            return
+        try:
+            import spacy
+
+            self._nlp = spacy.load(self._model)
+            if not self._nlp.has_pipe("parser"):
+                self._nlp = False
+        except Exception as exc:
+            log.info(
+                "Dependency parser unavailable (%s); skipping syntactic-relation extraction",
+                exc,
+            )
+            self._nlp = False
 
     def extract_article(
         self,
@@ -196,6 +226,13 @@ class RelationExtractor:
                     )
                 )
 
+        self._load_model()
+        if self._nlp:
+            text = article.get("content_clean") or ""
+            relations.extend(
+                self._extract_syntactic_relations(text, article_id, mentions_by_sentence)
+            )
+
         relations.extend(self._deepke_relations(article_id))
 
         return {
@@ -204,6 +241,69 @@ class RelationExtractor:
             "relations": relations,
             "entity_index": entities,
         }
+
+    def _extract_syntactic_relations(
+        self,
+        text: str,
+        article_id: str,
+        mentions_by_sentence: dict[int, list[dict[str, Any]]],
+    ) -> list[dict[str, Any]]:
+        """Open (subject, predicate, object) triples read off the dependency parse.
+
+        Complements the event-type-keyed templated relations above (which
+        only fire for a handful of hand-picked event types) with a general
+        mechanism: any verb whose subject and object both resolve to a known
+        entity mention produces a relation, typed by the verb's lemma rather
+        than a fixed vocabulary.
+        """
+        if not text or not text.strip():
+            return []
+        relations: list[dict[str, Any]] = []
+        doc = self._nlp(text)
+        for sentence_index, sent in enumerate(doc.sents):
+            sentence_mentions = mentions_by_sentence.get(sentence_index, [])
+            if len(sentence_mentions) < 2:
+                continue
+            sentence_text = sent.text.strip()
+            if not sentence_text:
+                continue
+            for token in sent:
+                if token.pos_ not in ("VERB", "AUX"):
+                    continue
+                grouped = dependency_argument_mentions(token, sentence_mentions)
+                subjects = [
+                    mention
+                    for dep, mentions in grouped.items()
+                    if dep in _SUBJECT_DEPS
+                    for mention in mentions
+                ]
+                objects = [
+                    mention
+                    for dep, mentions in grouped.items()
+                    if dep in _OBJECT_DEPS
+                    for mention in mentions
+                ]
+                if not subjects or not objects:
+                    continue
+                predicate = token.lemma_.lower()
+                for subject in subjects:
+                    for obj in objects:
+                        if subject["entity_id"] == obj["entity_id"]:
+                            continue
+                        relations.append(
+                            self._build_relation(
+                                article_id,
+                                f"syntactic:{predicate}",
+                                subject["entity_id"],
+                                "entity",
+                                obj["entity_id"],
+                                "entity",
+                                sentence_text,
+                                sentence_index,
+                                confidence=0.72,
+                            )
+                        )
+        return relations
 
     def _deepke_relations(self, article_id: str) -> list[dict[str, Any]]:
         if not (self._use_deepke and self._deepke_client.enabled()):

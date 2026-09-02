@@ -4,26 +4,70 @@ title Sequence - Credibility and Fake-News Module
 actor "CLI user" as U
 collections "entities/temporals/events" as EXPORTED
 participant "run_corroboration_analysis.py" as CORCLI
-participant "corroboration.py" as COR
+participant "corroboration.py\n(CorroborationAnalyzer)" as COR
+participant "semantic_similarity.py\n(SemanticSimilarityScorer)" as SEM
+participant "contradiction_nli.py\n(ContradictionDetector)" as NLI
+participant "reasoner.py\n(Allen relation gate)" as RSN
+participant "lifecycle.py\n(LifecycleStateClassifier)" as LFC
 participant "scorer.py" as SCR
 participant "run_fake_news_analysis.py" as FAKCLI
-participant "fake_news.py" as FAK
-participant "reasoner.py" as RSN
+participant "fake_news.py\n(ClaimVerifier)" as FAK
+participant "veracity_score.py\n(VeracityScorer)" as VER
 participant "export_contradictions_fake_news.py" as EXPCLI
 collections "data/exports/credibility" as CRDX
 
 U -> CORCLI : run corroboration analysis
 CORCLI -> COR : analyze_directories(...)
 COR -> EXPORTED : read entities/temporals/events
-COR -> SCR : compute credibility signals
-COR --> CORCLI : corroboration result set
+COR -> COR : group evidence by exact\n(event/claim) signature
+
+group Semantic corroboration merge (per event_type bucket)
+  COR -> SEM : embed_many(representative sentences)
+  SEM --> COR : embeddings
+  COR -> SEM : is_match(a, b) >= 0.75 ?
+  COR -> COR : union-find merge of matching groups
+end
+
+group NLI contradiction detection + temporal gate (per merged group)
+  COR -> SEM : cosine_similarity(sentence_i, sentence_j)
+  note right: relevance pre-filter, skip if\nsimilarity < 0.15 (off-topic pair)
+  COR -> NLI : is_contradiction(sentence_i, sentence_j)
+  note right: checked in both premise/hypothesis\ndirections, max contradiction prob taken
+  NLI --> COR : contradiction? (bool)
+  COR -> RSN : compare_ranges(dates_i, dates_j)
+  note right: exact Allen relation, not a\ncoarse before/after bucket
+  alt relation in {before, after, meets, met_by}
+    COR -> COR : mark candidate claim_evolution
+  else relation coincident (equals/overlaps/during/...)
+    COR -> COR : mark semantic_contradiction
+  end
+end
+
+group Claim-lifecycle state verification (candidate evolution groups only)
+  COR -> LFC : classify(sentence, event_type) per claim
+  LFC -> NLI : entailment_score(sentence, state_template)
+  NLI --> LFC : P(entailment) per candidate state
+  LFC --> COR : best-matching lifecycle state (or None)
+  COR -> COR : verify_sequence(event_type, dated_states)
+  alt illegal transition found
+    COR -> COR : lifecycle_violation = True\n(overrides evolution -> contradiction)
+  end
+end
+
+COR -> SCR : score_url(article) per evidence item
+SCR --> COR : per-item credibility score
+COR -> COR : aggregate support_count,\npublisher-network source_diversity,\ncredibility_score, verification_status
+COR --> CORCLI : corroboration result set (events, claims)
 CORCLI -> CRDX : write corroboration outputs
 
 U -> FAKCLI : run claim verification
 FAKCLI -> FAK : assess(...)
-FAK -> EXPORTED : read entities/temporals/events
-FAK -> SCR : source credibility score
-FAK -> RSN : temporal consistency checks
+FAK -> COR : analyze_directories(...)
+note right: reuses the full pipeline above --\nsemantic merge, NLI, temporal gate,\nlifecycle verification all run again
+COR --> FAK : claims + events (with verification_status)
+FAK -> RSN : detect_temporal_inconsistencies(events)
+FAK -> VER : score(VeracityFeatures) per claim
+VER --> FAK : veracity_score
 FAK --> FAKCLI : claim assessments
 FAKCLI -> CRDX : write claim_assessments.json
 

@@ -14,6 +14,52 @@ from typing import Any, Iterable
 
 from src.utils.config import settings
 
+# Dependency labels that mark a token as a core syntactic argument of a verb
+# (subject, direct/indirect object, or the object of an attached
+# preposition). Shared by the dependency-parse layers of both the event and
+# relation extractors so participant/argument selection stays consistent.
+CORE_ARG_DEPS = {"nsubj", "nsubjpass", "dobj", "pobj", "attr", "agent", "dative", "oprd"}
+
+
+def dependency_argument_mentions(
+    token: Any, sentence_mentions: list[dict[str, Any]]
+) -> dict[str, list[dict[str, Any]]]:
+    """Group *sentence_mentions* overlapping a core syntactic argument of *token*.
+
+    Returns a mapping from dependency label ("nsubj", "dobj", "pobj", ...) to
+    the mentions whose character span overlaps that argument's subtree. Using
+    the syntactic role (rather than "any entity anywhere in the sentence")
+    is what distinguishes this from plain keyword co-occurrence.
+    """
+    grouped: dict[str, list[dict[str, Any]]] = {}
+
+    def _overlapping(span_start: int, span_end: int) -> list[dict[str, Any]]:
+        return [
+            mention
+            for mention in sentence_mentions
+            if mention["start_char"] < span_end and mention["end_char"] > span_start
+        ]
+
+    for child in token.children:
+        dep = child.dep_
+        if dep in CORE_ARG_DEPS:
+            subtree = list(child.subtree)
+            start_char = min(t.idx for t in subtree)
+            end_char = max(t.idx + len(t.text) for t in subtree)
+            hits = _overlapping(start_char, end_char)
+            if hits:
+                grouped.setdefault(dep, []).extend(hits)
+        elif dep == "prep":
+            for grandchild in child.children:
+                if grandchild.dep_ == "pobj":
+                    subtree = list(grandchild.subtree)
+                    start_char = min(t.idx for t in subtree)
+                    end_char = max(t.idx + len(t.text) for t in subtree)
+                    hits = _overlapping(start_char, end_char)
+                    if hits:
+                        grouped.setdefault("pobj", []).extend(hits)
+    return grouped
+
 
 def stable_id(*parts: Any) -> str:
     """Return a deterministic identifier for the provided values."""
@@ -90,13 +136,34 @@ def parse_article_datetime(article: dict[str, Any]) -> datetime | None:
 
 def iter_cleaned_articles(
     input_dir: Path | None = None,
+    *,
+    only_relevant: bool = True,
 ) -> Iterable[dict[str, Any]]:
-    """Yield cleaned article JSON records from the processed directory."""
+    """Yield cleaned article JSON records from the processed directory.
+
+    Every extraction script (entity/temporal/event/relation) uses this as
+    its sole source of input articles, so this is the one place that needs
+    to respect RelevanceFilter's is_relevant flag -- and until now it
+    didn't. RelevanceFilter correctly marks a China-only or Romania-only
+    article as is_relevant=False at ingestion time (see relevance_reason,
+    e.g. "china_only"), but this function ignored that and yielded every
+    stored article regardless, so irrelevant articles flowed into
+    extraction, corroboration, and veracity scoring exactly like relevant
+    ones. Confirmed as real contamination (2026-08-20): after a historical
+    GDELT backfill, several "contested" corroboration groups turned out to
+    be genuinely unrelated China-only stories (a Shanghai auto show, a
+    tiger-park exhibit, a Singapore Exchange CEO interview) that correctly
+    failed relevance filtering at ingestion and should never have reached
+    this stage. Default is the fix (only_relevant=True); pass False only
+    for debugging/auditing what got filtered out.
+    """
     base_dir = input_dir or settings.abs_path("paths.data_processed")
     if not base_dir.exists():
         return
     for path in sorted(base_dir.rglob("*.json")):
         article = json.loads(path.read_text(encoding="utf-8"))
+        if only_relevant and not article.get("is_relevant"):
+            continue
         article.setdefault("article_id", get_article_id(article))
         article.setdefault("json_source_path", str(path))
         yield article

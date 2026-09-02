@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "description": "Hand-labeled gold evaluation set for entity/event/relation extraction, built from real sentences already ingested by the pipeline (results/competency_report.json, China-Romania/China-bilateral news, scraped 2026-06). Labels reflect genuine human judgment of what a competent annotator would say the sentence expresses, restricted to this project's own entity taxonomy (PERSON/ORGANIZATION/COUNTRY/LOCATION) and event taxonomy (src/ontology/taxonomy.py) -- NOT a simulation of the extractor's internal regex/lemma tables. That keeps the gold labels a fair, independent yardstick instead of a self-fulfilling check.",
+    "entity_types": ["PERSON", "ORGANIZATION", "COUNTRY", "LOCATION"],
+    "notes_on_hard_cases": "A few items are deliberately included as hard negatives / recall-limitation probes, flagged in their own 'notes' field: e.g. item gold_008 ('building a solid economic relationship') is a metaphorical use of 'build' that a keyword-trigger system can false-positive on as InfrastructureProject/InvestmentProject even though gold says no such event occurs. Item gold_023 tests whether plural surface forms ('companies', 'technologies') are still recognized despite regex triggers written for the singular. These are intentional -- they are what a precision/recall table should actually report, not just the easy wins.",
+    "source": "results/competency_report.json",
+    "created": "2026-08-18"
+  },
+  "items": [
+    {
+      "id": "gold_001",
+      "text": "According to reports, a Russian drone struck an apartment building in Romania, injuring civilians.",
+      "entities": [{"text": "Romania", "type": "COUNTRY"}],
+      "event_types": [],
+      "relations": [],
+      "notes": "No China-Romania bilateral event type applies; hard negative for event-type precision."
+    },
+    {
+      "id": "gold_002",
+      "text": "China's Permanent Representative to the United Nations Fu Cong spoke at the Security Council's emergency public meeting on the Romanian drone incident on June 1st, calling on all parties involved to remain calm and restrained.",
+      "entities": [
+        {"text": "Fu Cong", "type": "PERSON"},
+        {"text": "United Nations", "type": "ORGANIZATION"},
+        {"text": "Security Council", "type": "ORGANIZATION"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Fu Cong", "predicate": "represents", "object": "China"}]
+    },
+    {
+      "id": "gold_003",
+      "text": "He said that China has taken note of reports of drones entering Romanian airspace and causing injuries, as well as the statements and reactions of Romania, Russia and other relevant parties.",
+      "entities": [
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_004",
+      "text": "Alexandru Muraru reacted to the Chinese official's statement and emphasized that Romanian parliamentarians should not be accountable to an embassy of \"authoritarian states.",
+      "entities": [
+        {"text": "Alexandru Muraru", "type": "PERSON"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Alexandru Muraru", "predicate": "reacted_to", "object": "China"}],
+      "notes": "Trigger is the noun 'statement', not a verb -- only reachable via the regex layer, not the dependency-parse verb-lemma layer. Useful for showing the two layers are complementary, not redundant."
+    },
+    {
+      "id": "gold_005",
+      "text": "In addition, high energy prices in Europe create real opportunities for new technologies, including energy storage, an area in which Romania is actively interested in collaborating with Chinese partners.",
+      "entities": [
+        {"text": "Europe", "type": "LOCATION"},
+        {"text": "Romania", "type": "COUNTRY"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["TechnologyCooperation"],
+      "relations": [{"subject": "Romania", "predicate": "collaborating_with", "object": "China"}]
+    },
+    {
+      "id": "gold_006",
+      "text": "Also, the Romanian official explained to the Chinese partners that the national legislation offers a major benefit, because any company established in Romania automatically acquires the status of a legal entity in the European Union.",
+      "entities": [
+        {"text": "Romania", "type": "COUNTRY"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "European Union", "type": "ORGANIZATION"}
+      ],
+      "event_types": ["CompanyActivity"],
+      "relations": []
+    },
+    {
+      "id": "gold_007",
+      "text": "Among the key economic sectors mentioned by the Chinese side for joint investment are robotics, electric vehicle production and the development of green energy projects.",
+      "entities": [{"text": "China", "type": "COUNTRY"}],
+      "event_types": ["InvestmentProject"],
+      "relations": []
+    },
+    {
+      "id": "gold_008",
+      "text": "Romania and China are building a solid economic relationship together, and CCIR assumes an active role in this direction.",
+      "entities": [
+        {"text": "Romania", "type": "COUNTRY"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "CCIR", "type": "ORGANIZATION"}
+      ],
+      "event_types": [],
+      "relations": [{"subject": "Romania", "predicate": "partners_with", "object": "China"}],
+      "notes": "Deliberate hard negative: 'building a relationship' is metaphorical, not InfrastructureProject/InvestmentProject. A keyword-only trigger on 'build' will false-positive here; this item exists to measure that."
+    },
+    {
+      "id": "gold_009",
+      "text": "Rene Bracio, a professor and economist at the University of Panama, said that over the past nine years, Brazil-China economic and trade cooperation has brought significant benefits to both parties.",
+      "entities": [
+        {"text": "Rene Bracio", "type": "PERSON"},
+        {"text": "University of Panama", "type": "ORGANIZATION"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Brazil", "type": "LOCATION"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Rene Bracio", "predicate": "affiliated_with", "object": "University of Panama"}],
+      "notes": "Brazil is out-of-domain for this project's China-Romania COUNTRY gazetteer, so gold labels it LOCATION (the system's own designed fallback for unrecognized GPEs), not COUNTRY -- this reflects the system's ontology, not omniscient ground truth."
+    },
+    {
+      "id": "gold_010",
+      "text": "Patsy Lee, chairman of the Panama-China Friendship Group of the National Assembly of Panama, said that the ninth anniversary of the establishment of diplomatic relations between the two countries is a matter of pride.",
+      "entities": [
+        {"text": "Patsy Lee", "type": "PERSON"},
+        {"text": "Panama-China Friendship Group", "type": "ORGANIZATION"},
+        {"text": "National Assembly of Panama", "type": "ORGANIZATION"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Patsy Lee", "predicate": "chairs", "object": "Panama-China Friendship Group"}]
+    },
+    {
+      "id": "gold_011",
+      "text": "During a conference held on the occasion of the anniversary of his cosmic flight, Prunariu emphasized that Romania cannot compete alone with the great space powers, but can build its relevance by specializing in niche fields.",
+      "entities": [
+        {"text": "Prunariu", "type": "PERSON"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [],
+      "notes": "Trigger verb is 'emphasized', a near-synonym of the system's PolicyStatement lemma set ({announce, say, declare, state, urge}) but not a member of it -- recall-limitation probe."
+    },
+    {
+      "id": "gold_012",
+      "text": "General Secretary Xi Jinping said that China has conquered the \"three pearls\" in the crown of the shipbuilding industry and built the \"Jiaolong\", \"Dream\", \"Deep Sea No. 1\" and other important national weapons.",
+      "entities": [
+        {"text": "Xi Jinping", "type": "PERSON"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Xi Jinping", "predicate": "leads", "object": "China"}]
+    },
+    {
+      "id": "gold_013",
+      "text": "He assured that the Ministries of Defense and Interior will intensify, during the summer, research and reconnaissance missions of possible threats, so that the Romanian coastline is safe.",
+      "entities": [
+        {"text": "Ministries of Defense and Interior", "type": "ORGANIZATION"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["SecurityStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_014",
+      "text": "China continues increasing military pressure around Taiwan.",
+      "entities": [
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Taiwan", "type": "LOCATION"}
+      ],
+      "event_types": ["SecurityStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_015",
+      "text": "China said it opposed any form of unilateral tariff, and denied allegations of forced labour.",
+      "entities": [{"text": "China", "type": "COUNTRY"}],
+      "event_types": ["PolicyStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_016",
+      "text": "But several international human rights have said forced labour does exist in China, particularly among Muslim ethnic minorities in Xinjiang.",
+      "entities": [
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Xinjiang", "type": "LOCATION"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_017",
+      "text": "In an interview with a reporter from Xinhua News Agency, he said: Panama and China had not yet established diplomatic relations at that time, but China provided extremely valuable support to Panama in its struggle to sign the treaty.",
+      "entities": [
+        {"text": "Xinhua News Agency", "type": "ORGANIZATION"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement", "TradeAgreement"],
+      "relations": [{"subject": "China", "predicate": "supported", "object": "Panama"}]
+    },
+    {
+      "id": "gold_018",
+      "text": "In his speech, Mann said that China has long provided important support for Panamanian talent training.",
+      "entities": [
+        {"text": "Mann", "type": "PERSON"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement", "EducationCooperation"],
+      "relations": []
+    },
+    {
+      "id": "gold_019",
+      "text": "Referring to the ways in which Romania and China can strengthen their relations, she highlighted the role of education, culture and people-to-people exchanges.",
+      "entities": [
+        {"text": "Romania", "type": "COUNTRY"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["EducationCooperation", "CulturalExchange"],
+      "relations": [{"subject": "Romania", "predicate": "strengthens_relations_with", "object": "China"}]
+    },
+    {
+      "id": "gold_020",
+      "text": "During the debates, the President of Romania will reiterate the fact that the expansion of the Union is a strategic investment in the security and prosperity of the entire European continent.",
+      "entities": [{"text": "Romania", "type": "COUNTRY"}],
+      "event_types": ["InvestmentProject", "SecurityStatement"],
+      "relations": []
+    },
+    {
+      "id": "gold_021",
+      "text": "China is proving that you can shift geopolitical balances without firing a single shot, using economic dependencies, strategic infrastructure, technology, supply chains and political influence.",
+      "entities": [{"text": "China", "type": "COUNTRY"}],
+      "event_types": ["InfrastructureProject", "TechnologyCooperation"],
+      "relations": []
+    },
+    {
+      "id": "gold_022",
+      "text": "In addition, European companies are struggling to compete with American and Chinese rivals in digital and green technologies such as artificial intelligence, electric vehicles and solar panels.",
+      "entities": [
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Europe", "type": "LOCATION"}
+      ],
+      "event_types": ["TechnologyCooperation", "CompanyActivity"],
+      "relations": [],
+      "notes": "Recall-limitation probe: 'companies'/'technologies' are plural surface forms; the legacy regex triggers are word-bounded to the singular ('company', 'technology') and will miss CompanyActivity here (TechnologyCooperation still fires via 'digital'/'artificial intelligence')."
+    },
+    {
+      "id": "gold_023",
+      "text": "Fu Cong said in his speech that China has taken note of the relevant reports, as well as the statements and reactions made by Romania, Russia and other relevant parties.",
+      "entities": [
+        {"text": "Fu Cong", "type": "PERSON"},
+        {"text": "China", "type": "COUNTRY"},
+        {"text": "Romania", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": [{"subject": "Fu Cong", "predicate": "represents", "object": "China"}]
+    },
+    {
+      "id": "gold_024",
+      "text": "China's dream of becoming a maritime power has always demonstrated the cultural background of peace and win-win.",
+      "entities": [{"text": "China", "type": "COUNTRY"}],
+      "event_types": ["CulturalExchange"],
+      "relations": []
+    },
+    {
+      "id": "gold_025",
+      "text": "Peng said two key themes have defined Chinese archaeology over the past decade: the origins of Chinese civilization and the question of what makes China.",
+      "entities": [
+        {"text": "Peng", "type": "PERSON"},
+        {"text": "China", "type": "COUNTRY"}
+      ],
+      "event_types": ["PolicyStatement"],
+      "relations": []
+    }
+  ]
+}

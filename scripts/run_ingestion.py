@@ -176,6 +176,14 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Query GDELT only; no downloads or DB writes.")
     parser.add_argument("--no-progress", action="store_true", help="Suppress progress bars.")
     parser.add_argument("--relevant-only", action="store_true", help="Show only relevant-articles summary.")
+    parser.add_argument(
+        "--sources",
+        choices=["gdelt", "rss", "all"],
+        default="all",
+        help="Which ingestion source(s) to run. RSS feeds are configured in "
+        "settings.yaml -> ingestion.rss_feeds and are not affected by "
+        "--start/--end/--timespan (feeds return whatever they currently publish).",
+    )
     args = parser.parse_args()
 
     log.info("=" * 60)
@@ -217,16 +225,26 @@ def main() -> None:
     if not args.dry_run:
         ensure_db_ready()
 
-    from src.ingestion.gdelt_pipeline import GdeltIngestionPipeline
+    all_stats: list[IngestionRunStats] = []
 
-    pipeline = GdeltIngestionPipeline(show_progress=not args.no_progress)
-    stats = pipeline.run(
-        start_date=start_date,
-        end_date=end_date,
-        timespan=args.timespan or None,
-        max_records=args.max,
-    )
-    all_stats = [stats]
+    if args.sources in ("gdelt", "all"):
+        from src.ingestion.gdelt_pipeline import GdeltIngestionPipeline
+
+        pipeline = GdeltIngestionPipeline(show_progress=not args.no_progress)
+        all_stats.append(
+            pipeline.run(
+                start_date=start_date,
+                end_date=end_date,
+                timespan=args.timespan or None,
+                max_records=args.max,
+            )
+        )
+
+    if args.sources in ("rss", "all"):
+        from src.ingestion.rss_pipeline import RssIngestionPipeline
+
+        rss_pipeline = RssIngestionPipeline(show_progress=not args.no_progress)
+        all_stats.extend(rss_pipeline.run())
 
     print_run_summary(all_stats, relevant_only=args.relevant_only)
     show_relevant_sample()

@@ -39,6 +39,23 @@ _DEFAULT_ROMANIA_TERMS = [
 ]
 _DEFAULT_MODE = "strict"
 
+# Confirmed as a real false-positive source (2026-08-26): a genuine China vs.
+# Romania table-tennis match (both national teams literally competing)
+# satisfies plain china+romania_co-occurrence, but sports results are out of
+# scope for this project's bilateral-*relations* ontology (none of the 11
+# event types -- DiplomaticMeeting, TradeAgreement, etc. -- fit "sports
+# competition"), and full-text scraping means the whole match report (not
+# just a headline) now flows into event extraction, where a sentence from an
+# unrelated match on the same multi-game roundup page can get picked up.
+# These markers are deliberately narrow -- competition-governing-body
+# acronyms and explicit sports-section tags -- rather than generic sports
+# vocabulary, so a genuine diplomatic/economic story is extremely unlikely to
+# trip this exclusion by coincidence.
+_DEFAULT_SPORTS_EXCLUSION_MARKERS = [
+    "ITTF", "FIFA", "UEFA", "FIBA", "IOC ", "NBA", "ATP", "WTA",
+    "SPORT/", "SPORT /", "SPORTS NEWS",
+]
+
 
 def _build_pattern(terms: list[str]) -> re.Pattern:
     """
@@ -77,6 +94,18 @@ class RelevanceFilter:
         self._romania_pattern = _build_pattern(romania_terms)
         self._mode = mode
 
+        self._exclude_sports = bool(settings("relevance.exclude_sports_content", True))
+        sports_markers: list[str] = settings(
+            "relevance.sports_exclusion_markers", _DEFAULT_SPORTS_EXCLUSION_MARKERS
+        )
+        self._sports_pattern = (
+            re.compile(
+                "|".join(re.escape(m) for m in sports_markers), re.IGNORECASE
+            )
+            if sports_markers
+            else None
+        )
+
         log.debug(
             "RelevanceFilter: mode=%s, %d China terms, %d Romania terms",
             self._mode,
@@ -105,6 +134,16 @@ class RelevanceFilter:
             )
         else:  # either
             article.is_relevant = has_china or has_romania
+
+        if (
+            article.is_relevant
+            and self._exclude_sports
+            and self._sports_pattern is not None
+            and self._sports_pattern.search(corpus)
+        ):
+            article.is_relevant = False
+            article.relevance_reason = "excluded_sports_content"
+            return article
 
         if article.is_relevant:
             if has_china and has_romania:

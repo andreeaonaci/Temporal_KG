@@ -1,0 +1,75 @@
+{
+  "_note": "Sentence pairs for validating the NLI contradiction detector. Positive (contradiction=true) pairs are hand-written to conflict on a concrete fact (casualty count, whether an agreement was signed or rejected) about the same underlying event -- the case the structural contradiction_flag in corroboration.py cannot see, since same-group items share event_type/date by construction. Negative pairs cover paraphrase (same claim, no contradiction) and unrelated (neutral, no contradiction) cases, so the detector is checked against both failure modes, not just the easy case. Small (n=10): a threshold-calibration set, not a validated benchmark -- see evaluate_contradiction.py docstring for how to grow this once real ingested data exists.",
+  "items": [
+    {
+      "id": "contra_001",
+      "sentence_a": "Twelve people were injured when the drone struck the apartment building in Romania.",
+      "sentence_b": "Only two people sustained minor injuries after the drone hit the building in Romania.",
+      "contradiction": true,
+      "reason": "conflicting casualty counts for the same incident"
+    },
+    {
+      "id": "contra_002",
+      "sentence_a": "Romania and China signed the energy investment agreement on Friday.",
+      "sentence_b": "Talks between Romania and China on the energy investment deal collapsed without an agreement.",
+      "contradiction": true,
+      "reason": "signed vs. collapsed for the same negotiation"
+    },
+    {
+      "id": "contra_003",
+      "sentence_a": "The Romanian government confirmed the drone entered national airspace.",
+      "sentence_b": "Romanian officials denied that any drone entered the country's airspace.",
+      "contradiction": true,
+      "reason": "confirmed vs. denied the same factual claim"
+    },
+    {
+      "id": "contra_004",
+      "sentence_a": "China's ambassador said the meeting took place in Bucharest on June 1.",
+      "sentence_b": "The meeting between the two delegations was cancelled and never took place.",
+      "contradiction": true,
+      "reason": "meeting happened vs. was cancelled"
+    },
+    {
+      "id": "contra_005",
+      "sentence_a": "The joint venture will build a battery plant with a capacity of 500 megawatts.",
+      "sentence_b": "The planned battery plant's capacity was set at just 50 megawatts, not 500.",
+      "contradiction": true,
+      "reason": "conflicting capacity figures for the same project"
+    },
+    {
+      "id": "contra_006",
+      "sentence_a": "According to reports, a Russian drone struck an apartment building in Romania, injuring civilians.",
+      "sentence_b": "Civilians were injured after a drone of Russian origin hit a residential building in Romania.",
+      "contradiction": false,
+      "reason": "paraphrase of the same report, not a contradiction"
+    },
+    {
+      "id": "contra_007",
+      "sentence_a": "Among the key economic sectors mentioned by the Chinese side for joint investment are robotics, electric vehicle production and green energy.",
+      "sentence_b": "Chinese representatives proposed joint investment in robotics, EV manufacturing, and green-energy development.",
+      "contradiction": false,
+      "reason": "paraphrase, not a contradiction"
+    },
+    {
+      "id": "contra_008",
+      "sentence_a": "Romania and China are building a solid economic relationship together, and CCIR assumes an active role in this direction.",
+      "sentence_b": "A cultural festival celebrating Chinese New Year was held in Cluj-Napoca last weekend.",
+      "contradiction": false,
+      "reason": "unrelated claims, neutral not contradictory"
+    },
+    {
+      "id": "contra_009",
+      "sentence_a": "In addition, high energy prices in Europe create real opportunities for new technologies, including energy storage.",
+      "sentence_b": "Romania's parliament debated an unrelated agricultural subsidy bill on Tuesday.",
+      "contradiction": false,
+      "reason": "unrelated claims, neutral not contradictory"
+    },
+    {
+      "id": "contra_010",
+      "sentence_a": "China's Permanent Representative to the United Nations Fu Cong spoke at the Security Council's emergency meeting on June 1.",
+      "sentence_b": "Fu Cong, China's UN envoy, addressed the Security Council during an emergency session held on June 1.",
+      "contradiction": false,
+      "reason": "paraphrase of the same statement, not a contradiction"
+    }
+  ]
+}

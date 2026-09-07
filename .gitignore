@@ -2,6 +2,11 @@
 # Provided as-is, without warranty.
 # If this code contributes to a paper or publication, please credit the authors above.
 
+# Debug/run logs (large, session-specific -- not meant to be tracked history)
+backfill_run.log
+gdelt_backfill_retry.log
+*.log
+
 # Python
 __pycache__/
 *.py[cod]

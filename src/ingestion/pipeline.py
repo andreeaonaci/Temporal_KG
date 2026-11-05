@@ -28,6 +28,8 @@ Usage
 from __future__ import annotations
 
 import time
+from collections import deque
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -139,8 +141,27 @@ class IngestionPipeline:
                 unit="art",
                 disable=not self._show_progress,
             )
-            for stub in iterator:
-                result = self._process_article(stub, dedup, store)
+            # Scraping is network-bound and the GPU translator idles while it waits:
+            # fetch the next few pages concurrently, process in order.
+            workers = int(settings("ingestion.scrape_workers", 8))
+            pool = ThreadPoolExecutor(max_workers=workers)
+            pending: deque = deque()
+            stub_iter = iter(stubs)
+
+            def _prefetch(url: str):
+                scraped = self._scraper.fetch(url)
+                time.sleep(self._scrape_delay)  # per-worker politeness delay
+                return scraped
+
+            for _ in iterator:
+                while len(pending) < workers * 2:
+                    nxt = next(stub_iter, None)
+                    if nxt is None:
+                        break
+                    use = self._scrape_enabled and nxt.url
+                    pending.append((nxt, pool.submit(_prefetch, nxt.url) if use else None))
+                stub, fut = pending.popleft()
+                result = self._process_article(stub, dedup, store, fut.result() if fut else None)
                 if result == "new":
                     stats.articles_new += 1
                     if stub.is_relevant:
@@ -152,6 +173,7 @@ class IngestionPipeline:
 
             store.increment_feed_article_count(feed_id, stats.articles_new)
             stats.status = "success"
+            pool.shutdown(wait=False)
 
         except Exception as exc:
             log.error("Pipeline error for feed '%s': %s", feed_cfg.name, exc, exc_info=True)
@@ -182,6 +204,7 @@ class IngestionPipeline:
         article: ArticleRecord,
         dedup: Deduplicator,
         store: ArticleStore,
+        scraped=None,
     ) -> str:
         """
         Process a single article stub through the full pipeline.
@@ -202,12 +225,13 @@ class IngestionPipeline:
 
         body_text = ""
         if self._scrape_enabled and article.url:
-            scraped = self._scraper.fetch(article.url)
+            if scraped is None:  # not prefetched (single-article callers)
+                scraped = self._scraper.fetch(article.url)
+                time.sleep(self._scrape_delay)
             if scraped.ok:
                 body_text = scraped.text
             else:
                 article.fetch_error = scraped.error
-            time.sleep(self._scrape_delay)
 
         text_parts = [article.title.strip(), body_text or article.content_clean.strip()]
         article.content_clean = "\n".join(part for part in text_parts if part).strip()

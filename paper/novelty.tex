@@ -1,0 +1,217 @@
+% Standalone draft of the novelty section. Not yet \input into paper.tex.
+% Uses only labels/cite keys already defined in paper.tex. No results here:
+% every "how well" claim is deferred to Section~\ref{sec:evaluation}.
+%
+% To include: \input{novelty} after the Related Work section.
+
+\section{Novelty and Positioning}
+\label{sec:novelty}
+
+Each building block of our pipeline (sentence embeddings, an NLI
+cross-encoder, Allen's algebra, finite-state machines) is individually
+established. The contribution is \emph{what is decided with them, and in
+what order}: a news claim is not judged by one score, but passes through a
+sequence of gates in which every stage can only \emph{demote} the previous
+stage's verdict for a stated, inspectable reason. This section states what is
+new, how it works, and how it differs from the prior work of
+Section~\ref{sec:related}.
+
+\subsection{The Gap}
+
+A system that reports ``is this claim about China--Romania relations
+credible?'' over a live news stream faces three problems that existing
+resources address only separately:
+
+\begin{enumerate}
+  \item \textbf{Same event, different words.} Independent outlets describe
+        one event in different language, so exact-signature grouping
+        under-counts corroboration.
+  \item \textbf{Disagreement is not contradiction.} Two reports can
+        disagree because the story \emph{moved on}
+        (\emph{proposed} $\to$ \emph{signed}), not because one is wrong. A
+        stateless contradiction classifier cannot tell the two apart.
+  \item \textbf{Many domains are not many sources.} State media republish
+        one wire story across language editions; counting domains rewards
+        mirroring.
+\end{enumerate}
+
+\subsection{Differences from Prior Work}
+
+\begin{table*}[t]
+\caption{Positioning against the prior work discussed in
+Section~\ref{sec:related}. Entries describe what each line of work does as
+characterized there; ``---'' means the cited work does not address it.}
+\label{tab:positioning}
+\centering
+\small
+\begin{tabular}{p{2.6cm}p{3.2cm}p{3.4cm}p{3.4cm}p{3.4cm}}
+\toprule
+ & \textbf{GDELT / CAMEO}~\cite{leetaru2013gdelt,gerner2002cameo}
+ & \textbf{General TKGs}~\cite{gottschalk2019eventkg,jain2020timeplex}
+ & \textbf{Implicit temporal fact-checking}~\cite{allein2023implicit}
+ & \textbf{This work} \\
+\midrule
+Domain
+ & Global, all dyads
+ & General-purpose
+ & Claim vs.\ evidence pairs
+ & One dyad, multilingual, full article text \\
+Interval relation
+ & ---
+ & Validity interval per fact
+ & Learned bucketed distance in days
+ & Exact 13-relation Allen algebra between events \\
+Corroboration
+ & Mention counts
+ & ---
+ & ---
+ & Semantic merge; publisher-network-aware diversity \\
+Contradiction
+ & ---
+ & ---
+ & Neural verdict, time as a feature
+ & NLI score \emph{gated} by Allen relation and lifecycle \\
+Process knowledge
+ & ---
+ & ---
+ & ---
+ & Per-event-type lifecycle state machines \\
+Inference-time dependencies
+ & ---
+ & ---
+ & Trained verification model
+ & Pretrained models only; no training, no external fact-check API \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The sharpest contrast is with Allein \textit{et al.}~\cite{allein2023implicit}.
+They give a neural verifier a \emph{learned embedding of a time bucket} so it
+can use temporal distance implicitly. We instead compute the \emph{exact
+qualitative relation} between two intervals and use it as a hard, readable
+rule. The trade-off is deliberate: a learned feature can capture patterns we
+did not anticipate, but it cannot say \emph{why} a claim was or was not
+treated as contradictory, and it needs labeled training data we do not have
+for this dyad. Section~\ref{sec:evaluation} tests the two mechanisms against
+each other directly.
+
+\subsection{How the Gated Verdict Works}
+
+Let a corroboration group $G$ contain claims $c_1,\dots,c_n$, each with a
+sentence $s_i$, an event type $t_i$, and a date interval $I_i$ (possibly
+unresolved). Verification proceeds in four stages; each stage may only
+\emph{refine} the previous verdict.
+
+\paragraph{Stage 1: semantic merge.}
+Two exact-signature groups of the same event type are merged when
+$\cos(e(s_a), e(s_b)) \ge \tau_m$, where $e(\cdot)$ is the mean-pooled
+MiniLM embedding~\cite{wang2020minilm} and $\tau_m{=}0.75$. Merging is
+transitive (union-find), and is restricted to a single event type so that two
+different kinds of event are never fused merely for sounding alike.
+
+\paragraph{Stage 2: NLI disagreement.}
+For distinct sentences $s_a, s_b \in G$ with
+$\cos(e(s_a),e(s_b)) \ge \tau_r$ ($\tau_r{=}0.15$), the contradiction score is
+\begin{equation}
+  d(a,b) = \max\bigl(P_{\text{NLI}}(\text{contra}\mid s_a, s_b),\;
+                     P_{\text{NLI}}(\text{contra}\mid s_b, s_a)\bigr),
+\end{equation}
+and the pair is a \emph{candidate} disagreement if $d(a,b) \ge \tau_n$
+($\tau_n{=}0.5$). NLI is directional, and which of two independently
+published reports is the premise is arbitrary, so both orders are scored.
+The relevance floor $\tau_r$ exists because NLI models trained on MNLI-style
+data label many off-topic pairs \emph{contradiction} where a person would say
+\emph{neutral}.
+
+\paragraph{Stage 3: Allen gate.}
+Each candidate is classified by the Allen relation
+$R(I_a, I_b) \in \mathcal{A}$, $|\mathcal{A}|{=}13$:
+\begin{equation}
+  \text{verdict}(a,b) =
+  \begin{cases}
+    \textsc{evolution}      & R \in \{\,<,\ >,\ m,\ mi\,\},\\
+    \textsc{contradiction}  & R \in \mathcal{A}\setminus\{<,>,m,mi\},\\
+    \textsc{contradiction}  & I_a \text{ or } I_b \text{ unresolved.}
+  \end{cases}
+\end{equation}
+The intuition is that two disagreeing claims about \emph{non-coincident}
+moments describe a changing world, whereas disagreement about an
+\emph{overlapping} moment describes a conflict. The last case is conservative
+by design: absent temporal evidence we never reclassify.
+
+\paragraph{Stage 4: lifecycle verification.}
+The pairwise gate accepts \emph{any} sequential disagreement as evolution, so
+it cannot see that ``ratified'' reported \emph{before} ``signed'' is not a
+plausible story. For each event type $t$ we define a directed graph
+$L_t=(S_t, E_t)$ of states and legal transitions
+(Table~\ref{tab:lifecycles}). A sentence is assigned the state
+\begin{equation}
+  \hat{q}(s) = \arg\max_{q\in S_t}\; P_{\text{NLI}}(\text{entail}\mid s,\ h_q)
+  \quad\text{if}\ \max \ge 0.5,
+\end{equation}
+where $h_q$ is a fixed natural-language template for state $q$ (zero-shot; no
+training). Classified claims in a group flagged \textsc{evolution} are sorted
+by date, and the sequence is checked against $E_t$. A consecutive pair
+$(q_i,q_{i+1})\notin E_t$ with $q_i\ne q_{i+1}$ overrides the verdict to
+\textsc{lifecycle\_violation}; repeats ($q_i=q_{i+1}$, e.g.\ two sources both
+reporting \emph{signed}) are never violations.
+
+\begin{algorithm}[t]
+\caption{Gated claim verdict for one group (sketch)}
+\abel{fig:gate-alg}
+\begin{algorithmic}[1]
+\STATE $G \leftarrow$ \textsc{SemanticMerge}$(G)$
+\FORALL{pairs $(a,b)$ in $G$ with $\cos \ge \tau_r$}
+  \IF{$d(a,b) \ge \tau_n$}
+    \STATE $v \leftarrow$ \textsc{AllenGate}$(I_a, I_b)$
+    \STATE record $(a,b,v)$
+  \ENDIF
+\ENDFOR
+\IF{any recorded $v=\textsc{evolution}$}
+  \STATE $\sigma \leftarrow$ date-sorted states $\hat q(s_i)$, dropping unclassified
+  \IF{$\exists i:\ (\sigma_i,\sigma_{i+1})\notin E_t \wedge \sigma_i\ne\sigma_{i+1}$}
+    \STATE override those $v$ to \textsc{lifecycle\_violation}
+  \ENDIF
+\ENDIF
+\RETURN verdicts, with \texttt{source\_diversity} counted over publisher networks
+\end{algorithmic}
+\end{figure}
+
+\subsection{Publisher-Network-Aware Diversity}
+
+Independence is measured over \emph{publisher networks}, not domains:
+$\text{div}(G)=\bigl|\{\nu(\text{dom}(c)) : c\in G\}\bigr|$, where $\nu$ maps
+a domain to a configured network identifier and is the identity on unmapped
+domains. Because $\nu$ is a function, $\text{div}$ can only \emph{decrease}
+relative to raw domain counting, and only for known multi-domain operations;
+it cannot manufacture diversity.
+
+\subsection{Why This Is Different, Not Merely Larger}
+
+\begin{itemize}
+  \item \textbf{Auditable by construction.} Every demotion has a named cause
+        (below relevance floor, non-coincident interval, illegal
+        transition), so a flagged claim carries a reason, not only a score.
+  \item \textbf{No training at inference.} All models are pretrained and used
+        zero-shot; the system needs no labeled data for the dyad to run.
+  \item \textbf{Failure modes are measured, not assumed.} We evaluate each
+        stage in isolation on real mined pairs and report where a stage
+        \emph{fails} (Section~\ref{sec:evaluation}), including a stage-level
+        precision collapse of raw NLI on formulaic press-release text that a
+        hand-authored test set did not reveal.
+  \item \textbf{Fidelity to the domain.} Full article text (not headlines) is
+        ingested; machine-translation failures are detected rather than
+        silently propagated; and out-of-scope matches such as sports fixtures
+        are excluded before extraction.
+\end{itemize}
+
+\subsection{Scope of the Claim}
+
+We do \emph{not} claim a new NLI model, a new embedding model, or a new
+temporal algebra. We claim (i) the composition above and its ordering,
+(ii) a measured comparison of exact interval reasoning against a bucketed
+heuristic in the same pipeline, and (iii) a documented set of failure modes of
+off-the-shelf NLI on real bilateral news. The lifecycle models are
+hand-authored and not yet validated against the diplomatic or economic
+literature; we treat them as a first-pass domain ontology and say so
+(Section~\ref{sec:discussion}).

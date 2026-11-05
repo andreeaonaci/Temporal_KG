@@ -19,6 +19,7 @@ Rules
 
 from __future__ import annotations
 
+import threading
 import time
 
 from src.ingestion.models import ArticleRecord
@@ -65,6 +66,108 @@ def _chunk_text(text: str, size: int = _CHUNK_SIZE) -> list[str]:
     return chunks
 
 
+# Local NLLB-200 (one multilingual model, no network at translate time, no rate
+# limit). Languages not listed (and "auto") fall back to the Google path.
+_LOCAL_MODEL = "facebook/nllb-200-distilled-600M"
+_NLLB_CODES = {
+    "zh-CN": "zho_Hans", "zh-TW": "zho_Hant", "ro": "ron_Latn", "bg": "bul_Cyrl",
+    "sv": "swe_Latn", "ru": "rus_Cyrl", "da": "dan_Latn", "de": "deu_Latn",
+    "fr": "fra_Latn", "es": "spa_Latn", "it": "ita_Latn", "pt": "por_Latn",
+    "ar": "arb_Arab", "hu": "hun_Latn", "pl": "pol_Latn", "nl": "nld_Latn",
+    "tr": "tur_Latn", "uk": "ukr_Cyrl", "ja": "jpn_Jpan", "ko": "kor_Hang",
+    "cs": "ces_Latn", "hr": "hrv_Latn", "vi": "vie_Latn", "id": "ind_Latn", "th": "tha_Thai", "he": "heb_Hebr", "sk": "slk_Latn", "sl": "slv_Latn", "no": "nob_Latn", "ca": "cat_Latn", "lt": "lit_Latn", "lv": "lvs_Latn", "et": "est_Latn", "mk": "mkd_Cyrl", "sq": "als_Latn", "sr": "srp_Cyrl", "el": "ell_Grek", "fi": "fin_Latn",
+}
+_LOCAL_CHUNK = 400  # chars per piece; keeps each piece well inside the model's context
+_local_cache: dict[str, tuple] = {}
+
+# Domain terms the model gets wrong (measured: Cernavoda -> "Chernobyl", Belt and Road ->
+# "Belt and Road Bridge"). Substituted in the source text before translation.
+# shortcut: hand-picked from a handful of test sentences, extend as errors are found.
+_GLOSSARY_ZH = {"切尔纳沃达": "Cernavoda", "一带一路": "Belt and Road Initiative"}
+
+
+def _split_sentences(text: str, size: int = _LOCAL_CHUNK) -> list[str]:
+    """Greedy-pack sentences into pieces of at most *size* chars."""
+    import re
+    pieces: list[str] = []
+    for sent in re.findall(r"[^。！？!?.\n]+[。！？!?.]?", text):
+        sent = sent.strip()
+        pieces.extend(sent[i:i + size] for i in range(0, len(sent), size))
+    out, cur = [], ""
+    for p in pieces:
+        if cur and len(cur) + len(p) > size:
+            out.append(cur)
+            cur = ""
+        cur += p + " "
+    return out + ([cur] if cur.strip() else [])
+
+
+def _translate_local_many(texts: list[str], source_lang: str) -> tuple[list[str], bool]:
+    """Translate several texts in one pass: all pieces are pooled, length-sorted
+    (little padding) and generated in big batches, then reassembled per text."""
+    try:
+        import torch
+        from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+        dev = "cuda" if torch.cuda.is_available() else "cpu"
+        if "m" not in _local_cache:
+            model = AutoModelForSeq2SeqLM.from_pretrained(_LOCAL_MODEL, torch_dtype=torch.float16 if dev == "cuda" else torch.float32)
+            _local_cache["m"] = (model.eval().to(dev), {})
+        model, toks = _local_cache["m"]
+        if source_lang not in toks:
+            toks[source_lang] = AutoTokenizer.from_pretrained(_LOCAL_MODEL, src_lang=_NLLB_CODES[source_lang])
+        tok = toks[source_lang]
+        eng = tok.convert_tokens_to_ids("eng_Latn")
+        beams = int(settings("ingestion.translation_beams", 1))
+
+        pieces: list[tuple[int, int, str]] = []  # (text index, piece index, piece)
+        for ti, text in enumerate(texts):
+            if source_lang.startswith("zh"):
+                for zh, en in _GLOSSARY_ZH.items():
+                    text = text.replace(zh, f" {en} ")
+            pieces.extend((ti, pi, p) for pi, p in enumerate(_split_sentences(text)))
+        order = sorted(range(len(pieces)), key=lambda i: len(pieces[i][2]), reverse=True)
+        result: dict[int, str] = {}
+        step = 48 if dev == "cuda" else 4
+        for i in range(0, len(order), step):
+            idx = order[i:i + step]
+            batch = tok([pieces[j][2] for j in idx], return_tensors="pt", padding=True, truncation=True, max_length=512).to(dev)
+            # output is rarely much longer than the input; the cap stops runaway loops early
+            cap = min(512, int(batch["input_ids"].shape[1] * 1.6) + 16)
+            with torch.no_grad():
+                gen = model.generate(**batch, forced_bos_token_id=eng, num_beams=beams, max_new_tokens=cap, no_repeat_ngram_size=3)
+            for j, t in zip(idx, tok.batch_decode(gen, skip_special_tokens=True)):
+                result[j] = t
+        out = [[] for _ in texts]
+        for j, (ti, _pi, _p) in sorted(enumerate(pieces), key=lambda x: (x[1][0], x[1][1])):
+            out[ti].append(result[j])
+        return [" ".join(o) for o in out], True
+    except Exception as exc:
+        log.warning("Local translation failed (%s: %s) — keeping original", type(exc).__name__, exc)
+        return list(texts), False
+
+
+def _translate_local(text: str, source_lang: str) -> tuple[str, bool]:
+    out, ok = _translate_local_many([text], source_lang)
+    return out[0], ok
+
+
+_google_lock = threading.Lock()
+_google_last = 0.0
+
+
+def _google_wait() -> None:
+    """Global limiter: Google's free endpoint allows 5 requests/second, so space
+    every request (retries included) at least translation_rate_limit_delay apart."""
+    global _google_last
+    gap = float(settings("ingestion.translation_rate_limit_delay", 0.25))
+    with _google_lock:
+        wait = _google_last + gap - time.monotonic()
+        if wait > 0:
+            time.sleep(wait)
+        _google_last = time.monotonic()
+
+
 def _translate_text_with_status(text: str, source_lang: str, target_lang: str = "en") -> tuple[str, bool]:
     """
     Translate *text* from *source_lang* to English.
@@ -72,6 +175,13 @@ def _translate_text_with_status(text: str, source_lang: str, target_lang: str = 
     """
     if not text or not text.strip():
         return text, True
+
+    if (
+        settings("ingestion.translation_backend", "google") == "local"
+        and target_lang == "en"
+        and source_lang in _NLLB_CODES
+    ):
+        return _translate_local(text, source_lang)
 
     try:
         from deep_translator import GoogleTranslator
@@ -82,11 +192,11 @@ def _translate_text_with_status(text: str, source_lang: str, target_lang: str = 
     chunks = _chunk_text(text)
     translated_chunks: list[str] = []
     all_ok = True
-    rate_delay = float(settings("ingestion.translation_rate_limit_delay", 2.0))
 
     for chunk in chunks:
         for attempt in range(1, _MAX_RETRIES + 1):
             try:
+                _google_wait()
                 translator = GoogleTranslator(source=source_lang, target=target_lang)
                 result = translator.translate(chunk)
                 if not result or _looks_like_error_page(result):
@@ -103,7 +213,6 @@ def _translate_text_with_status(text: str, source_lang: str, target_lang: str = 
                     all_ok = False
                 else:
                     time.sleep(_RETRY_DELAY)
-        time.sleep(rate_delay)
 
     return "\n".join(translated_chunks), all_ok
 
@@ -171,14 +280,25 @@ class Translator:
         translated_ok = True
         translated_any = False
 
-        if article.title:
+        if (
+            settings("ingestion.translation_backend", "google") == "local"
+            and self._target_lang == "en"
+            and source in _NLLB_CODES
+            and article.title
+            and article.content_clean
+        ):
+            (article.title, article.content_clean), translated_ok = _translate_local_many(
+                [article.title, article.content_clean], source
+            )
+            translated_any = True
+        elif article.title:
             translated_any = True
             article.title, title_ok = _translate_text_with_status(
                 article.title, source, target_lang=self._target_lang
             )
             translated_ok = translated_ok and title_ok
 
-        if article.content_clean:
+        if article.content_clean and not (translated_any and settings("ingestion.translation_backend", "google") == "local" and source in _NLLB_CODES and article.title):
             translated_any = True
             article.content_clean, content_ok = _translate_text_with_status(
                 article.content_clean, source, target_lang=self._target_lang

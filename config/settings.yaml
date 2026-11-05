@@ -38,10 +38,13 @@ database:
 
 ingestion:
   translate_to_english: true
-  translate_unknown_to_english: true
+  translate_unknown_to_english: false  # unknown-language pages were junk (e.g. radyokabayan.com) and only reached Google
   translation_target_language: "en"
   require_translation_success: true
-  translation_rate_limit_delay: 2.0  # seconds between deep-translator calls. Added
+  translation_backend: local  # "local" = NLLB-200 on GPU if available (~35 languages; "auto" still uses Google); "google" = deep-translator only
+  translation_rate_limit_delay: 0.25  # min seconds between ANY two Google requests (limit is 5/s)
+  scrape_workers: 16
+  translation_beams: 1  # local model: 1 = greedy (fast), 2+ = beam search (slower, slightly better)
   # 2026-08-25: translating short titles only (pre-full-text-scraping) never sent
   # enough requests to trip Google Translate's free-endpoint rate limit, so this
   # delay didn't exist. Once article_scraper.py started feeding real (much longer,

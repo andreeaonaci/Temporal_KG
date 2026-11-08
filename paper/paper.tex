@@ -377,6 +377,143 @@ counts meaningful, since many outlets mirror the exact same wire-service
 copy rather than independently reporting it; Section~\ref{sec:credibility}
 describes how the credibility layer corrects for this.
 
+\subsection{Large-Scale Corpus Build: GDELT GKG via BigQuery (2023)}
+\label{sec:bq-corpus}
+
+To test the pipeline beyond the Full-Text Search API's 250-stub window, we
+selected candidate articles for calendar year 2023 directly from the GDELT
+GKG~2.0 table in BigQuery. The query keeps an article only if both
+\texttt{\#RO\#} and \texttt{\#CH\#} appear at least twice among its FIPS
+location codes and it carries no sports theme. This produced 19,996 unique
+URLs, which we ran through the full scrape, translate, filter, and store
+pipeline, using a local NLLB-200 (distilled, 600M) model for translation.
+The build took about 11~hours over five resumable runs, roughly 2\,s per URL
+end to end (Table~\ref{tab:bq-outcome}).
+
+\begin{table}[htbp]
+\caption{GDELT GKG 2023 Corpus Build: Outcome}
+\label{tab:bq-outcome}
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Stage} & \textbf{Articles} & \textbf{Share} \\
+\midrule
+Candidate URLs (BigQuery) & 19,996 & -- \\
+Stored after deduplication & 18,002 & 100\% \\
+\quad full text scraped & 8,438 & 46.9\% \\
+\quad scrape failed (title only) & 9,564 & 53.1\% \\
+\midrule
+\multicolumn{3}{l}{\textit{Relevance-filter decision}} \\
+\quad no China/Romania term & 11,391 & 63.3\% \\
+\quad China only & 3,845 & 21.4\% \\
+\quad Romania only & 497 & 2.8\% \\
+\quad sports exclusion & 205 & 1.1\% \\
+\quad translation failed & 54 & 0.3\% \\
+\quad \textbf{relevant (co-occurrence)} & \textbf{2,010} & \textbf{11.2\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Scraping Failures in the 2023 Corpus Build}
+\label{tab:bq-scrape}
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Failure} & \textbf{Articles} \\
+\midrule
+HTTP 403 Forbidden (anti-bot) & 5,104 \\
+Connect timeout & 916 \\
+Connection error & 703 \\
+No extractable text & 701 \\
+HTTP 404 Not Found & 629 \\
+Read timeout & 77 \\
+HTTP 429 Too Many Requests & 54 \\
+Translation failed & 54 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Relevance precision at scale}
+Co-occurrence relevance is far less precise on this corpus than on the
+targeted searches used elsewhere in this paper. Only 693 of the 2,010
+relevant articles (34\%) name both countries in the same sentence. In a
+manual audit of 40 randomly sampled relevant articles, only 3 (about 8\%)
+are actually about China--Romania relations (Table~\ref{tab:bq-audit}). Most
+are lists of countries, or stories about one country that mention the other
+in passing. The audit also revealed three concrete failure modes:
+\begin{enumerate}
+  \item the case-insensitive alias \texttt{ro} matches unrelated tokens
+        (e.g., the Korean name ``Ro''), and is the \emph{only} Romania match
+        in 180 relevant articles (9\%);
+  \item 238 relevant articles still contain chess, Olympic, championship,
+        or tournament vocabulary that the sports-marker exclusion does not
+        cover;
+  \item the 600M NLLB model often produces fluent but unrelated output on
+        Chinese pages (e.g., a headline about a livestreaming platform losing
+        followers becomes ``The South Korean government has announced that it
+        will stop its operations''), while Russian output in the same sample
+        was faithful. Among scraped articles longer than 500 characters, 18\%
+        of \emph{no-match} articles show degenerate repetition (more than 30\%
+        repeated 4-grams), against 1\% of relevant ones.
+\end{enumerate}
+Most of the 63\% \emph{no-match} share is explained by scraping failure
+(8,902 of 11,391 had only a title). The remaining 2,489 scraped pages are
+largely domestic Chinese news, which shows that GDELT's automatic
+\texttt{\#RO\#} geotagging produces false positives even with the
+two-mention threshold.
+
+\begin{table}[htbp]
+\caption{Manual Audit of 40 Randomly Sampled ``Relevant'' Articles}
+\label{tab:bq-audit}
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Category} & \textbf{n} \\
+\midrule
+About China--Romania relations & 3 \\
+Country lists (rankings, reports, casualty lists) & 13 \\
+One-country story, incidental mention & 14 \\
+Calendars, almanacs, currency tables & 4 \\
+Sports/chess not caught by exclusion & 3 \\
+US politics (Biden-family business) & 2 \\
+Alias false positive (\texttt{ro}) & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What the corpus covers}
+The relevant set covers all of 2023, with 106 to 223 articles per month
+(Table~\ref{tab:bq-monthly}). The Romanian press is the largest national
+block (334 \texttt{.ro} domains). The context is dominated by the war in
+Ukraine: 1,017 articles mention Russia and 801 mention Ukraine, compared with
+56 for the Belt and Road / 16+1 framework and 39 for Huawei/5G. In 2023, the
+two countries co-occur mainly as actors around the war (Romania as a NATO
+frontline state, China as Russia's partner) rather than through direct
+bilateral events. These findings motivate a sentence-level co-mention
+requirement, or a learned relevance classifier, before entity and event
+extraction is run on this corpus.
+
+\begin{table}[htbp]
+\caption{Relevant Articles per Month, 2023}
+\label{tab:bq-monthly}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrr}
+\toprule
+ & J & F & M & A & M & J & J & A & S & O & N & D \\
+\midrule
+Co-occur. & 171 & 165 & 110 & 129 & 219 & 151 & 182 & 106 & 201 & 148 & 205 & 223 \\
+Same sent. & 53 & 46 & 30 & 30 & 91 & 62 & 67 & 37 & 78 & 59 & 64 & 76 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Entity, Relation, and Temporal Extraction}
 \label{sec:extraction}

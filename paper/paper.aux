@@ -1,0 +1,178 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{trivedi2019dyrep}
+\citation{gottschalk2019eventkg}
+\citation{allen1983interval}
+\citation{allein2023implicit}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{I}{1}{Introduction}{section.1}{}}
+\citation{elsahar2018trex}
+\citation{jain2020timeplex}
+\citation{trivedi2019dyrep}
+\citation{gottschalk2019eventkg}
+\citation{allen1983interval}
+\citation{leetaru2013gdelt}
+\citation{gerner2002cameo}
+\citation{fader2011reverb}
+\citation{zhang2022deepke}
+\citation{strotgen2010heideltime}
+\citation{pustejovsky2003timex3}
+\citation{barbaresi2021trafilatura}
+\citation{shu2019fakenews}
+\citation{popat2018credeyecontrib}
+\citation{allein2023implicit}
+\citation{he2021debertav3}
+\citation{wang2020minilm}
+\citation{leetaru2013gdelt}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{II}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Temporal Knowledge Graphs}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}News-Driven Knowledge Graph Population}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Information Extraction Tools}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Fake-News, Contradiction, and Credibility Assessment}{2}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Architecture}{2}{section.3}\protected@file@percent }
+\newlabel{sec:architecture}{{III}{2}{System Architecture}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Ingestion and Relevance Filtering}{2}{section.4}\protected@file@percent }
+\newlabel{sec:ingestion}{{IV}{2}{Ingestion and Relevance Filtering}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Article Sources}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Top-level orchestration and data flow of the Temporal KG pipeline.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{3}{Top-level orchestration and data flow of the Temporal KG pipeline}{figure.1}{}}
+\citation{barbaresi2021trafilatura}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {IV-A}0a}GDELT Full-Text Search API}{4}{paragraph.4.1.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {IV-A}0b}Curated RSS Feeds}{4}{paragraph.4.1.0.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces RSS Feeds Monitored by the Ingestion Module}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:feeds}{{I}{4}{RSS Feeds Monitored by the Ingestion Module}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Pipeline Steps}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Large-Scale Corpus Build: GDELT GKG via BigQuery (2023)}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:bq-corpus}{{\mbox  {IV-C}}{4}{Large-Scale Corpus Build: GDELT GKG via BigQuery (2023)}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {IV-C}0a}Relevance precision at scale}{4}{paragraph.4.3.0.1}\protected@file@percent }
+\citation{zhang2022deepke}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces GDELT GKG 2023 Corpus Build: Outcome}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:bq-outcome}{{II}{5}{GDELT GKG 2023 Corpus Build: Outcome}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Scraping Failures in the 2023 Corpus Build}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:bq-scrape}{{III}{5}{Scraping Failures in the 2023 Corpus Build}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {IV-C}0b}What the corpus covers}{5}{paragraph.4.3.0.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Manual Audit of 40 Randomly Sampled ``Relevant'' Articles}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:bq-audit}{{IV}{5}{Manual Audit of 40 Randomly Sampled ``Relevant'' Articles}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Relevant Articles per Month, 2023}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:bq-monthly}{{V}{5}{Relevant Articles per Month, 2023}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Entity, Relation, and Temporal Extraction}{5}{section.5}\protected@file@percent }
+\newlabel{sec:extraction}{{V}{5}{Entity, Relation, and Temporal Extraction}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Named Entity Recognition}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {V-A}0a}Rule-based extraction}{5}{paragraph.5.1.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {V-A}0b}DeepKE integration}{5}{paragraph.5.1.0.2}\protected@file@percent }
+\citation{strotgen2010heideltime}
+\citation{cox2017owltime}
+\citation{gottschalk2019eventkg}
+\citation{allen1983interval}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {V-A}0c}spaCy model augmentation}{6}{paragraph.5.1.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Relation Extraction}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Temporal Expression Extraction}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces TIMEX3 Expression Types Handled by HeidelTime}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:timex}{{VI}{6}{TIMEX3 Expression Types Handled by HeidelTime}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Bilateral-Relations Ontology}{6}{section.6}\protected@file@percent }
+\newlabel{sec:ontology}{{VI}{6}{Bilateral-Relations Ontology}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Event Taxonomy}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Temporal Validity Model}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sequence diagram of the combined extraction module.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:extraction}{{2}{6}{Sequence diagram of the combined extraction module}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Allen-Relation Reasoning Between Events}{6}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:temporal-reasoning}{{\mbox  {VI-C}}{6}{Allen-Relation Reasoning Between Events}{subsection.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Bilateral Event Taxonomy with CAMEO, GDELT, and IPTC Mappings}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:taxonomy}{{VII}{7}{Bilateral Event Taxonomy with CAMEO, GDELT, and IPTC Mappings}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Provenance Model}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Graph Schema and Population}{7}{section.7}\protected@file@percent }
+\newlabel{sec:graph}{{VII}{7}{Graph Schema and Population}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Neo4j Schema}{7}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Graph Loading}{7}{subsection.7.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Neo4j graph schema for the China--Romania temporal KG.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:schema}{{3}{7}{Neo4j graph schema for the China--Romania temporal KG}{figure.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Graph initialization and population commands.}{7}{lstlisting.1}\protected@file@percent }
+\citation{wang2020minilm}
+\citation{he2021debertav3}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Credibility Assessment Layer}{8}{section.8}\protected@file@percent }
+\newlabel{sec:credibility}{{VIII}{8}{Credibility Assessment Layer}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}Source-Domain Scoring}{8}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Publisher-Network-Aware Source Diversity}{8}{subsection.8.2}\protected@file@percent }
+\newlabel{sec:publisher-networks}{{\mbox  {VIII-B}}{8}{Publisher-Network-Aware Source Diversity}{subsection.8.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-C}}Semantic Corroboration Merging}{8}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-D}}NLI-Based Contradiction Detection}{8}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-E}}Temporal Gating: Contradiction vs.\ Claim Evolution}{8}{subsection.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-F}}Claim-Lifecycle State Verification}{8}{subsection.8.6}\protected@file@percent }
+\newlabel{sec:lifecycle}{{\mbox  {VIII-F}}{8}{Claim-Lifecycle State Verification}{subsection.8.6}{}}
+\citation{allein2023implicit}
+\citation{allein2023implicit}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Example Claim-Lifecycle State Machines}}{9}{table.8}\protected@file@percent }
+\newlabel{tab:lifecycles}{{VIII}{9}{Example Claim-Lifecycle State Machines}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-G}}Claim Verification Labels}{9}{subsection.8.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Evaluation}{9}{section.9}\protected@file@percent }
+\newlabel{sec:evaluation}{{IX}{9}{Evaluation}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-A}}Component-Level Ablations}{9}{subsection.9.1}\protected@file@percent }
+\newlabel{sec:ablations}{{\mbox  {IX-A}}{9}{Component-Level Ablations}{subsection.9.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Sequence diagram of the credibility assessment module, including semantic corroboration merging, NLI contradiction detection with its relevance pre-filter, the Allen-relation temporal gate, and claim-lifecycle state verification.}}{9}{figure.4}\protected@file@percent }
+\newlabel{fig:credibility}{{4}{9}{Sequence diagram of the credibility assessment module, including semantic corroboration merging, NLI contradiction detection with its relevance pre-filter, the Allen-relation temporal gate, and claim-lifecycle state verification}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Component Ablations on Hand-Labeled Gold Pairs}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:ablations}{{IX}{9}{Component Ablations on Hand-Labeled Gold Pairs}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-B}}Ablations on Large Real-Data Pools}{10}{subsection.9.2}\protected@file@percent }
+\newlabel{sec:ablations-scaled}{{\mbox  {IX-B}}{10}{Ablations on Large Real-Data Pools}{subsection.9.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces Component Ablations on Large Real-Data Pools}}{10}{table.10}\protected@file@percent }
+\newlabel{tab:ablations-scaled}{{X}{10}{Component Ablations on Large Real-Data Pools}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-C}}LLM-Judge Concordance on Real Mined Pairs}{10}{subsection.9.3}\protected@file@percent }
+\newlabel{sec:llm-judge}{{\mbox  {IX-C}}{10}{LLM-Judge Concordance on Real Mined Pairs}{subsection.9.3}{}}
+\citation{landiskoch1977kappa}
+\citation{ross2024visled}
+\citation{gruninger1995ontology}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-D}}Competency Questions}{11}{subsection.9.4}\protected@file@percent }
+\newlabel{sec:cq}{{\mbox  {IX-D}}{11}{Competency Questions}{subsection.9.4}{}}
+\newlabel{sec:cq-method}{{\mbox  {IX-D}1}{11}{Article-Level vs.\ Event-Level Bilateral Gating}{subsubsection.9.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}1}Article-Level vs.\ Event-Level Bilateral Gating}{11}{subsubsection.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}2}CQ1 -- Economic Evolution}{11}{subsubsection.9.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}3}CQ2 -- Institutional Linkages}{11}{subsubsection.9.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}4}CQ3 -- Bilateral Events in a Period}{11}{subsubsection.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}5}CQ4 -- Low-Credibility Narratives}{11}{subsubsection.9.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces China--Romania bilateral events by type, full corpus ($n=297$), executed as a Cypher query against the populated Neo4j graph.}}{12}{figure.5}\protected@file@percent }
+\newlabel{fig:timeline}{{5}{12}{China--Romania bilateral events by type, full corpus ($n=297$), executed as a Cypher query against the populated Neo4j graph}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-D}6}CQ5 -- Collaborative Research}{12}{subsubsection.9.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {X}Implementation Details}{12}{section.10}\protected@file@percent }
+\newlabel{sec:implementation}{{X}{12}{Implementation Details}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-A}}Technology Stack}{12}{subsection.10.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Core Technology Stack}}{12}{table.11}\protected@file@percent }
+\newlabel{tab:stack}{{XI}{12}{Core Technology Stack}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-B}}Reproducibility}{12}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-C}}Incremental Updates}{12}{subsection.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {XI}Discussion}{12}{section.11}\protected@file@percent }
+\newlabel{sec:discussion}{{XI}{12}{Discussion}{section.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0a}Full-text ingestion was a load-bearing fix, not a refinement}{12}{paragraph.11.0.0.1}\protected@file@percent }
+\bibcite{trivedi2019dyrep}{1}
+\bibcite{gottschalk2019eventkg}{2}
+\bibcite{leetaru2013gdelt}{3}
+\bibcite{gerner2002cameo}{4}
+\bibcite{zhang2022deepke}{5}
+\bibcite{strotgen2010heideltime}{6}
+\bibcite{pustejovsky2003timex3}{7}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0b}Translation at scale surfaced a silent-failure mode}{13}{paragraph.11.0.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0c}Multilingual coverage}{13}{paragraph.11.0.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0d}Temporal resolution}{13}{paragraph.11.0.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0e}Scalability}{13}{paragraph.11.0.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0f}Lifecycle models are a first pass, not a validated ontology}{13}{paragraph.11.0.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {XI-}0g}Annotation and evaluation scale}{13}{paragraph.11.0.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {XII}Conclusion}{13}{section.12}\protected@file@percent }
+\newlabel{sec:conclusion}{{XII}{13}{Conclusion}{section.12}{}}
+\@writefile{toc}{\contentsline {section}{References}{13}{section*.1}\protected@file@percent }
+\bibcite{cox2017owltime}{8}
+\bibcite{elsahar2018trex}{9}
+\bibcite{jain2020timeplex}{10}
+\bibcite{shu2019fakenews}{11}
+\bibcite{popat2018credeyecontrib}{12}
+\bibcite{gruninger1995ontology}{13}
+\bibcite{fader2011reverb}{14}
+\bibcite{allen1983interval}{15}
+\bibcite{allein2023implicit}{16}
+\bibcite{wang2020minilm}{17}
+\bibcite{he2021debertav3}{18}
+\bibcite{barbaresi2021trafilatura}{19}
+\bibcite{landiskoch1977kappa}{20}
+\bibcite{ross2024visled}{21}
+\gdef \@abspage@last{14}
